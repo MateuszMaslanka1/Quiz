@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectToJsonServerService } from '../connect-to-json-server.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(services: ConnectToJsonServerService) { }
 
   ngOnInit() {
-    console.log("jest");
+    
   }
 
 }
