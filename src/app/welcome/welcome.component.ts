@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectToJsonServerService } from '../connect-to-json-server.service';
+import * as rxjs from 'rxjs';
 
 @Component({
   selector: 'app-welcome',
@@ -8,10 +9,17 @@ import { ConnectToJsonServerService } from '../connect-to-json-server.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(services: ConnectToJsonServerService) { }
+  constructor(private services: ConnectToJsonServerService) { }
+
+  protected quantityOfquestions: number
 
   ngOnInit() {
-    
+    this.services.getQuestionsFromJsonServer().subscribe(response => {  
+      this.quantityOfquestions = response.length;   
+    })
+    this.services.getTimeFromJsonServer().subscribe(response => {
+      
+    })
   }
 
 }
