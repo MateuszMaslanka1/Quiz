@@ -1,12 +1,12 @@
 <div>
   <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
-  <mat-radio-group aria-label="Select an option">
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="answer">
     <mat-radio-button value="0">{{questionsForShow[indexForNextQuestion].value.answers[0]}}</mat-radio-button>
     <mat-radio-button value="1">{{questionsForShow[indexForNextQuestion].value.answers[1]}}</mat-radio-button>
     <mat-radio-button value="2">{{questionsForShow[indexForNextQuestion].value.answers[2]}}</mat-radio-button>
     <mat-radio-button value="3">{{questionsForShow[indexForNextQuestion].value.answers[3]}}</mat-radio-button>
   </mat-radio-group>
-  <button mat-raised-button>Click me!</button>
+  <button mat-raised-button (click)="takeAnswers()">Click me!</button>
 </div>
 
 <button (click)="nextQuestion()">next</button>

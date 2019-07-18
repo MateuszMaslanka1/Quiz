@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './core/welcome/welcome.component';
 import {HttpClientModule} from '@angular/common/http';
-import { QuizComponent } from './quiz/quiz.component';
+import { QuizComponent } from './core/quiz/quiz.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/mater
     NoopAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    FormsModule
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {ConnectToJsonServerService} from '../../connect-to-json-server.service';
 import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
@@ -15,6 +15,7 @@ export class QuizComponent implements OnInit {
   questionsForShow = [];
   items;
   indexForNextQuestion = 0;
+  answer: string;
 
   ngOnInit() {
     this.services.getQuestionsFromJsonServer().subscribe(response => {
@@ -34,11 +35,13 @@ export class QuizComponent implements OnInit {
       this.indexForNextQuestion = 0;
     }
   }
-
   previousQuestion() {
     this.indexForNextQuestion--;
     if (this.indexForNextQuestion < 0) {
       this.indexForNextQuestion = this.questionsForShow.length - 1;
     }
+  }
+  takeAnswers() {
+
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectToJsonServerService } from '../connect-to-json-server.service';
+import { ConnectToJsonServerService } from '../../connect-to-json-server.service';
 import * as rxjs from 'rxjs';
 import {Router} from '@angular/router';
 

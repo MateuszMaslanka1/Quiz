@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {WelcomeComponent} from './welcome/welcome.component';
-import {QuizComponent} from './quiz/quiz.component';
+import {WelcomeComponent} from './core/welcome/welcome.component';
+import {QuizComponent} from './core/quiz/quiz.component';
 
 
 const routes: Routes = [
