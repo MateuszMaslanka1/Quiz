@@ -13,11 +13,11 @@ export class CheckCorectAnswerService {
 
   checkAnswer(questionsForShowFromQuiz, answerFromQuiz): boolean {
       console.log(questionsForShowFromQuiz.value, answerFromQuiz);
-      const ok = questionsForShowFromQuiz.value.id;
+      const idUser = questionsForShowFromQuiz.value.id;
       this.isAnswerList.push({
-        ok
+        idUser
       })
-
+      console.log(this.isAnswerList);
       return +answerFromQuiz === questionsForShowFromQuiz.value.correctAnswer;
   }
 
