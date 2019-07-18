@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ConnectToJsonServerService} from '../../connect-to-json-server.service';
-import {MatRadioModule} from '@angular/material/radio';
+import {Component, OnInit} from '@angular/core';
+import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {CheckCorectAnswerService} from '../check-corect-answer.service';
 
 @Component({
   selector: 'app-quiz',
@@ -10,7 +10,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 export class QuizComponent implements OnInit {
 
-  constructor(private services: ConnectToJsonServerService) { }
+  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService ) { }
 
   questionsForShow = [];
   items;
@@ -18,7 +18,7 @@ export class QuizComponent implements OnInit {
   answer: string;
 
   ngOnInit() {
-    this.services.getQuestionsFromJsonServer().subscribe(response => {
+    this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
       for (const type in response) {
         this.items = {};
         this.items.key = type;
@@ -26,7 +26,6 @@ export class QuizComponent implements OnInit {
         this.questionsForShow.push(this.items);
       }
     });
-    console.log(this.questionsForShow);
   }
 
   nextQuestion() {
@@ -42,6 +41,7 @@ export class QuizComponent implements OnInit {
     }
   }
   takeAnswers() {
-
+    const test = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
+    console.log(test);
   }
 }
