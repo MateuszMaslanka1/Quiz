@@ -1,1 +1,9 @@
-<p>quiz works!</p>
+<!--<div *ngFor="let item of questionsForShow">-->
+<!--    <div>{{item.value.question}}</div>-->
+<!--  <div>{{item.value.answers}}</div>-->
+<!--</div>-->
+
+<div>{{questionsForShow[indexForNextQuestion].value.question}}</div>
+
+<button (click)="nextQuestion()">next</button>
+<button (click)="previousQuestion()">previous</button>

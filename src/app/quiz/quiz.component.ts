@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 
 @Component({
   selector: 'app-quiz',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizComponent implements OnInit {
 
-  constructor() { }
+  constructor(private services: ConnectToJsonServerService) { }
+
+  questionsForShow = [];
+  items;
+  indexForNextQuestion = 0;
 
   ngOnInit() {
+    this.services.getQuestionsFromJsonServer().subscribe(response => {
+      for (const type in response) {
+        this.items = {};
+        this.items.key = type;
+        this.items.value = response[type];
+        this.questionsForShow.push(this.items);
+      }
+    });
+    console.log(this.questionsForShow);
   }
 
+  nextQuestion() {
+    this.indexForNextQuestion++;
+    if (this.indexForNextQuestion === this.questionsForShow.length) {
+      this.indexForNextQuestion = 0;
+    }
+  }
+
+  previousQuestion() {
+    this.indexForNextQuestion--;
+    if (this.indexForNextQuestion < 0) {
+      this.indexForNextQuestion = this.questionsForShow.length - 1;
+    }
+  }
 }
