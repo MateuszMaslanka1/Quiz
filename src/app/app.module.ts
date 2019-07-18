@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { QuizComponent } from './quiz/quiz.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

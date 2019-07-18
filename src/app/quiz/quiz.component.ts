@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
+
 export class QuizComponent implements OnInit {
 
   constructor(private services: ConnectToJsonServerService) { }

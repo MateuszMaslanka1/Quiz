@@ -1,9 +1,13 @@
-<!--<div *ngFor="let item of questionsForShow">-->
-<!--    <div>{{item.value.question}}</div>-->
-<!--  <div>{{item.value.answers}}</div>-->
-<!--</div>-->
-
-<div>{{questionsForShow[indexForNextQuestion].value.question}}</div>
+<div>
+  <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="0">{{questionsForShow[indexForNextQuestion].value.answers[0]}}</mat-radio-button>
+    <mat-radio-button value="1">{{questionsForShow[indexForNextQuestion].value.answers[1]}}</mat-radio-button>
+    <mat-radio-button value="2">{{questionsForShow[indexForNextQuestion].value.answers[2]}}</mat-radio-button>
+    <mat-radio-button value="3">{{questionsForShow[indexForNextQuestion].value.answers[3]}}</mat-radio-button>
+  </mat-radio-group>
+  <button mat-raised-button>Click me!</button>
+</div>
 
 <button (click)="nextQuestion()">next</button>
 <button (click)="previousQuestion()">previous</button>
