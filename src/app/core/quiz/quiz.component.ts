@@ -41,7 +41,9 @@ export class QuizComponent implements OnInit {
     }
   }
   takeAnswers() {
-    const test = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
-    console.log(test);
+    const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
+    if (getResoult === true) {
+     // console.log(this.checkCorectAnswer.sumPoints());
+    }
   }
 }
