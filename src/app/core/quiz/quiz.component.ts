@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 
@@ -10,12 +10,15 @@ import {CheckCorectAnswerService} from '../check-corect-answer.service';
 
 export class QuizComponent implements OnInit {
 
-  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService ) { }
+  @ViewChild('myRadio', { static: true }) myRadioElementRef: ElementRef;
+
+  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService, private ren: Renderer2 ) { }
 
   questionsForShow = [];
   items;
   indexForNextQuestion = 0;
   answer: string;
+  isChecked=false;
 
   ngOnInit() {
     this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
@@ -28,14 +31,15 @@ export class QuizComponent implements OnInit {
     });
   }
 
-   nextQuestion() {
+   nextQuestion() { 
+      this.answer = null;
      this.indexForNextQuestion++;
      if (this.indexForNextQuestion === this.questionsForShow.length) {
        this.indexForNextQuestion = 0;
      }
    }
   previousQuestion() {
-    // this.checkCorectAnswer.deleteAnswer();
+    this.answer = null;
     this.indexForNextQuestion--;
     if (this.indexForNextQuestion < 0) {
       this.indexForNextQuestion = this.questionsForShow.length - 1;
@@ -43,8 +47,8 @@ export class QuizComponent implements OnInit {
   }
   takeAnsweres() {
     const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
-   // console.log(this.indexForNextQuestion);
+    const arrayWithUserAnswer = this.checkCorectAnswer.checkHowMany(this.questionsForShow, this.answer, this.indexForNextQuestion);
 
-    this.checkCorectAnswer.checkHowMany(this.questionsForShow, this.answer, this.indexForNextQuestion);
+    console.log(arrayWithUserAnswer);
   }
 }
