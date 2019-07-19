@@ -28,22 +28,27 @@ export class QuizComponent implements OnInit {
     });
   }
 
-  nextQuestion() {
-    this.indexForNextQuestion++;
-    if (this.indexForNextQuestion === this.questionsForShow.length) {
-      this.indexForNextQuestion = 0;
-    }
-  }
+  // nextQuestion() {
+  //   this.indexForNextQuestion++;
+  //   if (this.indexForNextQuestion === this.questionsForShow.length) {
+  //     this.indexForNextQuestion = 0;
+  //   }
+  // }
   previousQuestion() {
+    this.checkCorectAnswer.deleteAnswer();
     this.indexForNextQuestion--;
     if (this.indexForNextQuestion < 0) {
       this.indexForNextQuestion = this.questionsForShow.length - 1;
     }
   }
-  takeAnswers() {
+  nextQuestion() {
     const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
     if (getResoult === true) {
      // console.log(this.checkCorectAnswer.sumPoints());
+    }
+    this.indexForNextQuestion++;
+    if (this.indexForNextQuestion === this.questionsForShow.length) {
+      this.indexForNextQuestion = 0;
     }
   }
 }

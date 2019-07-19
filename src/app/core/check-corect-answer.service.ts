@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {isNullOrUndefined} from 'util';
+import {element} from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ export class CheckCorectAnswerService {
 
   private result = 0;
   private isAnswerList = [];
-  private listForLastAnswere = [];
   private getAnswer;
 
   checkAnswer(questionsForShowFromQuiz, answerFromQuiz): boolean {
@@ -22,35 +22,13 @@ export class CheckCorectAnswerService {
          answerFromQuiz
        });
 
-     //  this.isAnswerList.forEach((element, index) => {
-     //     if (this.isAnswerList[index].idQuestion === questionsForShowFromQuiz.value.id) {
-     //        this.isAnswerList[index].idQuestion = element;
-     //        console.log(element);
-     //     }
-     // });
-     //
-     //  console.log(this.isAnswerList);
-
-      this.isAnswerList.forEach((element, index) => {
-           if (element.idQuestion === questionsForShowFromQuiz.value.id) {
-             this.getAnswer = element
-             this.isAnswerList.splice(index, 1);
-           }
-       });
-
-      // console.log(this.getAnswer);
-      this.isAnswerList.push(
-        this.getAnswer
-      );
-      //console.log(this.isAnswerList);
-
-      this.isAnswerList.forEach((element, index) => {
-        if (element.idQuestion === questionsForShowFromQuiz.value.id) {
-            console.log(element);
-        }
-        });
-
+      console.log(this.isAnswerList);
       return +answerFromQuiz === questionsForShowFromQuiz.value.correctAnswer;
+  }
+
+  deleteAnswer() {
+    this.isAnswerList.pop();
+    console.log(this.isAnswerList);
   }
 
   sumPoints() {
