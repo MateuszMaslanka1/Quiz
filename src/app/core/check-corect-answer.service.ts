@@ -10,29 +10,36 @@ export class CheckCorectAnswerService {
   constructor() { }
 
   private result = 0;
-  private isAnswerList = [];
-  private getAnswer;
+  private ListForObjAnswer = [];
+
+  //
+  // getListOfAnswere(questionsForShowFromQuiz, answerFromQuiz) {
+  //     this.answerList = questionsForShowFromQuiz.value.answers;
+  //     console.log(this.answerList);
+  // }
 
   checkAnswer(questionsForShowFromQuiz, answerFromQuiz): boolean {
       // console.log(questionsForShowFromQuiz.value, answerFromQuiz);
-      const idQuestion = questionsForShowFromQuiz.value.id;
+      // const idQuestion = questionsForShowFromQuiz.value.id;
 
-      this.isAnswerList.push({
-         idQuestion,
-         answerFromQuiz
-       });
 
-      console.log(this.isAnswerList);
       return +answerFromQuiz === questionsForShowFromQuiz.value.correctAnswer;
-  }
-
-  deleteAnswer() {
-    this.isAnswerList.pop();
-    console.log(this.isAnswerList);
   }
 
   sumPoints() {
       this.result++;
       return this.result;
+  }
+
+  checkHowMany(questionsForShowFromQuiz, answerFromQuiz, index) {
+
+    // tslint:disable-next-line:prefer-for-of
+     for (let i = 0; i < questionsForShowFromQuiz.length; i++) {
+       console.log(index);
+       if (+questionsForShowFromQuiz[i].key === index) {
+         questionsForShowFromQuiz[i].value.userAnswer = answerFromQuiz;
+       }
+    }
+     console.log(questionsForShowFromQuiz);
   }
 }

@@ -3,4 +3,5 @@ export interface Quizdata {
     question: string;
     answer: object;
     CorrectAnswer: number;
+    userAnswer?: string;
 }
