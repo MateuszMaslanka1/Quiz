@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ConnectToJsonServerService} from './connect-to-json-server.service';
+import { ConnectToJsonServerService } from './connect-to-json-server.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,16 @@ export class CheckTimeService {
 
   startTime() {
     return this.jsonServerService.getTimeFromJsonServer().subscribe(response => {
+     let secondToMinute = 0;
      const myTime = setInterval(() => {
-        const d = new Date();
-        console.log(d.getSeconds());
-      }, 1000);
+          console.log(secondToMinute);
+          secondToMinute++;     
+          if (secondToMinute === 60) {
+            console.log(secondToMinute / 60);
+            secondToMinute = 0;
+          }   
+     }, 1000);
+
      setTimeout(() => {
        alert('ok');
        clearInterval(myTime);
