@@ -10,11 +10,11 @@ export class ConnectToJsonServerService {
   constructor(private http: HttpClient) { }
 
   getQuestionsFromJsonServer() {
-      return this.http.get<Array<Quizdata>>('http://172.16.253.13:3000/questions');
+      return this.http.get<Array<Quizdata>>('http://localhost:3000/questions');
   }
 
   getTimeFromJsonServer() {
-    return this.http.get<Array<Quizdata>>('http://172.16.253.13:3000/questions');
+    return this.http.get<Array<Quizdata>>('http://localhost:3000/questions');
   }
 
 }
