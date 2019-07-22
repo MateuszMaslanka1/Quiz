@@ -30,12 +30,12 @@ export class CheckCorectAnswerService {
       return this.result;
   }
 
-  checkHowMany(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
-     questionsForShowFromQuiz.forEach(el => {    
+  checkUserChoose(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
+     questionsForShowFromQuiz.forEach(el => {
       if (+el.key === index) {
         el.value.userAnswer = answerFromQuiz;
       }
     });
-     return questionsForShowFromQuiz
+     return questionsForShowFromQuiz;
   }
 }

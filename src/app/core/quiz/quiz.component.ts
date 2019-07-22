@@ -1,6 +1,7 @@
-import {Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
+import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 
 @Component({
   selector: 'app-quiz',
@@ -10,15 +11,14 @@ import {CheckCorectAnswerService} from '../check-corect-answer.service';
 
 export class QuizComponent implements OnInit {
 
-  @ViewChild('myRadio', { static: true }) myRadioElementRef: ElementRef;
-
-  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService, private ren: Renderer2 ) { }
+  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService) { }
 
   questionsForShow = [];
   items;
   indexForNextQuestion = 0;
   answer: string;
-  isChecked=false;
+  isChecked = false;
 
   ngOnInit() {
     this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
@@ -31,24 +31,31 @@ export class QuizComponent implements OnInit {
     });
   }
 
-   nextQuestion() { 
-      this.answer = null;
-     this.indexForNextQuestion++;
-     if (this.indexForNextQuestion === this.questionsForShow.length) {
-       this.indexForNextQuestion = 0;
+   nextQuestion() {
+    this.indexForNextQuestion++;
+    if (this.indexForNextQuestion === this.questionsForShow.length) {
+       this.indexForNextQuestion = this.questionsForShow.length - 1;
      }
+    this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
    }
   previousQuestion() {
-    this.answer = null;
     this.indexForNextQuestion--;
-    if (this.indexForNextQuestion < 0) {
-      this.indexForNextQuestion = this.questionsForShow.length - 1;
+    if (this.indexForNextQuestion === 0) {
+      this.indexForNextQuestion = 0;
     }
+    this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
   }
   takeAnsweres() {
     const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
-    const arrayWithUserAnswer = this.checkCorectAnswer.checkHowMany(this.questionsForShow, this.answer, this.indexForNextQuestion);
+    const arrayWithUserAnswer = this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);
+  }
 
-    console.log(arrayWithUserAnswer);
+  chengeQuestion() {
+    const goIndex = this.goToQuestionWithoutAnswer.goToQuestion(this.questionsForShow, this.indexForNextQuestion);
+    if (goIndex !== null) {
+      this.answer = this.questionsForShow[goIndex].value.userAnswer;
+      this.indexForNextQuestion = goIndex;
+    }
+    console.log(this.questionsForShow);
   }
 }

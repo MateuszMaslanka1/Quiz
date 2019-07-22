@@ -1,11 +1,11 @@
 <div>
   <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
   <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
-      <mat-radio-button [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index" 
+      <mat-radio-button [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
       value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
   </mat-radio-group>
- <button mat-raised-button (click)="takeAnsweres()">Click me!</button>
+ <button mat-raised-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
 </div>
 
-<button (click)="previousQuestion()">previous</button>
-<button (click)="nextQuestion()">next</button>
+<button *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
+<button *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
