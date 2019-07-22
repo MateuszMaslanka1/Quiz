@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
+import {CheckTimeService} from '../check-time.service';
 
 @Component({
   selector: 'app-quiz',
@@ -12,7 +13,7 @@ import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer
 export class QuizComponent implements OnInit {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService) { }
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService) { }
 
   questionsForShow = [];
   items;
@@ -22,6 +23,7 @@ export class QuizComponent implements OnInit {
 
   ngOnInit() {
     this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
+      console.log(response);
       for (const type in response) {
         this.items = {};
         this.items.key = type;
@@ -29,6 +31,8 @@ export class QuizComponent implements OnInit {
         this.questionsForShow.push(this.items);
       }
     });
+
+    console.log(this.checkTime.startTime());
   }
 
    nextQuestion() {
