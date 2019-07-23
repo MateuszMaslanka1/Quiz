@@ -11,9 +11,11 @@ export class SummaryComponent implements OnInit {
   constructor(private checkCorectAnswer: CheckCorectAnswerService) { }
 
   listWithQuestionAndAnswer = [];
+  columnsToDisplay = [];
 
   ngOnInit() {
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
+    this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.correctAnswer', 'value.userAnswer'];
     console.log(this.listWithQuestionAndAnswer);
   }
 

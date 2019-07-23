@@ -1,4 +1,24 @@
-<mat-table [dataSource]="listWithQuestionAndAnswer">
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+<table mat-table [dataSource]="listWithQuestionAndAnswer">
+  <ng-container matColumnDef="value.id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.value.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="value.question">
+    <th mat-header-cell *matHeaderCellDef> question </th>
+    <td mat-cell *matCellDef="let element"> {{element.value.question}} </td>
+  </ng-container>
+  <ng-container matColumnDef="value.answers">
+    <th mat-header-cell *matHeaderCellDef> answers </th>
+    <td mat-cell *matCellDef="let element"> {{element.value.answers}} </td>
+  </ng-container>
+  <ng-container matColumnDef="value.correctAnswer">
+    <th mat-header-cell *matHeaderCellDef> correctAnswer</th>
+    <td mat-cell *matCellDef="let element"> {{element.value.correctAnswer}} </td>
+  </ng-container>
+  <ng-container matColumnDef="value.userAnswer">
+    <th mat-header-cell *matHeaderCellDef> userAnswer </th>
+    <td mat-cell *matCellDef="let element"> {{element.value.userAnswer}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let columnsToDisplay; columns: columnsToDisplay"></tr>
+</table>
