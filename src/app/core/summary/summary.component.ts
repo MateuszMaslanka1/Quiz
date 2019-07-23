@@ -15,7 +15,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
-    this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.correctAnswer', 'value.userAnswer'];
+    this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
     console.log(this.listWithQuestionAndAnswer);
   }
 
