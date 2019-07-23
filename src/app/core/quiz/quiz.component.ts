@@ -3,8 +3,6 @@ import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
-import {isNullOrUndefined} from 'util';
-import {isEmpty} from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz',

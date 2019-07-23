@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
+import * as enumData from 'src/app/model/userAnswer';
+
 
 @Component({
   selector: 'app-summary',
@@ -16,7 +18,11 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
-    console.log(this.listWithQuestionAndAnswer);
+    
+     this.listWithQuestionAndAnswer.forEach(element => {
+       console.log(element.value.answers[element.value.userAnswer]);
+     });
+    
   }
 
 }

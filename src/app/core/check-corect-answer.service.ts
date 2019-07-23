@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import {isNullOrUndefined} from 'util';
-import {element} from 'protractor';
 import { Quizdata } from '../model/quiz-data/quiz-data';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CheckTimeService} from '../check-time.service';
 
 @Component({
@@ -13,8 +13,4 @@ export class TimeComponent implements OnInit  {
   ngOnInit() {
     this.checkTime.startTime();
   }
-
-  // ngOnDestroy() {
-  //   this.checkTime.startTime();
-  // }
 }
