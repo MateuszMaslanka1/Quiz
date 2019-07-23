@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import { SummaryComponent } from './core/summary/summary.component';
 import { EndComponent } from './core/end/end.component';
 import { TimeComponent } from './core/time/time.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TimeComponent } from './core/time/time.component';
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

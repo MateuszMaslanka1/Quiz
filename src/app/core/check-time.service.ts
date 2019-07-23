@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ConnectToJsonServerService } from './connect-to-json-server.service';
-import {observable, Observable, Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ConnectToJsonServerService} from './connect-to-json-server.service';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

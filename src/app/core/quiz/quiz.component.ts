@@ -1,8 +1,10 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
+import {isNullOrUndefined} from 'util';
+import {isEmpty} from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz',
@@ -20,18 +22,21 @@ export class QuizComponent implements OnInit  {
   indexForNextQuestion = 0;
   answer: string;
   isChecked = false;
-  test;
 
   ngOnInit() {
-    this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
-      console.log(response);
-      for (const type in response) {
-        this.items = {};
-        this.items.key = type;
-        this.items.value = response[type];
-        this.questionsForShow.push(this.items);
-      }
-    });
+    if (this.checkCorectAnswer.getQuestionAndAnswer().length === 0) {
+      this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
+        for (const type in response) {
+          this.items = {};
+          this.items.key = type;
+          this.items.value = response[type];
+          this.questionsForShow.push(this.items);
+        }
+      });
+    } else {
+      this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
+      this.answer = this.questionsForShow[0].value.userAnswer;
+    }
   }
 
   nextQuestion() {

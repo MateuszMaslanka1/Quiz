@@ -1,3 +1,4 @@
-<ul>
-<!--    <li *ngFor=""></li>-->
-</ul>
+<mat-table [dataSource]="listWithQuestionAndAnswer">
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
