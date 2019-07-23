@@ -11,6 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/mater
 import {FormsModule} from '@angular/forms';
 import { SummaryComponent } from './core/summary/summary.component';
 import { EndComponent } from './core/end/end.component';
+import { TimeComponent } from './core/time/time.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EndComponent } from './core/end/end.component';
     WelcomeComponent,
     QuizComponent,
     SummaryComponent,
-    EndComponent
+    EndComponent,
+    TimeComponent
   ],
   imports: [
     BrowserModule,

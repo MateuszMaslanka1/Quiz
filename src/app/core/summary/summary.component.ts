@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -11,7 +14,7 @@ export class SummaryComponent implements OnInit {
   constructor(private checkCorectAnswer: CheckCorectAnswerService) { }
 
   ngOnInit() {
-    console.log(this.checkCorectAnswer.checkUserChoose);
+    console.log(this.checkCorectAnswer.getQuestionAndAnswer());
   }
 
 }

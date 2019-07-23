@@ -12,6 +12,7 @@ export class CheckCorectAnswerService {
 
   private result = 0;
   private ListForObjAnswer = [];
+  public tabWithQuestionAndAnswer = [];
 
   //
   // getListOfAnswere(questionsForShowFromQuiz, answerFromQuiz) {
@@ -36,7 +37,11 @@ export class CheckCorectAnswerService {
         el.value.userAnswer = answerFromQuiz;
       }
     });
-     console.log(questionsForShowFromQuiz);
+     this.tabWithQuestionAndAnswer = questionsForShowFromQuiz;
      return questionsForShowFromQuiz;
+  }
+
+  getQuestionAndAnswer() {
+   return this.tabWithQuestionAndAnswer;
   }
 }

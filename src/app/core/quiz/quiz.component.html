@@ -1,6 +1,6 @@
 <div>
   <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
-  <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
+  <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer"><br>
       <mat-radio-button [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
       value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
   </mat-radio-group>
@@ -8,9 +8,10 @@
 </div>
 
 <button *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
-<button *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
+<button *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button><br>
 
-{{this.checkTime.subjectMinute | async}}
-:
-{{this.checkTime.subjectSecond | async}}
+<app-time></app-time>
+
+<a routerLink="/summary">podumowanie</a>
+
 

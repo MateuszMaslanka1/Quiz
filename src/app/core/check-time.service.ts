@@ -11,12 +11,15 @@ export class CheckTimeService {
 
   subjectSecond = new Subject();
   subjectMinute = new Subject();
+  isRunning = false;
 
   startTime() {
-     this.jsonServerService.getTimeFromJsonServer().subscribe(response => {
-     let second = 0;
-     let minute = 0;
-     const myTime = setInterval(() => {
+    if (this.isRunning === false) {
+      this.isRunning = true;
+      this.jsonServerService.getTimeFromJsonServer().subscribe(timelimit => {
+        let second = 0;
+        let minute = 0;
+        const myTime = setInterval(() => {
           if (second < 59) {
             second++;
           } else {
@@ -25,12 +28,21 @@ export class CheckTimeService {
           }
           this.subjectSecond.next(second);
           this.subjectMinute.next(minute);
-     }, 1000);
+        }, 1000);
 
-     setTimeout(() => {
-       alert('koniec czasu');
-       clearInterval(myTime);
-       }, +response * 60000);
-    });
+        setTimeout(() => {
+          alert('koniec czasu');
+          clearInterval(myTime);
+        }, +timelimit * 60000);
+      });
+    }
   }
 }
+
+
+// if (this.isRunning === false) {
+//   this.isRunning = true;
+//   console.log('tutaj zmieniam na true');
+// } else {
+//   console.log(this.isRunning);
+// }

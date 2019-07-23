@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
@@ -10,7 +10,7 @@ import {CheckTimeService} from '../check-time.service';
   styleUrls: ['./quiz.component.scss']
 })
 
-export class QuizComponent implements OnInit {
+export class QuizComponent implements OnInit  {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
               private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService) { }
@@ -32,10 +32,9 @@ export class QuizComponent implements OnInit {
         this.questionsForShow.push(this.items);
       }
     });
-    this.checkTime.startTime();
   }
 
-   nextQuestion() {
+  nextQuestion() {
     this.indexForNextQuestion++;
     if (this.indexForNextQuestion === this.questionsForShow.length) {
        this.indexForNextQuestion = this.questionsForShow.length - 1;
