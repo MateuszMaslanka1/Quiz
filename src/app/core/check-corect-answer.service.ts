@@ -36,6 +36,7 @@ export class CheckCorectAnswerService {
         el.value.userAnswer = answerFromQuiz;
       }
     });
+     console.log(questionsForShowFromQuiz);
      return questionsForShowFromQuiz;
   }
 }

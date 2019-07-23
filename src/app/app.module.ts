@@ -9,12 +9,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import { SummaryComponent } from './core/summary/summary.component';
+import { EndComponent } from './core/end/end.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    QuizComponent
+    QuizComponent,
+    SummaryComponent,
+    EndComponent
   ],
   imports: [
     BrowserModule,

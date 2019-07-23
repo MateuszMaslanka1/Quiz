@@ -9,3 +9,8 @@
 
 <button *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
 <button *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
+
+{{this.checkTime.subjectMinute | async}}
+:
+{{this.checkTime.subjectSecond | async}}
+

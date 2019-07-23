@@ -20,6 +20,7 @@ export class QuizComponent implements OnInit {
   indexForNextQuestion = 0;
   answer: string;
   isChecked = false;
+  test;
 
   ngOnInit() {
     this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
@@ -31,8 +32,7 @@ export class QuizComponent implements OnInit {
         this.questionsForShow.push(this.items);
       }
     });
-
-    console.log(this.checkTime.startTime());
+    this.checkTime.startTime();
   }
 
    nextQuestion() {
@@ -60,6 +60,5 @@ export class QuizComponent implements OnInit {
       this.answer = this.questionsForShow[goIndex].value.userAnswer;
       this.indexForNextQuestion = goIndex;
     }
-    console.log(this.questionsForShow);
   }
 }
