@@ -22,8 +22,4 @@ export class WelcomeComponent implements OnInit {
       console.log(response);
     });
   }
-  navigateToQuizSide() {
-    this.router.navigate(['/quiz']);
-  }
-
 }

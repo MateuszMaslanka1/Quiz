@@ -3,6 +3,7 @@ import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -13,15 +14,20 @@ import {CheckTimeService} from '../check-time.service';
 export class QuizComponent implements OnInit  {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService) { }
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService,
+              private route: ActivatedRoute, private router: Router) { }
 
   questionsForShow = [];
   items;
   indexForNextQuestion = 0;
   answer: string;
   isChecked = false;
+  parametersFromLink;
 
   ngOnInit() {
+    this.parametersFromLink = this.route.snapshot.url[1].path;
+    this.router.navigate([`../quiz/${this.parametersFromLink}`]);
+    this.indexForNextQuestion = this.parametersFromLink;
     if (this.checkCorectAnswer.getQuestionAndAnswer().length === 0) {
       this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
         for (const type in response) {
@@ -33,12 +39,13 @@ export class QuizComponent implements OnInit  {
       });
     } else {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
-      this.answer = this.questionsForShow[0].value.userAnswer;
+      this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
     }
   }
 
   nextQuestion() {
     this.indexForNextQuestion++;
+    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     if (this.indexForNextQuestion === this.questionsForShow.length) {
        this.indexForNextQuestion = this.questionsForShow.length - 1;
      }
@@ -46,6 +53,7 @@ export class QuizComponent implements OnInit  {
    }
   previousQuestion() {
     this.indexForNextQuestion--;
+    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     if (this.indexForNextQuestion === 0) {
       this.indexForNextQuestion = 0;
     }
@@ -61,6 +69,7 @@ export class QuizComponent implements OnInit  {
     if (goIndex !== null) {
       this.answer = this.questionsForShow[goIndex].value.userAnswer;
       this.indexForNextQuestion = goIndex;
+      this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     }
   }
 }

@@ -6,9 +6,11 @@ import {SummaryComponent} from './core/summary/summary.component';
 
 
 const routes: Routes = [
-  {path: '', component: WelcomeComponent},
-  {path: 'quiz', component: QuizComponent},
-  {path: 'summary', component: SummaryComponent}
+  {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+  {path: 'welcome', component: WelcomeComponent},
+  {path: 'quiz/:id', component: QuizComponent},
+  {path: 'summary', component: SummaryComponent},
+  {path: '**', component: WelcomeComponent}
 ];
 
 @NgModule({

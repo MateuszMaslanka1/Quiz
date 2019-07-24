@@ -31,7 +31,7 @@ export class CheckCorectAnswerService {
 
   checkUserChoose(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
      questionsForShowFromQuiz.forEach(el => {
-      if (+el.key === index) {
+      if (+el.key === +index) {
         el.value.userAnswer = answerFromQuiz;
       }
     });
