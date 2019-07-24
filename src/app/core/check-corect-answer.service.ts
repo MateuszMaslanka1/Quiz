@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Quizdata } from '../model/quiz-data/quiz-data';
+import {element} from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,15 @@ export class CheckCorectAnswerService {
   //     console.log(this.answerList);
   // }
 
-  checkAnswer(questionsForShowFromQuiz, answerFromQuiz): boolean {
-      // console.log(questionsForShowFromQuiz.value, answerFromQuiz);
-      // const idQuestion = questionsForShowFromQuiz.value.id;
-      return +answerFromQuiz === questionsForShowFromQuiz.value.correctAnswer;
+  checkAnswer(questionsForShowFromQuiz): number {
+    console.log(questionsForShowFromQuiz);
+
+    questionsForShowFromQuiz.forEach( el => {
+      if (+el.value.correctAnswer === +el.value.userAnswer) {
+        this.sumPoints();
+      }
+    });
+    return this.result;
   }
 
   sumPoints() {
