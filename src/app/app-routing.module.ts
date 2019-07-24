@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'quiz/:id', component: QuizComponent},
   {path: 'summary', component: SummaryComponent},
-  {path: 'end', component: EndComponent},
+  {path: 'end/:flag', component: EndComponent},
   {path: '**', component: WelcomeComponent}
 ];
 

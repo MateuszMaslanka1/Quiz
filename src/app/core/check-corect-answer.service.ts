@@ -15,16 +15,16 @@ export class CheckCorectAnswerService {
   private ListForObjAnswer = [];
   public tabWithQuestionAndAnswer = [];
 
+
   //
   // getListOfAnswere(questionsForShowFromQuiz, answerFromQuiz) {
   //     this.answerList = questionsForShowFromQuiz.value.answers;
   //     console.log(this.answerList);
   // }
 
-  checkAnswer(questionsForShowFromQuiz): SumOfPoint {
-   // console.log(questionsForShowFromQuiz);
+  checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
-      (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer();
+      (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
     });
     return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
   }
@@ -34,11 +34,10 @@ export class CheckCorectAnswerService {
       return this.result;
   }
 
-  sumPointsBadAnswer() {
-    this.jsonServerService.getModeFromJsonServer().subscribe(response => {
-        console.log(response);     
-    })
-
+  sumPointsBadAnswer(flag) {
+    if (JSON.parse(flag) === true) {
+        this.result--;
+    }
     this.resultWhenBadAnswer++;
     return this.resultWhenBadAnswer;
   }
