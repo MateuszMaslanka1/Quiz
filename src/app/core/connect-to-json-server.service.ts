@@ -20,4 +20,8 @@ export class ConnectToJsonServerService {
     return this.http.get('http://localhost:3000/MinutesTime').pipe(map(res => res[0]));
   }
 
+  getModeFromJsonServer() {
+    return this.http.get('http://localhost:3000/NegativeMode').pipe(map(res => res[0]));
+  }
+
 }
