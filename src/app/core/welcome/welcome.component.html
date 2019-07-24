@@ -1,5 +1,5 @@
 <p>{{quantityOfquestions}}</p>
 <p>test jest testem jednokrotnego wyboru</p>
 <button routerLink="/quiz/{{0}}">start</button>
-<mat-slide-toggle>Włacz tryb punktów ujemnych</mat-slide-toggle>
+<mat-slide-toggle (change)="onChange($event)" >Włacz tryb punktów ujemnych</mat-slide-toggle>
 

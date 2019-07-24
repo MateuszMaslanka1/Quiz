@@ -22,4 +22,8 @@ export class WelcomeComponent implements OnInit {
       console.log(response);
     });
   }
+
+   onChange(isChecked) {
+     console.log(isChecked.checked);
+   }
 }
