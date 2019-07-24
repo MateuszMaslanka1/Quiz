@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Quizdata } from '../model/quiz-data/quiz-data';
 import {element} from 'protractor';
+import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class CheckCorectAnswerService {
   constructor() { }
 
   private result = 0;
+  private resultWhenBadAnswer = 0;
   private ListForObjAnswer = [];
   public tabWithQuestionAndAnswer = [];
 
@@ -19,21 +21,24 @@ export class CheckCorectAnswerService {
   //     console.log(this.answerList);
   // }
 
-  checkAnswer(questionsForShowFromQuiz): number {
+  checkAnswer(questionsForShowFromQuiz): SumOfPoint {
     console.log(questionsForShowFromQuiz);
-
     questionsForShowFromQuiz.forEach( el => {
-      if (+el.value.correctAnswer === +el.value.userAnswer) {
-        this.sumPoints();
-      }
+      (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer();
     });
-    return this.result;
+    return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
   }
 
   sumPoints() {
       this.result++;
       return this.result;
   }
+
+  sumPointsBadAnswer() {
+    this.resultWhenBadAnswer++;
+    return this.resultWhenBadAnswer;
+  }
+
 
   checkUserChoose(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
      questionsForShowFromQuiz.forEach(el => {
