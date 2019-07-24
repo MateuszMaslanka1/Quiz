@@ -14,7 +14,7 @@ export class SummaryComponent implements OnInit {
 
   listWithQuestionAndAnswer = [];
   columnsToDisplay = [];
-  left = 'left';
+  before = 'before';
 
   ngOnInit() {
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
