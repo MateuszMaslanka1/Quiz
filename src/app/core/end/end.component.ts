@@ -18,7 +18,6 @@ export class EndComponent implements OnInit {
   ngOnInit() {
     this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers);
-    console.log(this.resultFromCheckAnswer);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
   }
 

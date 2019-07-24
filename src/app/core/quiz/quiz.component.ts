@@ -61,7 +61,7 @@ export class QuizComponent implements OnInit  {
   }
   takeAnsweres() {
    // const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
-    const arrayWithUserAnswer = this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);
+    this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);
   }
 
   chengeQuestion() {

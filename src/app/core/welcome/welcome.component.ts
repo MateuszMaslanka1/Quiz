@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectToJsonServerService } from '../connect-to-json-server.service';
-import * as rxjs from 'rxjs';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -10,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private services: ConnectToJsonServerService, private router: Router) { }
+  constructor(private services: ConnectToJsonServerService, private jsonServerService: ConnectToJsonServerService) { }
 
   protected quantityOfquestions: number;
 
@@ -21,9 +19,11 @@ export class WelcomeComponent implements OnInit {
     this.services.getTimeFromJsonServer().subscribe(response => {
       console.log(response);
     });
+    this.jsonServerService.putModeFromJsonServer(false);
   }
 
    onChange(isChecked) {
      console.log(isChecked.checked);
+     this.jsonServerService.putModeFromJsonServer(isChecked.checked);
    }
 }

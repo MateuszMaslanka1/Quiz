@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Quizdata } from '../model/quiz-data/quiz-data';
-import {element} from 'protractor';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
+import { ConnectToJsonServerService } from './connect-to-json-server.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckCorectAnswerService {
 
-  constructor() { }
+  constructor(private jsonServerService: ConnectToJsonServerService) { }
 
   private result = 0;
   private resultWhenBadAnswer = 0;
@@ -22,7 +22,7 @@ export class CheckCorectAnswerService {
   // }
 
   checkAnswer(questionsForShowFromQuiz): SumOfPoint {
-    console.log(questionsForShowFromQuiz);
+   // console.log(questionsForShowFromQuiz);
     questionsForShowFromQuiz.forEach( el => {
       (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer();
     });
@@ -35,6 +35,10 @@ export class CheckCorectAnswerService {
   }
 
   sumPointsBadAnswer() {
+    this.jsonServerService.getModeFromJsonServer().subscribe(response => {
+        console.log(response);     
+    })
+
     this.resultWhenBadAnswer++;
     return this.resultWhenBadAnswer;
   }
