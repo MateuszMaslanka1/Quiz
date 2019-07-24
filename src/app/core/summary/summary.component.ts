@@ -14,15 +14,10 @@ export class SummaryComponent implements OnInit {
 
   listWithQuestionAndAnswer = [];
   columnsToDisplay = [];
+  left = 'left';
 
   ngOnInit() {
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
-    
-     this.listWithQuestionAndAnswer.forEach(element => {
-       console.log(element.value.answers[element.value.userAnswer]);
-     });
-    
   }
-
 }

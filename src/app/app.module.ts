@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { QuizComponent } from './core/quiz/quiz.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatRadioModule, MatTooltipModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { SummaryComponent } from './core/summary/summary.component';
 import { EndComponent } from './core/end/end.component';
@@ -34,6 +34,7 @@ import {MatTableModule} from '@angular/material/table';
     MatRadioModule,
     FormsModule,
     MatTableModule,
+    MatTooltipModule,
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],
