@@ -18,7 +18,7 @@ export class ConnectToJsonServerService {
       return this.http.get<Array<Quizdata>>('http://localhost:3000/questions');
   }
 
-  getTimeFromJsonServer() {
+  getTimeLimit() {
     return this.http.get('http://localhost:3000/MinutesTime').pipe(map(res => res[0]));
   }
 

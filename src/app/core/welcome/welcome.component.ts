@@ -17,7 +17,7 @@ export class WelcomeComponent implements OnInit {
       this.quantityOfquestions = response.length;
     });
 
-    this.services.getTimeFromJsonServer().subscribe(response => {
+    this.services.getTimeLimit().subscribe(response => {
     });
     this.jsonServerService.putModeFromJsonServer(false);
   }

@@ -6,7 +6,9 @@ div {
 table {
   width: 30%;
 }
-
+::ng-deep .tool-tip-for-info {
+  font-size: 20px;
+}
 
 
 

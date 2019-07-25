@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {SumOfPoint} from '../../model/sum-of-point/sum-of-point';
 import { ActivatedRoute } from '@angular/router';
+import {CheckTimeService} from '../check-time.service';
 
 @Component({
   selector: 'app-end',
@@ -10,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EndComponent implements OnInit {
 
-  constructor(private checkCorectAnswer: CheckCorectAnswerService, private route: ActivatedRoute) { }
+  constructor(private checkTime: CheckTimeService, private checkCorectAnswer: CheckCorectAnswerService,
+              private route: ActivatedRoute) { }
 
   private ListWithQuestinAndAnswers = [];
   private resultFromCheckAnswer: SumOfPoint;
@@ -22,6 +24,7 @@ export class EndComponent implements OnInit {
     this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
+    this.checkTime.endTime();
   }
 
 }

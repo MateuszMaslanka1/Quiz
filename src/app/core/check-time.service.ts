@@ -14,6 +14,8 @@ export class CheckTimeService {
   public subjectMinute = new Subject();
   private isRunning = false;
   private getFlagFromJsonSever: string;
+  private interval: number;
+  private timeOut: number;
 
   startTime() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
@@ -21,10 +23,10 @@ export class CheckTimeService {
     });
     if (this.isRunning === false) {
       this.isRunning = true;
-      this.jsonServerService.getTimeFromJsonServer().subscribe(timelimit => {
+      this.jsonServerService.getTimeLimit().subscribe(timelimit => {
         let second = 0;
         let minute = 0;
-        const myTime = setInterval(() => {
+        this.interval = setInterval(() => {
           if (second < 59) {
             second++;
           } else {
@@ -35,13 +37,18 @@ export class CheckTimeService {
           this.subjectMinute.next(minute);
         }, 1000);
 
-        setTimeout(() => {
-          clearInterval(myTime);
+        this.timeOut = setTimeout(() => {
+          clearInterval(this.interval);
           alert('koniec czasu');
           this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
         }, +timelimit * 60000);
       });
-    }
+     }
+  }
+
+  endTime() {
+    clearInterval(this.interval);
+    clearTimeout(this.timeOut);
   }
 }
 
