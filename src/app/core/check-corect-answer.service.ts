@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Quizdata } from '../model/quiz-data/quiz-data';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
 import { ConnectToJsonServerService } from './connect-to-json-server.service';
+import {isNullOrUndefined} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,9 @@ export class CheckCorectAnswerService {
 
   checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
-      (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
+      if (isNullOrUndefined(el.value.userAnswer) !== true) {
+        (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
+      }
     });
     return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
   }
@@ -41,7 +44,6 @@ export class CheckCorectAnswerService {
     this.resultWhenBadAnswer++;
     return this.resultWhenBadAnswer;
   }
-
 
   checkUserChoose(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
      questionsForShowFromQuiz.forEach(el => {

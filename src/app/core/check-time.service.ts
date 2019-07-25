@@ -1,19 +1,24 @@
 import {Injectable} from '@angular/core';
 import {ConnectToJsonServerService} from './connect-to-json-server.service';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckTimeService {
 
-  constructor(private jsonServerService: ConnectToJsonServerService)  { }
+  constructor(private jsonServerService: ConnectToJsonServerService, private router: Router)  { }
 
   subjectSecond = new Subject();
   subjectMinute = new Subject();
   isRunning = false;
+  getFlagFromJsonSever;
 
   startTime() {
+    this.jsonServerService.getModeFromJsonServer().subscribe(response => {
+      this.getFlagFromJsonSever = response;
+    })
     if (this.isRunning === false) {
       this.isRunning = true;
       this.jsonServerService.getTimeFromJsonServer().subscribe(timelimit => {
@@ -31,8 +36,9 @@ export class CheckTimeService {
         }, 1000);
 
         setTimeout(() => {
-          alert('koniec czasu');
           clearInterval(myTime);
+          alert('koniec czasu');
+          this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
         }, +timelimit * 60000);
       });
     }

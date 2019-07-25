@@ -19,13 +19,13 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
-      this.getFlagFromJsonSever = response;     
+      this.getFlagFromJsonSever = response;
     })
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
   }
 
   getFlag() {
-    console.log(this.getFlagFromJsonSever);  
+    console.log(this.getFlagFromJsonSever);
   }
 }

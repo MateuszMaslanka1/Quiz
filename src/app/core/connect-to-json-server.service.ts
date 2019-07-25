@@ -24,7 +24,6 @@ export class ConnectToJsonServerService {
 
   putModeFromJsonServer(flagFromWelcome) {
     return this.http.put('http://localhost:3000/NegativeMode/1', {flag: flagFromWelcome}).subscribe(data => {
-      console.log(data);
     }, error => {
       console.log(error.message);
       console.log(error.status);

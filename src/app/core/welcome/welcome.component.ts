@@ -17,13 +17,11 @@ export class WelcomeComponent implements OnInit {
       this.quantityOfquestions = response.length;
     })
     this.services.getTimeFromJsonServer().subscribe(response => {
-      console.log(response);
     });
     this.jsonServerService.putModeFromJsonServer(false);
   }
 
    onChange(isChecked) {
-     console.log(isChecked.checked);
      this.jsonServerService.putModeFromJsonServer(isChecked.checked);
    }
 }
