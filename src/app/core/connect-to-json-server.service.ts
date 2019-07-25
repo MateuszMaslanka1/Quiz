@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Quizdata } from '../model/quiz-data/quiz-data';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
@@ -15,7 +15,9 @@ export class ConnectToJsonServerService {
   userAnswer: string;
 
   getQuestionsFromJsonServer() {
-      return this.http.get<Array<Quizdata>>('http://localhost:3000/questions');
+      return this.http.get<Array<Quizdata>>('http://localhost:3000/questions').pipe(
+        tap(response => console.log(response))
+      );
   }
 
   getTimeLimit() {

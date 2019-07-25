@@ -15,7 +15,7 @@ export class CheckTimeService {
   private isRunning = false;
   private getFlagFromJsonSever: string;
   private interval: number;
-  private timeOut: number;
+  private timeout: number;
 
   startTime() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
@@ -37,7 +37,7 @@ export class CheckTimeService {
           this.subjectMinute.next(minute);
         }, 1000);
 
-        this.timeOut = setTimeout(() => {
+        this.timeout = setTimeout(() => {
           clearInterval(this.interval);
           alert('koniec czasu');
           this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
@@ -48,7 +48,7 @@ export class CheckTimeService {
 
   endTime() {
     clearInterval(this.interval);
-    clearTimeout(this.timeOut);
+    clearTimeout(this.timeout);
   }
 }
 

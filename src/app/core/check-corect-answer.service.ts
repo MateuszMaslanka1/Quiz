@@ -3,6 +3,7 @@ import {Quizdata} from '../model/quiz-data/quiz-data';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
 import {ConnectToJsonServerService} from './connect-to-json-server.service';
 import {isNullOrUndefined} from 'util';
+import {KeyAnswer} from '../model/key-answer/key-answer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CheckCorectAnswerService {
   private result = 0;
   private resultWhenBadAnswer = 0;
   private ListForObjAnswer = [];
-  public tabWithQuestionAndAnswer = [];
+  public tabWithQuestionAndAnswer: KeyAnswer[] = [];
 
   checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
@@ -52,4 +53,8 @@ export class CheckCorectAnswerService {
   getQuestionAndAnswer() {
    return this.tabWithQuestionAndAnswer;
   }
+
+  clearListWithQuestionAndAnswer() {
+     this.tabWithQuestionAndAnswer = [];
+   }
 }

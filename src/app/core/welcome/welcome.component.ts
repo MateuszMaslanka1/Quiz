@@ -10,14 +10,16 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private services: ConnectToJsonServerService, private jsonServerService: ConnectToJsonServerService) { }
 
-  protected quantityOfquestions: number;
+  protected quantityOfQuestions: number;
+  protected timeForUser: number;
 
   ngOnInit() {
     this.services.getQuestionsFromJsonServer().subscribe(response => {
-      this.quantityOfquestions = response.length;
+      this.quantityOfQuestions = response.length;
     });
 
     this.services.getTimeLimit().subscribe(response => {
+      this.timeForUser = response;
     });
     this.jsonServerService.putModeFromJsonServer(false);
   }

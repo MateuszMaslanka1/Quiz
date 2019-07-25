@@ -25,6 +25,7 @@ export class EndComponent implements OnInit {
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
     this.checkTime.endTime();
+    this.checkCorectAnswer.clearListWithQuestionAndAnswer();
   }
 
 }

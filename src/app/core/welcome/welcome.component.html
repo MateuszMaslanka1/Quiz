@@ -1,5 +1,15 @@
-<p>{{quantityOfquestions}}</p>
-<p>test jest testem jednokrotnego wyboru</p>
-<button routerLink="/quiz/{{0}}">start</button>
-<mat-slide-toggle (change)="onChange($event)" >Włacz tryb punktów ujemnych</mat-slide-toggle>
+<section>
+  <div class="main-class">
+    <h1>Quiz Stolic Państw</h1>
+    <h3>Liczba bytań: {{quantityOfQuestions}}</h3>
+    <h3>Liczba czasu w minutach jakie masz na ukończenie testu: {{timeForUser}}</h3>
+    <h3>Test jest testem jednokrotnego wyboru</h3>
+    <div class="button-element">
+    <button routerLink="/quiz/{{0}}">start</button>
+    </div>
+    <mat-slide-toggle (change)="onChange($event)" ><h3>Włacz tryb punktów ujemnych</h3></mat-slide-toggle>
+ </div>
+</section>
+
+
 
