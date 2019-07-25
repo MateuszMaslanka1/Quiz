@@ -16,13 +16,6 @@ export class CheckCorectAnswerService {
   private ListForObjAnswer = [];
   public tabWithQuestionAndAnswer = [];
 
-
-  //
-  // getListOfAnswere(questionsForShowFromQuiz, answerFromQuiz) {
-  //     this.answerList = questionsForShowFromQuiz.value.answers;
-  //     console.log(this.answerList);
-  // }
-
   checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
       if (isNullOrUndefined(el.value.userAnswer) !== true) {
