@@ -15,7 +15,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     this.services.getQuestionsFromJsonServer().subscribe(response => {
       this.quantityOfquestions = response.length;
-    })
+    });
     this.services.getTimeFromJsonServer().subscribe(response => {
     });
     this.jsonServerService.putModeFromJsonServer(false);

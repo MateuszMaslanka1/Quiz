@@ -18,7 +18,7 @@ export class CheckTimeService {
   startTime() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
       this.getFlagFromJsonSever = response;
-    })
+    });
     if (this.isRunning === false) {
       this.isRunning = true;
       this.jsonServerService.getTimeFromJsonServer().subscribe(timelimit => {

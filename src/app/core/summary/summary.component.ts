@@ -15,12 +15,12 @@ export class SummaryComponent implements OnInit {
   listWithQuestionAndAnswer = [];
   columnsToDisplay = [];
   before = 'before';
-  getFlagFromJsonSever
+  getFlagFromJsonSever: string;
 
   ngOnInit() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
       this.getFlagFromJsonSever = response;
-    })
+    });
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
   }

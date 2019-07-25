@@ -15,7 +15,7 @@ export class EndComponent implements OnInit {
   ListWithQuestinAndAnswers = [];
   resultFromCheckAnswer: SumOfPoint;
   sumOfAllPoints: number;
-  getFlagFromJsonSever
+  getFlagFromJsonSever: string;
 
   ngOnInit() {
     this.getFlagFromJsonSever = this.route.snapshot.url[1].path;
