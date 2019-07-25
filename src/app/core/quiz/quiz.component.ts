@@ -17,17 +17,17 @@ export class QuizComponent implements OnInit  {
               private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService,
               private route: ActivatedRoute, private router: Router) { }
 
-  questionsForShow = [];
-  items;
-  indexForNextQuestion = 0;
-  answer: string;
-  isChecked = false;
-  parametersFromLink;
+  private questionsForShow = [];
+  private items;
+  private indexForNextQuestion = 0;
+  private answer: string;
+  private isChecked = false;
+  private parametersFromLink: string;
 
   ngOnInit() {
     this.parametersFromLink = this.route.snapshot.url[1].path;
     this.router.navigate([`../quiz/${this.parametersFromLink}`]);
-    this.indexForNextQuestion = this.parametersFromLink;
+    this.indexForNextQuestion = +this.parametersFromLink;
     if (this.checkCorectAnswer.getQuestionAndAnswer().length === 0) {
       this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
         for (const type in response) {
@@ -51,6 +51,7 @@ export class QuizComponent implements OnInit  {
      }
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
    }
+
   previousQuestion() {
     this.indexForNextQuestion--;
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
@@ -59,6 +60,7 @@ export class QuizComponent implements OnInit  {
     }
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
   }
+
   takeAnsweres() {
    // const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
     this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);

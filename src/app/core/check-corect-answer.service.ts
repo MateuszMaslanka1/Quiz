@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Quizdata } from '../model/quiz-data/quiz-data';
+import {Injectable} from '@angular/core';
+import {Quizdata} from '../model/quiz-data/quiz-data';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
-import { ConnectToJsonServerService } from './connect-to-json-server.service';
+import {ConnectToJsonServerService} from './connect-to-json-server.service';
 import {isNullOrUndefined} from 'util';
 
 @Injectable({
@@ -9,7 +9,7 @@ import {isNullOrUndefined} from 'util';
 })
 export class CheckCorectAnswerService {
 
-  constructor(private jsonServerService: ConnectToJsonServerService) { }
+  constructor() { }
 
   private result = 0;
   private resultWhenBadAnswer = 0;

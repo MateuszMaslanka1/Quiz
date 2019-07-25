@@ -12,10 +12,10 @@ export class EndComponent implements OnInit {
 
   constructor(private checkCorectAnswer: CheckCorectAnswerService, private route: ActivatedRoute) { }
 
-  ListWithQuestinAndAnswers = [];
-  resultFromCheckAnswer: SumOfPoint;
-  sumOfAllPoints: number;
-  getFlagFromJsonSever: string;
+  private ListWithQuestinAndAnswers = [];
+  private resultFromCheckAnswer: SumOfPoint;
+  private sumOfAllPoints: number;
+  private getFlagFromJsonSever: string;
 
   ngOnInit() {
     this.getFlagFromJsonSever = this.route.snapshot.url[1].path;

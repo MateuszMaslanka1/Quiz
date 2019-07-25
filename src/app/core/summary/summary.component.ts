@@ -12,15 +12,16 @@ export class SummaryComponent implements OnInit {
 
   constructor(private checkCorectAnswer: CheckCorectAnswerService,  private jsonServerService: ConnectToJsonServerService) { }
 
-  listWithQuestionAndAnswer = [];
-  columnsToDisplay = [];
-  before = 'before';
-  getFlagFromJsonSever: string;
+  private listWithQuestionAndAnswer = [];
+  private columnsToDisplay = [];
+  private before = 'before';
+  private getFlagFromJsonSever: string;
 
   ngOnInit() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
       this.getFlagFromJsonSever = response;
     });
+
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
   }

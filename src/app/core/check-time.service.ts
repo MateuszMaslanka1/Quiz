@@ -10,10 +10,10 @@ export class CheckTimeService {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private router: Router)  { }
 
-  subjectSecond = new Subject();
-  subjectMinute = new Subject();
-  isRunning = false;
-  getFlagFromJsonSever;
+  public subjectSecond = new Subject();
+  public subjectMinute = new Subject();
+  private isRunning = false;
+  private getFlagFromJsonSever: string;
 
   startTime() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
