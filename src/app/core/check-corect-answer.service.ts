@@ -32,7 +32,7 @@ export class CheckCorectAnswerService {
   }
 
   sumPointsBadAnswer(flag) {
-    if (!!flag === true) {
+    if (JSON.parse(flag) === true) {
         this.result--;
     }
     this.resultWhenBadAnswer++;
