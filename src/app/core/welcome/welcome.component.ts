@@ -12,8 +12,10 @@ export class WelcomeComponent implements OnInit {
 
   protected quantityOfQuestions: number;
   protected timeForUser: number;
+  public color = 'accent';
 
   ngOnInit() {
+    this.color = 'accent';
     this.services.getQuestionsFromJsonServer().subscribe(response => {
       this.quantityOfQuestions = response.length;
     });

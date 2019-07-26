@@ -10,5 +10,8 @@
 
 body {
   font-size: 1rem;
-  background-color: lightsalmon;
+  background: linear-gradient(to bottom, #cfe7fa 0%,#6393c1 100%);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
