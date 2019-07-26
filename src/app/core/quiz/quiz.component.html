@@ -4,21 +4,22 @@
 <section>
   <div class="main-border">
     <div class="question-border">
-          <div *ngIf="loading" class="spinner-border text-success" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
       <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
       <div class="question-and-correct-border">
-      <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
+        <div *ngIf="loading" class="spinner-border text-success" style="width: 20rem; height: 20rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <mat-spinner *ngIf="loading"></mat-spinner>
+        <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
           <mat-radio-button color="warn"  [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
          value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
       </mat-radio-group>
-      <button class="button-correct" mat-raised-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
+      <button *ngIf="!loading" class="button-correct" mat-raised-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
       </div>
         <div class="button-border">
           <button mat-raised-button class="button-next-pervious" *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
           <button mat-raised-button class="button-next-pervious" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
-          <button mat-raised-button class="button-summary" routerLink="/summary">podumowanie</button>
+          <button *ngIf="!loading" mat-raised-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>
     </div>
   </div>

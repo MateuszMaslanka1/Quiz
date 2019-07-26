@@ -16,7 +16,8 @@ export class ConnectToJsonServerService {
 
   getQuestionsFromJsonServer() {
       return this.http.get<Array<Quizdata>>('http://localhost:3000/questions').pipe(
-        tap(response => console.log(response))
+        tap(response => console.log(response)),
+        delay(3000)
       );
   }
 
