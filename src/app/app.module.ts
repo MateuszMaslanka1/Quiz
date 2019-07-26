@@ -6,8 +6,13 @@ import { WelcomeComponent } from './core/welcome/welcome.component';
 import {HttpClientModule} from '@angular/common/http';
 import { QuizComponent } from './core/quiz/quiz.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatRadioModule, MatSlideToggleModule, MatTooltipModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSlideToggleModule,
+  MatTooltipModule,
+} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { SummaryComponent } from './core/summary/summary.component';
 import { EndComponent } from './core/end/end.component';
@@ -28,7 +33,6 @@ import {MatTableModule} from '@angular/material/table';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
@@ -36,6 +40,8 @@ import {MatTableModule} from '@angular/material/table';
     MatTableModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

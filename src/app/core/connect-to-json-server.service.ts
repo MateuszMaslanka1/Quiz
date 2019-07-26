@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Quizdata } from '../model/quiz-data/quiz-data';
-import {map, tap} from 'rxjs/operators';
+import {delay, map, tap} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 

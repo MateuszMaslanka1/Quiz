@@ -4,6 +4,8 @@ import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {BehaviorSubject, Subject} from 'rxjs';
+
 
 @Component({
   selector: 'app-quiz',
@@ -18,6 +20,7 @@ export class QuizComponent implements OnInit  {
               private route: ActivatedRoute, private router: Router) { }
 
   private questionsForShow = [];
+  public loading = true;
   private items;
   private indexForNextQuestion = 0;
   private answer: string;
@@ -36,6 +39,7 @@ export class QuizComponent implements OnInit  {
           this.items.value = response[type];
           this.questionsForShow.push(this.items);
         }
+        this.loading = false;
       });
     } else {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
