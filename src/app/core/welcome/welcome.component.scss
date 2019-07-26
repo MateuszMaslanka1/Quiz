@@ -12,6 +12,7 @@ section{
       text-align: center;
     }
     h3{
+      padding: 0.5rem;
       text-align: center;
     }
     .button-element{
@@ -19,6 +20,7 @@ section{
       align-items: center;
       flex-direction: column;
       button {
+        margin: 0.5rem;
         display: block;
         width: 10rem;
         height: 3rem;

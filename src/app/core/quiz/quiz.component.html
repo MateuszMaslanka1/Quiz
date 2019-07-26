@@ -1,17 +1,27 @@
-<div>
-  <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
-  <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer"><br>
-      <mat-radio-button [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
-      value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
-  </mat-radio-group>
- <button mat-raised-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
-</div>
+<section>
+  <div class="main-border">
+    <div class="question-border">
+      <div>
+      <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
+      <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
+          <mat-radio-button color="warn"  [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
+         value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
+      </mat-radio-group>
+      <button mat-raised-button color="warn" (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
+      </div>
+    </div>
+    <div class="button-border">
+      <button mat-raised-button color="warn" class="button-next-pervious" *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
+      <button mat-raised-button color="warn" class="" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
+      <button mat-raised-button color="warn" routerLink="/summary">podumowanie</button>
+    </div>
+  </div>
+</section>
 
-<button *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
-<button *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button><br>
 
-<app-time></app-time>
 
-<a routerLink="/summary">podumowanie</a>
+<!--<app-time></app-time>-->
+
+
 
 
