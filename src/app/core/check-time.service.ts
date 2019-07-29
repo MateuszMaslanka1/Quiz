@@ -29,7 +29,6 @@ export class CheckTimeService {
         let minute;
         let time;
         let timer = +timelimit * 60;
-        let duration = +timelimit * 60;
         this.interval = setInterval(() => {
           // if (second < 59) {
           //   second++;
