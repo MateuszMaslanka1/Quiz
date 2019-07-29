@@ -8,7 +8,7 @@ import {CheckTimeService} from '../check-time.service';
 })
 export class TimeComponent implements OnInit  {
 
-  constructor(private checkTime: CheckTimeService) { }
+  constructor(protected checkTime: CheckTimeService) { }
 
   ngOnInit() {
     this.checkTime.startTime();

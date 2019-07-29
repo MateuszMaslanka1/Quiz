@@ -4,8 +4,6 @@ import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BehaviorSubject, Subject} from 'rxjs';
-
 
 @Component({
   selector: 'app-quiz',

@@ -24,17 +24,27 @@ export class CheckTimeService {
     if (this.isRunning === false) {
       this.isRunning = true;
       this.jsonServerService.getTimeLimit().subscribe(timelimit => {
-        let second = 0;
-        let minute = 0;
+        let second;
+        let minute;
+        let timer = +timelimit * 60;
+        let duration = +timelimit * 60;
         this.interval = setInterval(() => {
-          if (second < 59) {
-            second++;
-          } else {
-            second = 0;
-            minute++;
-          }
+          // if (second < 59) {
+          //   second++;
+          // } else {
+          //   second = 0;
+          //   minute++;
+          // }
+          minute = timer / 60;
+          second = timer % 60;
+          minute = minute < 10 ? '0' + minute : minute;
+          second = second < 10 ? '0' + second : second;
+          let minuteConver = Math.floor(minute);
           this.subjectSecond.next(second);
-          this.subjectMinute.next(minute);
+          this.subjectMinute.next(minuteConver);
+          if (--timer < 0) {
+              timer = duration;
+          }
         }, 1000);
 
         this.timeout = setTimeout(() => {
