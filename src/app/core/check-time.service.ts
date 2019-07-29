@@ -30,12 +30,6 @@ export class CheckTimeService {
         let time;
         let timer = +timelimit * 60;
         this.interval = setInterval(() => {
-          // if (second < 59) {
-          //   second++;
-          // } else {
-          //   second = 0;
-          //   minute++;
-          // }
           minute = timer / 60;
           second = timer % 60;
           minute = minute < 10 ? '0' + minute : minute;
@@ -46,7 +40,7 @@ export class CheckTimeService {
           console.log(timer);
           if (--timer < 0) {
             clearInterval(this.interval);
-            swal.fire("Czas się skończył", "kliknij na przycisk", "warning").then(() => {
+            swal.fire('Czas się skończył', 'kliknij na przycisk', 'warning').then(() => {
               this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
             });
           }
