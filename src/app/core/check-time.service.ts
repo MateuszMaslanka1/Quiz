@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ConnectToJsonServerService} from './connect-to-json-server.service';
-import {Subject} from 'rxjs';
+import {Subject, BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class CheckTimeService {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private router: Router)  { }
 
-  public subjectSecond = new Subject();
-  public subjectMinute = new Subject();
+  // public subjectSecond = new Subject();
+  public subjectTime = new Subject();
   private isRunning = false;
   private getFlagFromJsonSever: string;
   private interval: number;
@@ -26,6 +27,7 @@ export class CheckTimeService {
       this.jsonServerService.getTimeLimit().subscribe(timelimit => {
         let second;
         let minute;
+        let time;
         let timer = +timelimit * 60;
         let duration = +timelimit * 60;
         this.interval = setInterval(() => {
@@ -39,33 +41,22 @@ export class CheckTimeService {
           second = timer % 60;
           minute = minute < 10 ? '0' + minute : minute;
           second = second < 10 ? '0' + second : second;
-          let minuteConver = Math.floor(minute);
-          this.subjectSecond.next(second);
-          this.subjectMinute.next(minuteConver);
+          time = minute < 10 ?  '0' + Math.trunc(minute) + ' minuta ' + ': ' + second + ' sekund' :
+          Math.trunc(minute) + ' minuta ' + ': ' + second + ' sekund';
+          this.subjectTime.next(time);
+          console.log(timer);
           if (--timer < 0) {
-              timer = duration;
+            clearInterval(this.interval);
+            swal.fire("Czas się skończył", "kliknij na przycisk", "warning").then(() => {
+              this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
+            });
           }
         }, 1000);
-
-        this.timeout = setTimeout(() => {
-          clearInterval(this.interval);
-          alert('koniec czasu');
-          this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
-        }, +timelimit * 60000);
       });
      }
   }
 
   endTime() {
     clearInterval(this.interval);
-    clearTimeout(this.timeout);
   }
 }
-
-
-// if (this.isRunning === false) {
-//   this.isRunning = true;
-//   console.log('tutaj zmieniam na true');
-// } else {
-//   console.log(this.isRunning);
-// }

@@ -2,14 +2,12 @@
 <app-time></app-time>
 </div>
 <section>
+  <div *ngIf="loading && (this.checkTimeService.subjectTime | async) else loading">
   <div class="main-border">
     <div class="question-border">
       <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
       <div class="question-and-correct-border">
-        <div *ngIf="loading" class="spinner-border text-success" style="width: 20rem; height: 20rem;" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <mat-spinner *ngIf="loading"></mat-spinner>
+        <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
         <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
           <mat-radio-button color="warn"  [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
          value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
@@ -23,9 +21,13 @@
         </div>
     </div>
   </div>
+</div>
 </section>
 
-
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+    Ładowanie Quizu...
+  </ng-template>
 
 
 

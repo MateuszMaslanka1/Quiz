@@ -15,7 +15,7 @@ export class QuizComponent implements OnInit  {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
               private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService,
-              private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute, private router: Router, public checkTimeService: CheckTimeService) { }
 
   private questionsForShow = [];
   public loading = true;

@@ -21,7 +21,7 @@ export class ConnectToJsonServerService {
   }
 
   getTimeLimit() {
-    return this.http.get('http://localhost:3000/MinutesTime').pipe(map(res => res[0]));
+    return this.http.get('http://localhost:3000/MinutesTime').pipe( map(res => res[0]));
   }
 
   putModeFromJsonServer(flagFromWelcome) {
