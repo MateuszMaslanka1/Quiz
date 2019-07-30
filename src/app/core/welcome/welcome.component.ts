@@ -23,7 +23,7 @@ export class WelcomeComponent implements OnInit {
     this.services.getTimeLimit().subscribe(response => {
       this.timeForUser = response;
     });
-    this.jsonServerService.putModeFromJsonServer(false);
+    this.jsonServerService.putModeFromJsonServer(true);
   }
 
    onChange(isChecked) {

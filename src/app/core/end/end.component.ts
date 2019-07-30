@@ -20,7 +20,10 @@ export class EndComponent implements OnInit {
   private getFlagFromJsonSever: string;
 
   ngOnInit() {
-    this.getFlagFromJsonSever = this.route.snapshot.url[1].path;
+    this.route.queryParams.subscribe(params => {
+      this.getFlagFromJsonSever = params.flag;
+    });
+    //this.getFlagFromJsonSever = this.route.snapshot.url[1].path;
     this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;

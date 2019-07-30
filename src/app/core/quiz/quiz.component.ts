@@ -42,7 +42,6 @@ export class QuizComponent implements OnInit  {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
       this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
     }
-    console.log(this.loading);
   }
 
   nextQuestion() {

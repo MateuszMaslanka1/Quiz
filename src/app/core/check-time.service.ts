@@ -39,7 +39,7 @@ export class CheckTimeService {
           if (--timer < 0) {
             clearInterval(this.interval);
             swal.fire('Czas się skończył', 'kliknij na przycisk', 'warning').then(() => {
-              this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);
+              this.router.navigate(['../end'], {queryParams: {flag: this.getFlagFromJsonSever}});
             });
           }
         }, 1000);
@@ -51,3 +51,5 @@ export class CheckTimeService {
     clearInterval(this.interval);
   }
 }
+
+// this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);

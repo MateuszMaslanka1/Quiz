@@ -32,7 +32,7 @@ export class SummaryComponent implements OnInit {
     swal.fire({title: 'Czy napewno chesz zakończyć', text: 'kliknij na przycisk', type: 'warning',
     showCancelButton: true, cancelButtonColor: '#d33'}).then((result) => {
       if (result.value) {
-        this.router.navigate([`/end/${this.getFlagFromJsonSever}`]);
+        this.router.navigate(['../end'], {queryParams: {flag: this.getFlagFromJsonSever}});
       } else if (result.dismiss === swal.DismissReason.cancel) {
         swal.fire(
           'Cancelled',
