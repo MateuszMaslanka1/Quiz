@@ -15,8 +15,9 @@
       <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
       </div>
         <div class="button-border">
-          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
-          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
+          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion > 0 else changePrevious" (click)="previousQuestion()">previous</button>
+          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1 else changeNext" (click)="nextQuestion()">
+            next</button>
           <button mat-flat-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>
     </div>
@@ -28,6 +29,14 @@
     <mat-spinner></mat-spinner>
     <p>Ładowanie Quizu...</p>
   </ng-template>
+
+<ng-template #changePrevious>
+    <button disabled mat-flat-button class="button-next-pervious">previous</button>
+  </ng-template>
+
+  <ng-template #changeNext>
+      <button disabled mat-flat-button class="button-next-pervious">next</button>
+    </ng-template>
 
 
 
