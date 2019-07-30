@@ -22,7 +22,6 @@ export class QuizComponent implements OnInit  {
   private items;
   private indexForNextQuestion = 0;
   private answer: string;
-  private isChecked = false;
   private parametersFromLink: string;
 
   ngOnInit() {
@@ -43,6 +42,7 @@ export class QuizComponent implements OnInit  {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
       this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
     }
+    console.log(this.loading);
   }
 
   nextQuestion() {

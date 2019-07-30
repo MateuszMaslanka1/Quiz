@@ -1,11 +1,35 @@
-div {
+.border-table{
   width: 100%;
   display: flex;
   justify-content: center;
 }
 table {
-  width: 30%;
+  width: 50%;
+  background-attachment: fixed;
+  th{
+    font-size: 2rem;
+  }
+  td{
+    font-size: 2rem;
+    span {
+      text-decoration: underline;
+      color: blue
+    }
+  }
 }
+
+.button-border{
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  button {
+    width: 15rem;
+    height: 5rem;
+    font-size: 2rem;
+  }
+}
+
+
 ::ng-deep .tool-tip-for-info {
   font-size: 1rem;
 }

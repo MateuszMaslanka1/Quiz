@@ -12,12 +12,12 @@
           <mat-radio-button color="warn"  [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
          value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
       </mat-radio-group>
-      <button class="button-correct" mat-raised-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
+      <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
       </div>
         <div class="button-border">
-          <button mat-raised-button class="button-next-pervious" *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
-          <button mat-raised-button class="button-next-pervious" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
-          <button mat-raised-button class="button-summary" routerLink="/summary">podumowanie</button>
+          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion > 0" (click)="previousQuestion()">previous</button>
+          <button mat-flat-button class="button-next-pervious" *ngIf="indexForNextQuestion !== this.questionsForShow.length - 1"(click)="nextQuestion()">next</button>
+          <button mat-flat-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
 
 <ng-template #loading>
     <mat-spinner></mat-spinner>
-    Ładowanie Quizu...
+    <p>Ładowanie Quizu...</p>
   </ng-template>
 
 

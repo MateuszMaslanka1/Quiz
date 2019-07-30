@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ConnectToJsonServerService} from './connect-to-json-server.service';
-import {Subject, BehaviorSubject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 
@@ -16,7 +16,6 @@ export class CheckTimeService {
   private isRunning = false;
   private getFlagFromJsonSever: string;
   private interval: number;
-  private timeout: number;
 
   startTime() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
@@ -37,7 +36,6 @@ export class CheckTimeService {
           time = minute < 10 ?  '0' + Math.trunc(minute) + ' minuta ' + ': ' + second + ' sekund' :
           Math.trunc(minute) + ' minuta ' + ': ' + second + ' sekund';
           this.subjectTime.next(time);
-          console.log(timer);
           if (--timer < 0) {
             clearInterval(this.interval);
             swal.fire('Czas się skończył', 'kliknij na przycisk', 'warning').then(() => {
