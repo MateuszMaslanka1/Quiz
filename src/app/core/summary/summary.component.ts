@@ -33,9 +33,7 @@ export class SummaryComponent implements OnInit {
     showCancelButton: true, cancelButtonColor: '#d33'}).then((result) => {
       if (result.value) {
         this.router.navigate([`/end/${this.getFlagFromJsonSever}`]);
-      } else if (
-        result.dismiss === swal.DismissReason.cancel
-      ) {
+      } else if (result.dismiss === swal.DismissReason.cancel) {
         swal.fire(
           'Cancelled',
           'Twoje zmiany zotały zachowane :)',

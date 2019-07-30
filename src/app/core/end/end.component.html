@@ -1,3 +1,7 @@
-<p>wynik {{resultFromCheckAnswer.result}}</p>
-<p>suma punktów w których jest nie poprawna odpowiedź {{resultFromCheckAnswer.resultWhenBadAnswer}}</p>
-<p>suma wszystkich punktów {{sumOfAllPoints}}</p>
+<div [className]="'summary-border'">
+  <div [className]="'info-border'">
+      <p>wynik: {{resultFromCheckAnswer.result}}</p>
+      <p>suma punktów w których jest nie poprawna odpowiedź: {{resultFromCheckAnswer.resultWhenBadAnswer}}</p>
+      <p>suma wszystkich punktów: {{sumOfAllPoints}}</p>
+  </div>
+</div>
