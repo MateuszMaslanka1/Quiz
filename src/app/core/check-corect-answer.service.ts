@@ -46,7 +46,7 @@ export class CheckCorectAnswerService {
       }
     });
      this.tabWithQuestionAndAnswer = questionsForShowFromQuiz;
-     console.log(this.tabWithQuestionAndAnswer);
+     // console.log(this.tabWithQuestionAndAnswer);
      return questionsForShowFromQuiz;
   }
 

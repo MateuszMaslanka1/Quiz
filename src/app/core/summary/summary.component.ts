@@ -11,21 +11,23 @@ import { Router } from '@angular/router';
 })
 export class SummaryComponent implements OnInit {
 
-  constructor(private checkCorectAnswer: CheckCorectAnswerService,  private jsonServerService: ConnectToJsonServerService,
-    private router: Router) { }
+  constructor(private checkCorectAnswer: CheckCorectAnswerService,
+              private jsonServerService: ConnectToJsonServerService, private router: Router) { }
 
-  private listWithQuestionAndAnswer = [];
-  private columnsToDisplay = [];
-  private before = 'before';
   private getFlagFromJsonSever: string;
+  protected listWithQuestionAndAnswer = [];
+  protected columnsToDisplay = [];
+
+  protected before = 'before';
 
   ngOnInit() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {
       this.getFlagFromJsonSever = response;
     });
 
-    this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
-    this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
+    // this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
+    // this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
+    console.log(this.columnsToDisplay);
   }
 
   getFlag() {

@@ -18,6 +18,7 @@ import { SummaryComponent } from './core/summary/summary.component';
 import { EndComponent } from './core/end/end.component';
 import { TimeComponent } from './core/time/time.component';
 import {MatTableModule} from '@angular/material/table';
+import { TableComponent } from './core/table/table.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatTableModule} from '@angular/material/table';
     QuizComponent,
     SummaryComponent,
     EndComponent,
-    TimeComponent
+    TimeComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

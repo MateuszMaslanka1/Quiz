@@ -1,8 +1,10 @@
 <div [className]="'summary-border'">
-  <div [className]="'info-border'">
-      <p>wynik: {{resultFromCheckAnswer.result}} / {{sumOfAllPoints}}</p>
+  <!-- <div [className]="'info-border'"> -->
+        <app-table></app-table>
+  <!-- </div> -->
+</div>
+
+<!-- <p>wynik: {{resultFromCheckAnswer.result}} / {{sumOfAllPoints}}</p>
       <p>suma punktów w których jest nie poprawna odpowiedź: {{resultFromCheckAnswer.resultWhenBadAnswer}}</p>
       <p>suma wszystkich punktów: {{sumOfAllPoints}}</p>
-      <button mat-flat-button (click)="goToWelcomePage()">Zakończ </button>
-  </div>
-</div>
+      <button mat-flat-button (click)="goToWelcomePage()">Zakończ </button> -->

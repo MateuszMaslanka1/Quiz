@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  background-attachment: fixed;
+  th{
+    border: 2px solid black;
+    font-size: 2rem;
+    text-align: center;
+    background-color: rgb(71, 132, 153);
+    color: whitesmoke;
+    width: 25%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  th:nth-of-type(2n) {
+    background-color: rgba(161, 232, 255);
+    color: black;
+  }
+  td{
+    border: 2px solid black;
+    font-size: 2rem;
+    text-align: center;
+    width: 25%;
+    background-color: rgb(161, 232, 255);
+    padding-right: 0;
+    padding-left: 0;
+    span {
+      text-decoration: underline;
+      color: whitesmoke;
+    }
+  }
+  td:nth-of-type(2n) {
+    background-color: rgba(71, 132, 153);
+    color: whitesmoke;
+  }
+}
+::ng-deep .tool-tip-for-info {
+  font-size: 1rem;
+}
