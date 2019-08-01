@@ -15,15 +15,16 @@ export class TableComponent implements OnInit {
   pointColumn = [];
   result: number;
   sumOfAllPoints: number;
+  resultWhenBadAnswer: number;
   @Input() listWithResoult: [];
 
-  protected above = 'above';
-  protected test;
+  protected above = 'above'
 
   ngOnInit() {
     if (this.listWithResoult.length > 0) {
       this.result = this.listWithResoult[0].resoult;
       this.sumOfAllPoints = this.listWithResoult[0].sumOfAllPoints;
+      this.resultWhenBadAnswer = this.listWithResoult[0].resultWhenBadAnswer;
     }
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
