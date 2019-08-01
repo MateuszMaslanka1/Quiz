@@ -41,7 +41,7 @@ export class EndComponent implements OnInit {
   }
 
   goToWelcomePage() {
-    window.location.assign(window.location.pathname);
+    window.location.assign('/welcome');
   }
 
 }

@@ -1,7 +1,8 @@
 <div [className]="'summary-border'">
-  <!-- <div [className]="'info-border'"> -->
         <app-table [ObjWithResoult] = "ObjWithResoult"></app-table>
-  <!-- </div> -->
+</div>
+<div  [className]="'button-border'">
+    <button mat-flat-button (click)="goToWelcomePage()">Przejdź do strony głównej</button>
 </div>
 
 <!-- <p>wynik: {{resultFromCheckAnswer.result}} / {{sumOfAllPoints}}</p>
