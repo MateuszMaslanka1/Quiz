@@ -20,6 +20,7 @@ export class EndComponent implements OnInit {
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
   protected ObjWithResoult = {};
+  private counterForQuantityOfSumResoult = 0;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -27,6 +28,8 @@ export class EndComponent implements OnInit {
     });
     this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
+    this.counterForQuantityOfSumResoult++;
+
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
     this.checkTime.endTime();
    // this.checkCorectAnswer.clearListWithQuestionAndAnswer();

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Quizdata} from '../model/quiz-data/quiz-data';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
-import {ConnectToJsonServerService} from './connect-to-json-server.service';
 import {isNullOrUndefined} from 'util';
 import {KeyAnswer} from '../model/key-answer/key-answer';
 
@@ -16,6 +15,9 @@ export class CheckCorectAnswerService {
   private resultWhenBadAnswer = 0;
   private ListForObjAnswer = [];
   public tabWithQuestionAndAnswer: KeyAnswer[] = [];
+  private counterForQuantityOfSumResoult = 0;
+  private resultOneTime: number;
+  private resultWhenBadAnswerOneTime: number
 
   checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
@@ -23,7 +25,14 @@ export class CheckCorectAnswerService {
         (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
       }
     });
-    return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
+    if (this.counterForQuantityOfSumResoult === 0) {
+      this.counterForQuantityOfSumResoult++;
+      this.resultOneTime = this.result;
+      this.resultWhenBadAnswerOneTime = this.resultWhenBadAnswer;
+      return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
+    } else {
+      return {result: this.resultOneTime, resultWhenBadAnswer: this.resultWhenBadAnswerOneTime};
+    }
   }
 
   sumPoints() {
