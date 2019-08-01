@@ -19,7 +19,6 @@ export class EndComponent implements OnInit {
   private resultFromCheckAnswer: SumOfPoint;
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
-  protected columnsToDisplay = [];
   protected ObjWithResoult = {};
 
   ngOnInit() {
@@ -30,7 +29,7 @@ export class EndComponent implements OnInit {
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
     this.checkTime.endTime();
-    // this.checkCorectAnswer.clearListWithQuestionAndAnswer();
+   // this.checkCorectAnswer.clearListWithQuestionAndAnswer();
     this.ObjWithResoult = {
       resoult: this.resultFromCheckAnswer.result,
       resultWhenBadAnswer: this.resultFromCheckAnswer.resultWhenBadAnswer,
