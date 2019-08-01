@@ -17,7 +17,7 @@ export class CheckCorectAnswerService {
   public tabWithQuestionAndAnswer: KeyAnswer[] = [];
   private counterForQuantityOfSumResoult = 0;
   private resultOneTime: number;
-  private resultWhenBadAnswerOneTime: number
+  private resultWhenBadAnswerOneTime: number;
 
   checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
