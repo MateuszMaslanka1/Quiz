@@ -20,7 +20,7 @@ export class EndComponent implements OnInit {
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
   protected columnsToDisplay = [];
-  protected listWithResoult = [];
+  protected ObjWithResoult = {};
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -30,9 +30,12 @@ export class EndComponent implements OnInit {
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
     this.checkTime.endTime();
-   // this.checkCorectAnswer.clearListWithQuestionAndAnswer();
-    this.listWithResoult = [{resoult: this.resultFromCheckAnswer.result,
-      resultWhenBadAnswer: this.resultFromCheckAnswer.resultWhenBadAnswer, sumOfAllPoints: this.sumOfAllPoints}];
+    // this.checkCorectAnswer.clearListWithQuestionAndAnswer();
+    this.ObjWithResoult = {
+      resoult: this.resultFromCheckAnswer.result,
+      resultWhenBadAnswer: this.resultFromCheckAnswer.resultWhenBadAnswer,
+      sumOfAllPoints: this.sumOfAllPoints
+    };
   }
 
   goToWelcomePage() {

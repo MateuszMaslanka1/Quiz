@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CheckCorectAnswerService } from '../check-corect-answer.service';
+import {log} from 'util';
 
 @Component({
   selector: 'app-table',
@@ -16,16 +17,16 @@ export class TableComponent implements OnInit {
   result: number;
   sumOfAllPoints: number;
   resultWhenBadAnswer: number;
-  @Input() listWithResoult: [];
+  @Input() ObjWithResoult;
 
   protected above = 'above'
 
   ngOnInit() {
-    if (this.listWithResoult.length > 0) {
-      this.result = this.listWithResoult[0].resoult;
-      this.sumOfAllPoints = this.listWithResoult[0].sumOfAllPoints;
-      this.resultWhenBadAnswer = this.listWithResoult[0].resultWhenBadAnswer;
-    }
+    if (this.ObjWithResoult) {
+        this.result = this.ObjWithResoult.resoult;
+        this.sumOfAllPoints = this.ObjWithResoult.sumOfAllPoints;
+        this.resultWhenBadAnswer = this.ObjWithResoult.resultWhenBadAnswer;
+     }
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
     this.pointColumn = ['sumOfPoint'];
