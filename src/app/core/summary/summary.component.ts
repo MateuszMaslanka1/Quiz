@@ -27,7 +27,6 @@ export class SummaryComponent implements OnInit {
 
     // this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     // this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
-    console.log(this.columnsToDisplay);
   }
 
   getFlag() {

@@ -3,6 +3,7 @@ import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {SumOfPoint} from '../../model/sum-of-point/sum-of-point';
 import { ActivatedRoute, Router } from '@angular/router';
 import {CheckTimeService} from '../check-time.service';
+import {log} from 'util';
 
 @Component({
   selector: 'app-end',
@@ -34,7 +35,7 @@ export class EndComponent implements OnInit {
       resultWhenBadAnswer: this.resultFromCheckAnswer.resultWhenBadAnswer, sumOfAllPoints: this.sumOfAllPoints}];
   }
 
-  goToWelcomePage(){
+  goToWelcomePage() {
     window.location.assign(window.location.pathname);
   }
 
