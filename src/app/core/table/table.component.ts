@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CheckCorectAnswerService } from '../check-corect-answer.service';
-import {log} from 'util';
+import {Component, Input, OnInit} from '@angular/core';
+import {CheckCorectAnswerService} from '../check-corect-answer.service';
+import {Quizdata} from '../../model/quiz-data/quiz-data';
 
 @Component({
   selector: 'app-table',
@@ -11,9 +11,9 @@ export class TableComponent implements OnInit {
 
   constructor(private checkCorectAnswer: CheckCorectAnswerService) { }
 
-  listWithQuestionAndAnswer = [];
+  listWithQuestionAndAnswer: Quizdata[] = [];
   columnsToDisplay = [];
-  pointColumn = [];
+  // pointColumn = [];
   result: number;
   sumOfAllPoints: number;
   resultWhenBadAnswer: number;
@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
      }
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
-    this.pointColumn = ['sumOfPoint'];
+   // this.pointColumn = ['sumOfPoint'];
   }
 
 }

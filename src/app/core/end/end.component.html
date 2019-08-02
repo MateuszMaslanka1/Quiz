@@ -1,11 +1,6 @@
 <div [className]="'summary-border'">
-        <app-table [ObjWithResoult] = "ObjWithResoult"></app-table>
+    <app-table [ObjWithResoult] = "ObjWithResoult"></app-table>
 </div>
 <div  [className]="'button-border'">
     <button mat-flat-button (click)="goToWelcomePage()">Przejdź do strony głównej</button>
 </div>
-
-<!-- <p>wynik: {{resultFromCheckAnswer.result}} / {{sumOfAllPoints}}</p>
-      <p>suma punktów w których jest nie poprawna odpowiedź: {{resultFromCheckAnswer.resultWhenBadAnswer}}</p>
-      <p>suma wszystkich punktów: {{sumOfAllPoints}}</p>
-      <button mat-flat-button (click)="goToWelcomePage()">Zakończ </button> -->

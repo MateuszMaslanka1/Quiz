@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Quizdata} from '../model/quiz-data/quiz-data';
 import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
 import {isNullOrUndefined} from 'util';
-import {KeyAnswer} from '../model/key-answer/key-answer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +13,12 @@ export class CheckCorectAnswerService {
   private result = 0;
   private resultWhenBadAnswer = 0;
   private ListForObjAnswer = [];
-  public tabWithQuestionAndAnswer: KeyAnswer[] = [];
+  public tabWithQuestionAndAnswer: Quizdata[] = [];
   private counterForQuantityOfSumResoult = 0;
   private resultOneTime: number;
   private resultWhenBadAnswerOneTime: number;
 
-  checkAnswer(questionsForShowFromQuiz, flag): SumOfPoint {
+  checkAnswer(questionsForShowFromQuiz = [], flag: string): SumOfPoint {
     questionsForShowFromQuiz.forEach( el => {
       if (isNullOrUndefined(el.value.userAnswer) !== true) {
         (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
@@ -40,7 +39,7 @@ export class CheckCorectAnswerService {
       return this.result;
   }
 
-  sumPointsBadAnswer(flag) {
+  sumPointsBadAnswer(flag: string) {
     if (JSON.parse(flag) === true) {
         this.result--;
     }
@@ -48,7 +47,7 @@ export class CheckCorectAnswerService {
     return this.resultWhenBadAnswer;
   }
 
-  checkUserChoose(questionsForShowFromQuiz, answerFromQuiz, index): Array<Quizdata> {
+  checkUserChoose(questionsForShowFromQuiz = [], answerFromQuiz: string, index: number): Array<Quizdata> {
      questionsForShowFromQuiz.forEach(el => {
       if (+el.key === +index) {
         el.value.userAnswer = answerFromQuiz;
@@ -62,8 +61,4 @@ export class CheckCorectAnswerService {
   getQuestionAndAnswer() {
    return this.tabWithQuestionAndAnswer;
   }
-
-  clearListWithQuestionAndAnswer() {
-     this.tabWithQuestionAndAnswer = [];
-   }
 }

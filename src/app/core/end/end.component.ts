@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {SumOfPoint} from '../../model/sum-of-point/sum-of-point';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {CheckTimeService} from '../check-time.service';
-import {log} from 'util';
+import {Quizdata} from '../../model/quiz-data/quiz-data';
 
 @Component({
   selector: 'app-end',
@@ -13,9 +13,9 @@ import {log} from 'util';
 export class EndComponent implements OnInit {
 
   constructor(private checkTime: CheckTimeService, private checkCorectAnswer: CheckCorectAnswerService,
-              private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute) { }
 
-  private ListWithQuestinAndAnswers = [];
+  private ListWithQuestinAndAnswers: Quizdata[] = [];
   private resultFromCheckAnswer: SumOfPoint;
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
@@ -29,10 +29,8 @@ export class EndComponent implements OnInit {
     this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
     this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
     this.counterForQuantityOfSumResoult++;
-
     this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
     this.checkTime.endTime();
-   // this.checkCorectAnswer.clearListWithQuestionAndAnswer();
     this.ObjWithResoult = {
       resoult: this.resultFromCheckAnswer.result,
       resultWhenBadAnswer: this.resultFromCheckAnswer.resultWhenBadAnswer,

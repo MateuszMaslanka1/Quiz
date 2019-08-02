@@ -11,7 +11,6 @@ export class CheckTimeService {
 
   constructor(private jsonServerService: ConnectToJsonServerService, private router: Router)  { }
 
-  // public subjectSecond = new Subject();
   public subjectTime = new Subject();
   private isRunning = false;
   private getFlagFromJsonSever: string;
@@ -52,4 +51,3 @@ export class CheckTimeService {
   }
 }
 
-// this.router.navigate([`../end/${this.getFlagFromJsonSever}`]);

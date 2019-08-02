@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {isNull} from 'util';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class GoToQuestionWithoutAnswerService {
   private getIndex = null;
   private counter = 0;
 
-  goToQuestion(tabWithQuestion, indexTabWithQuestion) {
+  goToQuestion(tabWithQuestion = [], indexTabWithQuestion: number) {
       for (let i = indexTabWithQuestion; i < tabWithQuestion.length; i++) {
         if (isNull(tabWithQuestion[i].value.userAnswer) && this.counter === 0) {
            this.getIndex = i;

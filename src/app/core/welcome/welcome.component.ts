@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ConnectToJsonServerService } from '../connect-to-json-server.service';
+import {Component, OnInit} from '@angular/core';
+import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 
 @Component({
   selector: 'app-welcome',

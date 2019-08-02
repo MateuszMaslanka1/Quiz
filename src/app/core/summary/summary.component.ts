@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
-import { ConnectToJsonServerService } from '../connect-to-json-server.service';
+import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -15,10 +15,6 @@ export class SummaryComponent implements OnInit {
               private jsonServerService: ConnectToJsonServerService, private router: Router) { }
 
   private getFlagFromJsonSever: string;
-  protected listWithQuestionAndAnswer = [];
-  protected columnsToDisplay = [];
-
-  protected before = 'before';
 
   ngOnInit() {
     this.jsonServerService.getModeFromJsonServer().subscribe(response => {

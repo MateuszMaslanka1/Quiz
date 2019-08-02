@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Quizdata } from '../model/quiz-data/quiz-data';
-import {delay, map, tap} from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Quizdata} from '../model/quiz-data/quiz-data';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -24,7 +23,7 @@ export class ConnectToJsonServerService {
     return this.http.get('http://localhost:3000/MinutesTime').pipe( map(res => res[0]));
   }
 
-  putModeFromJsonServer(flagFromWelcome) {
+  putModeFromJsonServer(flagFromWelcome: string) {
     return this.http.put('http://localhost:3000/NegativeMode/1', {flag: flagFromWelcome}).subscribe(data => {
     }, error => {
       console.log(error.message);
