@@ -11,15 +11,14 @@ export class TableComponent implements OnInit {
 
   constructor(private checkCorectAnswer: CheckCorectAnswerService) { }
 
-  listWithQuestionAndAnswer: Quizdata[] = [];
-  columnsToDisplay = [];
-  // pointColumn = [];
-  result: number;
-  sumOfAllPoints: number;
-  resultWhenBadAnswer: number;
   @Input() ObjWithResoult;
 
-  protected above = 'above'
+  protected listWithQuestionAndAnswer: Quizdata[] = [];
+  protected columnsToDisplay = [];
+  protected result: number;
+  protected sumOfAllPoints: number;
+  protected resultWhenBadAnswer: number;
+  protected above = 'above';
 
   ngOnInit() {
     if (this.ObjWithResoult) {
@@ -29,7 +28,6 @@ export class TableComponent implements OnInit {
      }
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
-   // this.pointColumn = ['sumOfPoint'];
   }
 
 }

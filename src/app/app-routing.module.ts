@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from './core/welcome/welcome.component';
 import {QuizComponent} from './core/quiz/quiz.component';
 import {SummaryComponent} from './core/summary/summary.component';
