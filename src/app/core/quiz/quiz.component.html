@@ -5,18 +5,21 @@
   <div *ngIf="loading && (this.checkTimeService.subjectTime | async) else loading">
   <div class="main-border">
     <div class="question-border">
-      <label>{{questionsForShow[indexForNextQuestion].value.question}}</label>
+      <label #question>{{questionsForShow[indexForNextQuestion].value.question}}</label>
       <div class="question-and-correct-border">
         <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
-        <mat-radio-group #myRadio aria-label="Select an option" [(ngModel)]="answer">
-          <mat-radio-button color="warn"  [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="answer">
+          <mat-radio-button #answer color="warn" [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
          value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
       </mat-radio-group>
       <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
       </div>
         <div class="button-border">
-          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === 0" (click)="previousQuestion()">previous</button>
-          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === this.questionsForShow.length - 1" (click)="nextQuestion()">
+          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === 0"(click)="previousQuestion()"
+                  (click)="changeAnmationBackward()">
+          previous</button>
+          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === this.questionsForShow.length - 1" (click)="nextQuestion()"
+            (click)="changeAnmationForward()">
             next</button>
           <button mat-flat-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>

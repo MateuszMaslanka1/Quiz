@@ -54,3 +54,28 @@ section {
     margin-left: auto;
   }
 }
+.animation-class-forward{
+  animation: slow linear .5s;
+}
+
+.animation-class-backward{
+  animation: slowback linear .5s;
+}
+
+@keyframes slow
+{
+  0% { transform: translateX(-240px);}
+  50% { transform: translateX(-120px);}
+  100% {transform: translateX(0px);}
+}
+
+@keyframes slowback
+{
+  0% { transform: translateX(240px);}
+  50% { transform: translateX(120px);}
+  100% {transform: translateX(0px);}
+}
+
+
+
+

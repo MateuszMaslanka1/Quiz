@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz',
@@ -17,12 +18,15 @@ export class QuizComponent implements OnInit  {
               private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService,
               private route: ActivatedRoute, private router: Router, public checkTimeService: CheckTimeService) { }
 
+  @ViewChild('question', {static: false}) question: ElementRef;
+
   private questionsForShow = [];
-  public loading = true;
+  public loading = false;
   private items;
   private indexForNextQuestion = 0;
   private answer: string;
   private parametersFromLink: string;
+  protected flagForAnimation = false;
 
   ngOnInit() {
     this.parametersFromLink = this.route.snapshot.url[1].path;
@@ -74,5 +78,18 @@ export class QuizComponent implements OnInit  {
       this.indexForNextQuestion = goIndex;
       this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     }
+  }
+
+   changeAnmationForward() {
+    this.question.nativeElement.className  = '';
+     // tslint:disable-next-line:no-unused-expression
+    this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
+    this.question.nativeElement.classList.add('animation-class-forward');
+  }
+  changeAnmationBackward() {
+    this.question.nativeElement.className  = '';
+    // tslint:disable-next-line:no-unused-expression
+    this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
+    this.question.nativeElement.classList.add('animation-class-backward');
   }
 }
