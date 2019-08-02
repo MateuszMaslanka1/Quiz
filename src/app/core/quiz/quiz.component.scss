@@ -55,21 +55,21 @@ section {
   }
 }
 .animation-class-forward{
-  animation: slow linear .5s;
+  animation: slow-forward linear .5s;
 }
 
 .animation-class-backward{
-  animation: slowback linear .5s;
+  animation: slow-back linear .5s;
 }
 
-@keyframes slow
+@keyframes slow-forward
 {
   0% { transform: translateX(-240px);}
   50% { transform: translateX(-120px);}
   100% {transform: translateX(0px);}
 }
 
-@keyframes slowback
+@keyframes slow-back
 {
   0% { transform: translateX(240px);}
   50% { transform: translateX(120px);}

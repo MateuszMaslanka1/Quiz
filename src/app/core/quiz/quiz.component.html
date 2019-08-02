@@ -9,17 +9,18 @@
       <div class="question-and-correct-border">
         <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
         <mat-radio-group aria-label="Select an option" [(ngModel)]="answer">
-          <mat-radio-button #answer color="warn" [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
+          <mat-radio-button color="warn" [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
          value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
       </mat-radio-group>
-      <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()">Zatwierdź</button>
+      <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()"
+              (click)="changeAnmationForwardQustion()">Zatwierdź</button>
       </div>
         <div class="button-border">
           <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === 0"(click)="previousQuestion()"
-                  (click)="changeAnmationBackward()">
+                  (click)="changeAnmationBackwardQuestion()">
           previous</button>
           <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === this.questionsForShow.length - 1" (click)="nextQuestion()"
-            (click)="changeAnmationForward()">
+            (click)="changeAnmationForwardQustion()">
             next</button>
           <button mat-flat-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>

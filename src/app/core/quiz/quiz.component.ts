@@ -26,7 +26,6 @@ export class QuizComponent implements OnInit  {
   private indexForNextQuestion = 0;
   private answer: string;
   private parametersFromLink: string;
-  protected flagForAnimation = false;
 
   ngOnInit() {
     this.parametersFromLink = this.route.snapshot.url[1].path;
@@ -80,16 +79,17 @@ export class QuizComponent implements OnInit  {
     }
   }
 
-   changeAnmationForward() {
+  changeAnmationForwardQustion() {
     this.question.nativeElement.className  = '';
      // tslint:disable-next-line:no-unused-expression
     this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
     this.question.nativeElement.classList.add('animation-class-forward');
   }
-  changeAnmationBackward() {
-    this.question.nativeElement.className  = '';
+  changeAnmationBackwardQuestion() {
+    this.question.nativeElement.className = '';
     // tslint:disable-next-line:no-unused-expression
     this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
     this.question.nativeElement.classList.add('animation-class-backward');
   }
+
 }
