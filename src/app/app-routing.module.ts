@@ -4,6 +4,7 @@ import {WelcomeComponent} from './core/welcome/welcome.component';
 import {QuizComponent} from './core/quiz/quiz.component';
 import {SummaryComponent} from './core/summary/summary.component';
 import {EndComponent} from './core/end/end.component';
+import {AddQuestionComponent} from './core/add-question/add-question.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'quiz/:id', component: QuizComponent},
   {path: 'summary', component: SummaryComponent},
   {path: 'end', component: EndComponent},
+  {path: 'add', component: AddQuestionComponent},
   {path: '**', component: WelcomeComponent}
 ];
 

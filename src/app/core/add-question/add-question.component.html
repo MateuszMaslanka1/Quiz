@@ -1,0 +1,30 @@
+<mat-radio-group aria-label="Select an option">
+<div class="main-container">
+  <div class="header-form-container">
+    <h1><mat-icon>forum</mat-icon>Formularz Pytań</h1>
+    <mat-form-field>
+      <textarea matInput placeholder="Pytanie"></textarea>
+    </mat-form-field>
+    <div *ngFor="let i of Arr(num).fill(1) let j = index" class="form-conteiner">
+      <mat-radio-button value={{j}}></mat-radio-button>
+      <mat-form-field>
+        <input matInput placeholder="Odpowiedź pierwsza">
+      </mat-form-field>
+    </div>
+<!--    <mat-form-field>-->
+<!--      <mat-radio-button value="2"></mat-radio-button>-->
+<!--      <input matInput placeholder="Odpowiedź druga">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <mat-radio-button value="3"></mat-radio-button>-->
+<!--      <input matInput placeholder="Odpowiedź trzecia">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <mat-radio-button value="4"></mat-radio-button>-->
+<!--      <input matInput placeholder="Odpowiedź czwarta">-->
+<!--    </mat-form-field>-->
+    <button mat-flat-button>Zatwierdź</button>
+  </div>
+</div>
+</mat-radio-group>
+

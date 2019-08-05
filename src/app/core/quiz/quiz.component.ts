@@ -1,10 +1,9 @@
-import {Component, OnInit, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CheckCorectAnswerService} from '../check-corect-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {CheckTimeService} from '../check-time.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz',
