@@ -1,8 +1,8 @@
-.main-container {
+.header-input-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  .header-form-container {
+  .header-input-button-container {
     h1 {
       background: cadetblue;
       border-radius: 5px;
@@ -31,7 +31,7 @@
     flex-direction: column;
   }
 
-  .header-form-container > * {
+  .header-input-button-container > * {
     width: 100%;
   }
 
