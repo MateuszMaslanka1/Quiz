@@ -11,8 +11,12 @@ export class AddQuestionComponent implements OnInit {
   constructor() { }
 
   Arr = Array;
-  num = 4;
+  num = 1;
 
   ngOnInit() {
+  }
+
+  addQuestion() {
+    this.num++;
   }
 }
