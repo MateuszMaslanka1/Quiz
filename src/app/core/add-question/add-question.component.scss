@@ -1,19 +1,7 @@
 .main-container {
-  border: 1px solid red;
   width: 100%;
   display: flex;
   justify-content: center;
-  .radio-button-container {
-    border: 1px solid green;
-    width: 1.25rem;
-    display: flex;
-    align-items: center;
-    mat-radio-group {
-      mat-radio-button{
-        margin-right: 1rem;
-     }
-    }
-  }
   .header-form-container {
     h1 {
       background: cadetblue;
@@ -25,8 +13,11 @@
         padding-right: 5rem;
         color: whitesmoke;
       }
-      form-conteiner {
-
+    }
+    .form-conteiner {
+      width: 100%;
+       mat-form-field {
+        width: 100%;
       }
     }
     width: 50vw;
