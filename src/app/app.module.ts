@@ -28,6 +28,7 @@ import {TimeComponent} from './core/time/time.component';
 import {MatTableModule} from '@angular/material/table';
 import {TableComponent} from './core/table/table.component';
 import {AddQuestionComponent} from './core/add-question/add-question.component';
+import {AuthGuard} from './core/auth-guard';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import {AddQuestionComponent} from './core/add-question/add-question.component';
     MatFormFieldModule,
   ],
   exports: [MatButtonModule, MatCheckboxModule],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

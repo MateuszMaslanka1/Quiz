@@ -5,6 +5,7 @@ import {QuizComponent} from './core/quiz/quiz.component';
 import {SummaryComponent} from './core/summary/summary.component';
 import {EndComponent} from './core/end/end.component';
 import {AddQuestionComponent} from './core/add-question/add-question.component';
+import {AuthGuard} from './core/auth-guard';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   {path: 'quiz/:id', component: QuizComponent},
   {path: 'summary', component: SummaryComponent},
   {path: 'end', component: EndComponent},
-  {path: 'add', component: AddQuestionComponent},
+  {path: 'add', component: AddQuestionComponent, canActivate: [AuthGuard]},
   {path: '**', component: WelcomeComponent}
 ];
 

@@ -9,7 +9,7 @@
       <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" cdkDrag>
         <mat-radio-button value={{j}}></mat-radio-button>
         <mat-form-field>
-          <input matInput placeholder="Odpowiedź pierwsza" [(ngModel)]="answers[j]">
+          <input matInput placeholder="Odpowiedź {{j+1}}" [(ngModel)]="answers[j]">
         </mat-form-field>
       </div>
     </div>

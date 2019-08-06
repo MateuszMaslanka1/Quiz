@@ -32,7 +32,7 @@ export class AddQuestionComponent implements OnInit {
 
   addQuestionToJsonServer() {
     swal.fire({
-      title: 'Czy napewno chesz zakończyć', text: 'kliknij na przycisk', type: 'warning',
+      title: 'Czy napewno chesz zatwierdzić pytania', text: 'kliknij na przycisk', type: 'warning',
       showCancelButton: true, cancelButtonColor: '#d33'
     }).then((result) => {
        if (result.value) {
