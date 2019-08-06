@@ -1,20 +1,24 @@
-<mat-radio-group aria-label="Select an option">
+<mat-radio-group  [(ngModel)]="correctAnswer" aria-label="Select an option">
 <div class="header-input-button-container">
   <div class="header-input-button-container">
     <h1><mat-icon>forum</mat-icon>Formularz Pytań</h1>
     <mat-form-field>
-      <textarea matInput placeholder="Pytanie"></textarea>
+      <textarea matInput placeholder="Pytanie" [(ngModel)]="question"></textarea>
     </mat-form-field>
-    <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" >
-      <mat-radio-button value={{j}}></mat-radio-button>
-      <mat-form-field>
-        <input matInput placeholder="Odpowiedź pierwsza" [(ngModel)]="answer[j]">
-      </mat-form-field>
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" cdkDrag>
+        <mat-radio-button value={{j}}></mat-radio-button>
+        <mat-form-field>
+          <input matInput placeholder="Odpowiedź pierwsza" [(ngModel)]="answers[j]">
+        </mat-form-field>
+      </div>
     </div>
-    <button mat-flat-button>Zatwierdź</button>
     <button mat-flat-button (click)="addQuestion()">Dodaj Pytanie</button>
+    <button mat-flat-button (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>
 </mat-radio-group>
+
+
 
 

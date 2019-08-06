@@ -14,7 +14,7 @@ export class ConnectToJsonServerService {
   userAnswer: string;
 
   getQuestionsFromJsonServer() {
-      return this.http.get<Array<Quizdata>>('http://localhost:3000/questions').pipe(
+    return this.http.get<Array<Quizdata>>('http://localhost:3000/questions').pipe(
         // tap(response => console.log(response))
       );
   }
@@ -33,5 +33,15 @@ export class ConnectToJsonServerService {
 
    getModeFromJsonServer() {
      return this.http.get('http://localhost:3000/NegativeMode').pipe(map(res => res[0].flag));
+   }
+
+   sendNewQuestionToJsonServer(ObjWithQuestion) {
+     console.log(ObjWithQuestion);
+     return this.http.post('http://localhost:3000/questions', ObjWithQuestion).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(error.message);
+        console.log(error.status);
+      });
    }
 }

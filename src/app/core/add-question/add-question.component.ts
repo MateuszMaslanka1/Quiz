@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-
+import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-add-question',
@@ -9,18 +9,37 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddQuestionComponent implements OnInit {
 
-  constructor(private formBilder: FormBuilder) { }
+  constructor(private connectToJsonServerService: ConnectToJsonServerService) { }
 
   Arr = Array;
   num = 1;
-  getAnswer: string;
-  answer: string[] = [];
+  answers = [];
+  question: string;
+  correctAnswer: number;
+  ObjWithQuestion = {}
 
   ngOnInit() {
   }
 
   addQuestion() {
-    console.log(this.answer);
     this.num++;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.answers, event.previousIndex, event.currentIndex);
+  }
+
+  addQuestionToJsonServer() {
+    this.ObjWithQuestion = {
+        question: this.question,
+        answers:  this.answers,
+        correctAnswer: this.correctAnswer,
+        userAnswer: null
+    };
+    this.connectToJsonServerService.sendNewQuestionToJsonServer(this.ObjWithQuestion);
+    this.answers = [];
+    this.question = null;
+    this.correctAnswer = null;
+    this.num = 1;
   }
 }

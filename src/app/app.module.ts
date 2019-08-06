@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {QuizComponent} from './core/quiz/quiz.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -40,6 +41,7 @@ import {AddQuestionComponent} from './core/add-question/add-question.component';
     AddQuestionComponent
   ],
   imports: [
+    DragDropModule,
     MatIconModule,
     MatSortModule,
     MatPaginatorModule,
