@@ -1,5 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MatRadioButton} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-question',
@@ -8,15 +9,18 @@ import {MatRadioButton} from '@angular/material';
 })
 export class AddQuestionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBilder: FormBuilder) { }
 
   Arr = Array;
   num = 1;
+  getAnswer: string;
+  answer: string[] = [];
 
   ngOnInit() {
   }
 
   addQuestion() {
+    console.log(this.answer);
     this.num++;
   }
 }

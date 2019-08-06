@@ -8,7 +8,7 @@
     <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" >
       <mat-radio-button value={{j}}></mat-radio-button>
       <mat-form-field>
-        <input matInput placeholder="Odpowiedź pierwsza">
+        <input matInput placeholder="Odpowiedź pierwsza" [(ngModel)]="answer[j]">
       </mat-form-field>
     </div>
     <button mat-flat-button>Zatwierdź</button>
@@ -16,4 +16,5 @@
   </div>
 </div>
 </mat-radio-group>
+
 
