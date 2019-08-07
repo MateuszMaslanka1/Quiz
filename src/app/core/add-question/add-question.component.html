@@ -2,13 +2,13 @@
 <div class="header-input-button-container">
   <div class="header-input-button-container">
     <h1><mat-icon>forum</mat-icon>Formularz Pytań</h1>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <textarea matInput placeholder="Wpisz Pytanie" [(ngModel)]="question" (input)="checkLongAnswer()"></textarea>
     </mat-form-field>
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
       <div class="form-conteiner" *ngFor="let i of Arr(numerOfAnswer) let j = index" cdkDrag>
-        <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
+          <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
           <input #inputEL matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
         </mat-form-field>
       </div>
