@@ -9,12 +9,12 @@
       <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" cdkDrag>
         <mat-radio-button value={{j}}></mat-radio-button>
         <mat-form-field>
-          <input matInput placeholder="Odpowiedź {{j+1}}" [(ngModel)]="answers[j]">
+          <input matInput placeholder="Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
         </mat-form-field>
       </div>
     </div>
     <button mat-flat-button [disabled]="num >= 6" (click)="addQuestion()">Dodaj Pytanie</button>
-    <button mat-flat-button (click)="addQuestionToJsonServer()">Zatwierdź</button>
+    <button mat-flat-button [disabled]="checkLongOfAnswer !== true" (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>
 </mat-radio-group>

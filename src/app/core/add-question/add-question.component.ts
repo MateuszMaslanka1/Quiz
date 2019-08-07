@@ -18,12 +18,34 @@ export class AddQuestionComponent implements OnInit {
   question: string;
   correctAnswer: number;
   ObjWithQuestion = {};
+  checkLongOfAnswer = false;
 
   ngOnInit() {
+    console.log(this.checkLongOfAnswer);
+  }
+
+  checkLongAnswer() {
+    if (this.num > 3) {
+     if (this.answers.length === this.num) {
+       for (let i = 0; i < this.answers.length; i++) {
+          if (this.answers[i].length < 2) {
+            this.checkLongOfAnswer = false;
+          //  console.log(this.checkLongOfAnswer);
+            break;
+         } else {
+           this.checkLongOfAnswer = true;
+         }
+        // console.log(this.checkLongOfAnswer);
+       }
+     } else {
+       this.checkLongOfAnswer = false;
+      }
+    }
   }
 
   addQuestion() {
     this.num++;
+    this.checkLongAnswer();
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -35,7 +57,7 @@ export class AddQuestionComponent implements OnInit {
       title: 'Czy napewno chesz zatwierdzić pytania', text: 'kliknij na przycisk', type: 'warning',
       showCancelButton: true, cancelButtonColor: '#d33'
     }).then((result) => {
-       if (result.value) {
+      if (result.value) {
         this.ObjWithQuestion = {
          question: this.question,
          answers:  this.answers,
