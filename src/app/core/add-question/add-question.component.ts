@@ -47,11 +47,7 @@ export class AddQuestionComponent {
          userAnswer: null
         };
         this.connectToJsonServerService.sendNewQuestionToJsonServer(this.ObjWithQuestion);
-        this.answers = [];
-        this.question = null;
-        this.correctAnswer = null;
-        this.numerOfAnswer = 0;
-        this.checkLongOfAnswer = false;
+        this.clearAll();
       }
     });
   }
@@ -69,5 +65,13 @@ export class AddQuestionComponent {
     } else {
       this.checkLongOfAnswer = false;
     }
+  }
+
+  clearAll() {
+    this.answers = [];
+    this.question = null;
+    this.correctAnswer = null;
+    this.numerOfAnswer = 0;
+    this.checkLongOfAnswer = false;
   }
 }
