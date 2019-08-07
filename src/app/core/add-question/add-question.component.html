@@ -13,7 +13,7 @@
         </mat-form-field>
       </div>
     </div>
-    <button mat-flat-button (click)="addQuestion()">Dodaj Pytanie</button>
+    <button mat-flat-button [disabled]="num >= 6" (click)="addQuestion()">Dodaj Pytanie</button>
     <button mat-flat-button (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>

@@ -17,7 +17,7 @@ export class AddQuestionComponent implements OnInit {
   answers = [];
   question: string;
   correctAnswer: number;
-  ObjWithQuestion = {}
+  ObjWithQuestion = {};
 
   ngOnInit() {
   }
