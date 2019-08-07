@@ -50,7 +50,7 @@ export class AddQuestionComponent {
         this.answers = [];
         this.question = null;
         this.correctAnswer = null;
-        this.numerOfAnswer = 1;
+        this.numerOfAnswer = 0;
         this.checkLongOfAnswer = false;
       }
     });
