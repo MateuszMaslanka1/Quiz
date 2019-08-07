@@ -32,7 +32,7 @@ export class QuizComponent implements OnInit  {
     this.indexForNextQuestion = +this.parametersFromLink;
     if (this.checkCorectAnswer.getQuestionAndAnswer().length === 0) {
       this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
-        for (const type in response) {
+        for (const type of Object.keys(response)) {
           this.items = {};
           this.items.key = type;
           this.items.value = response[type];

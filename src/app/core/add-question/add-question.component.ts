@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+
 import swal from 'sweetalert2';
 
 @Component({
@@ -8,43 +9,24 @@ import swal from 'sweetalert2';
   templateUrl: './add-question.component.html',
   styleUrls: ['./add-question.component.scss']
 })
-export class AddQuestionComponent implements OnInit {
+export class AddQuestionComponent {
 
   constructor(private connectToJsonServerService: ConnectToJsonServerService) { }
 
   Arr = Array;
-  num = 1;
+  numerOfAnswer = 0;
   answers = [];
-  question: string;
-  correctAnswer: number;
+  question = '';
+  correctAnswer = 0;
   ObjWithQuestion = {};
   checkLongOfAnswer = false;
 
-  ngOnInit() {
-    console.log(this.checkLongOfAnswer);
-  }
-
   checkLongAnswer() {
-    if (this.num > 3) {
-     if (this.answers.length === this.num) {
-       for (let i = 0; i < this.answers.length; i++) {
-          if (this.answers[i].length < 2) {
-            this.checkLongOfAnswer = false;
-          //  console.log(this.checkLongOfAnswer);
-            break;
-         } else {
-           this.checkLongOfAnswer = true;
-         }
-        // console.log(this.checkLongOfAnswer);
-       }
-     } else {
-       this.checkLongOfAnswer = false;
-      }
-    }
+      (this.numerOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
   }
 
   addQuestion() {
-    this.num++;
+    this.numerOfAnswer++;
     this.checkLongAnswer();
   }
 
@@ -68,8 +50,24 @@ export class AddQuestionComponent implements OnInit {
         this.answers = [];
         this.question = null;
         this.correctAnswer = null;
-        this.num = 1;
+        this.numerOfAnswer = 1;
+        this.checkLongOfAnswer = false;
       }
     });
+  }
+
+  checkAllQuestionAreInscribed() {
+    if (this.answers.length === this.numerOfAnswer) {
+      for (const item of this.answers) {
+        if (item.length < 2) {
+          this.checkLongOfAnswer = false;
+          break;
+        } else {
+          this.checkLongOfAnswer = true;
+        }
+      }
+    } else {
+      this.checkLongOfAnswer = false;
+    }
   }
 }

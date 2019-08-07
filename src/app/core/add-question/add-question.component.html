@@ -3,17 +3,17 @@
   <div class="header-input-button-container">
     <h1><mat-icon>forum</mat-icon>Formularz Pytań</h1>
     <mat-form-field>
-      <textarea matInput placeholder="Pytanie" [(ngModel)]="question"></textarea>
+      <textarea matInput placeholder="Pytanie" [(ngModel)]="question" (input)="checkLongAnswer()"></textarea>
     </mat-form-field>
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="form-conteiner" *ngFor="let i of Arr(num) let j = index" cdkDrag>
-        <mat-radio-button value={{j}}></mat-radio-button>
+      <div class="form-conteiner" *ngFor="let i of Arr(numerOfAnswer) let j = index" cdkDrag>
+        <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
         <mat-form-field>
-          <input matInput placeholder="Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
+          <input #inputEL matInput placeholder="Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
         </mat-form-field>
       </div>
     </div>
-    <button mat-flat-button [disabled]="num >= 6" (click)="addQuestion()">Dodaj Pytanie</button>
+    <button mat-flat-button [disabled]="numerOfAnswer >= 6" (click)="addQuestion()">Dodaj Odpowiedź</button>
     <button mat-flat-button [disabled]="checkLongOfAnswer !== true" (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>
