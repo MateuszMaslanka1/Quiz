@@ -7,8 +7,10 @@
     </mat-form-field>
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
       <div class="form-conteiner" *ngFor="let i of Arr(numerOfAnswer) let j = index" cdkDrag>
-        <mat-form-field appearance="fill">
-          <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
+        <mat-form-field appearance="outline">
+          <div class="border-for-radio-button">
+            <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
+          </div>
           <input #inputEL matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
         </mat-form-field>
       </div>
