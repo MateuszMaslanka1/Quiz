@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ConnectToJsonServerService} from '../connect-to-json-server.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 import swal from 'sweetalert2';
 
@@ -13,7 +12,7 @@ export class AddQuestionComponent {
 
   constructor(private connectToJsonServerService: ConnectToJsonServerService) { }
 
-  Arr = Array;
+  arrayOfQuantityInput = Array;
   numerOfAnswer = 0;
   answers: string[] = [];
   question = '';
@@ -25,18 +24,17 @@ export class AddQuestionComponent {
       (this.numerOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
   }
 
-  deleteAnswer(indexOfAnswer) {
-    console.log(this.answers[indexOfAnswer]);
+  deleteAnswer(indexOfAnswer, e) {
+    this.answers = this.answers.filter((el, index) =>
+        index !== indexOfAnswer
+    );
+    this.numerOfAnswer--;
   }
 
   addQuestion() {
     this.answers.push('');
     this.numerOfAnswer++;
     this.checkLongAnswer();
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.answers, event.previousIndex, event.currentIndex);
   }
 
   addQuestionToJsonServer() {
