@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CheckTimeService} from '../check-time.service';
+import {TimeService} from '../time.service';
 
 @Component({
   selector: 'app-time',
@@ -8,9 +8,9 @@ import {CheckTimeService} from '../check-time.service';
 })
 export class TimeComponent implements OnInit  {
 
-  constructor(protected checkTime: CheckTimeService) { }
+  constructor(protected checkTime: TimeService) { }
 
   ngOnInit() {
-    this.checkTime.startTime();
+    this.checkTime.startTimer();
   }
 }

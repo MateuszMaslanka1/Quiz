@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {JsonServerService} from '../json-server.service';
 
 import swal from 'sweetalert2';
 
@@ -10,10 +10,10 @@ import swal from 'sweetalert2';
 })
 export class AddQuestionComponent {
 
-  constructor(private connectToJsonServerService: ConnectToJsonServerService) { }
+  constructor(private connectToJsonServerService: JsonServerService) { }
 
   arrayOfQuantityInput = Array;
-  numerOfAnswer = 0;
+  numberOfAnswer = 0;
   answers: string[] = [];
   question = '';
   correctAnswer = 0;
@@ -21,19 +21,19 @@ export class AddQuestionComponent {
   checkLongOfAnswer = false;
 
   checkLongAnswer() {
-      (this.numerOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
+      (this.numberOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
   }
 
   deleteAnswer(indexOfAnswer, e) {
     this.answers = this.answers.filter((el, index) =>
         index !== indexOfAnswer
     );
-    this.numerOfAnswer--;
+    this.numberOfAnswer--;
   }
 
   addQuestion() {
     this.answers.push('');
-    this.numerOfAnswer++;
+    this.numberOfAnswer++;
     this.checkLongAnswer();
   }
 
@@ -56,7 +56,7 @@ export class AddQuestionComponent {
   }
 
   checkAllQuestionAreInscribed() {
-    if (this.answers.length === this.numerOfAnswer) {
+    if (this.answers.length === this.numberOfAnswer) {
       for (const item of this.answers) {
         if (item.length < 2) {
           this.checkLongOfAnswer = false;
@@ -74,7 +74,7 @@ export class AddQuestionComponent {
     this.answers = [];
     this.question = null;
     this.correctAnswer = null;
-    this.numerOfAnswer = 0;
+    this.numberOfAnswer = 0;
     this.checkLongOfAnswer = false;
   }
 }

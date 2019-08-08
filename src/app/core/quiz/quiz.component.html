@@ -2,7 +2,7 @@
 <app-time></app-time>
 </div>
 <section>
-  <div *ngIf="loading && (this.checkTimeService.subjectTime | async) else loading">
+  <div *ngIf="loading && (this.checkTimeService.time$ | async) else loading">
   <div class="main-border">
     <div class="question-border">
       <label #question>{{questionsForShow[indexForNextQuestion].value.question}}</label>

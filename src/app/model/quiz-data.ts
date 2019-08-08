@@ -1,4 +1,4 @@
-export interface Quizdata {
+export interface QuizData {
   id: number;
   question: string;
   answers: [];

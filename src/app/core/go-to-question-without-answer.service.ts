@@ -7,10 +7,10 @@ import {Router} from '@angular/router';
 })
 export class GoToQuestionWithoutAnswerService {
 
-  constructor(private router: Router) { }
-
   private getIndex = null;
   private counter = 0;
+
+  constructor(private router: Router) { }
 
   goToQuestion(tabWithQuestion = [], indexTabWithQuestion: number) {
       for (let i = indexTabWithQuestion; i < tabWithQuestion.length; i++) {

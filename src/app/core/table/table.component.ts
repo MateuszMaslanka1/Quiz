@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CheckCorectAnswerService} from '../check-corect-answer.service';
-import {Quizdata} from '../../model/quiz-data/quiz-data';
+import {CheckCorrectAnswerService} from '../check-correct-answer.service';
+import {QuizData} from '../../model/quiz-data';
 
 @Component({
   selector: 'app-table',
@@ -9,11 +9,11 @@ import {Quizdata} from '../../model/quiz-data/quiz-data';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private checkCorectAnswer: CheckCorectAnswerService) { }
+  constructor(private checkCorectAnswer: CheckCorrectAnswerService) { }
 
   @Input() ObjWithResoult;
 
-  protected listWithQuestionAndAnswer: Quizdata[] = [];
+  protected listWithQuestionAndAnswer: QuizData[] = [];
   protected columnsToDisplay = [];
   protected result: number;
   protected sumOfAllPoints: number;

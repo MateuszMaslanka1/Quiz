@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CheckCorectAnswerService} from '../check-corect-answer.service';
-import {ConnectToJsonServerService} from '../connect-to-json-server.service';
+import {CheckCorrectAnswerService} from '../check-correct-answer.service';
+import {JsonServerService} from '../json-server.service';
 import swal from 'sweetalert2';
 import {Router} from '@angular/router';
 
@@ -11,13 +11,13 @@ import {Router} from '@angular/router';
 })
 export class SummaryComponent implements OnInit {
 
-  constructor(private checkCorectAnswer: CheckCorectAnswerService,
-              private jsonServerService: ConnectToJsonServerService, private router: Router) { }
+  constructor(private checkCorectAnswer: CheckCorrectAnswerService,
+              private jsonServerService: JsonServerService, private router: Router) { }
 
   private getFlagFromJsonSever: string;
 
   ngOnInit() {
-    this.jsonServerService.getModeFromJsonServer().subscribe(response => {
+    this.jsonServerService.getPenaltyPoitsMode().subscribe(response => {
       this.getFlagFromJsonSever = response;
     });
   }

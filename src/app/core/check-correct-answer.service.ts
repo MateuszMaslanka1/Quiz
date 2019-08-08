@@ -1,31 +1,30 @@
 import {Injectable} from '@angular/core';
-import {Quizdata} from '../model/quiz-data/quiz-data';
-import {SumOfPoint} from '../model/sum-of-point/sum-of-point';
+import {QuizData} from '../model/quiz-data';
+import {SumOfPoints} from '../model/sum-of-points';
 import {isNullOrUndefined} from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CheckCorectAnswerService {
-
-  constructor() { }
+export class CheckCorrectAnswerService {
 
   private result = 0;
   private resultWhenBadAnswer = 0;
-  private ListForObjAnswer = [];
-  public tabWithQuestionAndAnswer: Quizdata[] = [];
-  private counterForQuantityOfSumResoult = 0;
+  public tabWithQuestionAndAnswer: QuizData[] = [];
+  private counterForQuantityOfSumResult = 0;
   private resultOneTime: number;
   private resultWhenBadAnswerOneTime: number;
 
-  checkAnswer(questionsForShowFromQuiz = [], flag: string): SumOfPoint {
+  constructor() { }
+
+  checkAnswer(questionsForShowFromQuiz = [], flag: string): SumOfPoints {
     questionsForShowFromQuiz.forEach( el => {
       if (isNullOrUndefined(el.value.userAnswer) !== true) {
         (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
       }
     });
-    if (this.counterForQuantityOfSumResoult === 0) {
-      this.counterForQuantityOfSumResoult++;
+    if (this.counterForQuantityOfSumResult === 0) {
+      this.counterForQuantityOfSumResult++;
       this.resultOneTime = this.result;
       this.resultWhenBadAnswerOneTime = this.resultWhenBadAnswer;
       return {result: this.result, resultWhenBadAnswer: this.resultWhenBadAnswer};
@@ -47,7 +46,7 @@ export class CheckCorectAnswerService {
     return this.resultWhenBadAnswer;
   }
 
-  checkUserChoose(questionsForShowFromQuiz = [], answerFromQuiz: string, index: number): Array<Quizdata> {
+  checkUserChoose(questionsForShowFromQuiz = [], answerFromQuiz: string, index: number): Array<QuizData> {
      questionsForShowFromQuiz.forEach(el => {
       if (+el.key === +index) {
         el.value.userAnswer = answerFromQuiz;

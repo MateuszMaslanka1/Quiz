@@ -6,17 +6,17 @@
       <textarea matInput placeholder="Wpisz Pytanie" [(ngModel)]="question" (input)="checkLongAnswer()"></textarea>
     </mat-form-field>
 <!--    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">-->
-      <div class="form-conteiner" *ngFor="let i of arrayOfQuantityInput(numerOfAnswer) let j = index">
-          <mat-form-field  appearance="outline">
+      <div class="form-conteiner" *ngFor="let i of arrayOfQuantityInput(numberOfAnswer) let j = index">
+          <mat-form-field appearance="outline">
             <div class="border-for-radio-button">
               <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
             </div>
             <input matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
           </mat-form-field>
 <!--      </div>-->
-          <button mat-flat-button (click)="deleteAnswer(j, $event)">Usuń Odpowiedź</button>
+          <button class="delete-button" mat-flat-button (click)="deleteAnswer(j, $event)">Usuń Odpowiedź</button>
     </div>
-    <button mat-flat-button [disabled]="numerOfAnswer >= 6" (click)="addQuestion()">Dodaj Odpowiedź</button>
+    <button mat-flat-button [disabled]="numberOfAnswer >= 6" (click)="addQuestion()">Dodaj Odpowiedź</button>
     <button mat-flat-button [disabled]="checkLongOfAnswer !== true" (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>

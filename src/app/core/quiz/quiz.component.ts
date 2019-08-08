@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ConnectToJsonServerService} from '../connect-to-json-server.service';
-import {CheckCorectAnswerService} from '../check-corect-answer.service';
+import {JsonServerService} from '../json-server.service';
+import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
-import {CheckTimeService} from '../check-time.service';
+import {TimeService} from '../time.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -13,9 +13,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class QuizComponent implements OnInit  {
 
-  constructor(private jsonServerService: ConnectToJsonServerService, private checkCorectAnswer: CheckCorectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: CheckTimeService,
-              private route: ActivatedRoute, private router: Router, public checkTimeService: CheckTimeService) { }
+  constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: TimeService,
+              private route: ActivatedRoute, private router: Router, public checkTimeService: TimeService) { }
 
   @ViewChild('question', {static: false}) question: ElementRef;
 
