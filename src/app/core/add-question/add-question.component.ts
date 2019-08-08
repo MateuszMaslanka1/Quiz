@@ -15,7 +15,7 @@ export class AddQuestionComponent {
 
   Arr = Array;
   numerOfAnswer = 0;
-  answers = [];
+  answers: string[] = [];
   question = '';
   correctAnswer = 0;
   ObjWithQuestion = {};
@@ -25,7 +25,12 @@ export class AddQuestionComponent {
       (this.numerOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
   }
 
+  deleteAnswer(indexOfAnswer) {
+    console.log(this.answers[indexOfAnswer]);
+  }
+
   addQuestion() {
+    this.answers.push('');
     this.numerOfAnswer++;
     this.checkLongAnswer();
   }

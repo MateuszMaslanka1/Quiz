@@ -13,6 +13,7 @@
           </div>
           <input #inputEL matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]">
         </mat-form-field>
+        <button mat-flat-button (click)="deleteAnswer(j)">Usuń Odpowiedź</button>
       </div>
     </div>
     <button mat-flat-button [disabled]="numerOfAnswer >= 6" (click)="addQuestion()">Dodaj Odpowiedź</button>
