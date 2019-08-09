@@ -1,9 +1,7 @@
 section{
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +9,8 @@ section{
     width: 50rem;
     height: 20rem;
     h1 {
-      font-size: 5rem;
+      font-family: Calibri;
+      font-size: 6rem;
       text-align: center;
     }
     h3{
