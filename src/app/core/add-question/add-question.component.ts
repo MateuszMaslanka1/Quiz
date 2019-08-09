@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
-
 import swal from 'sweetalert2';
 
 @Component({
@@ -25,10 +24,16 @@ export class AddQuestionComponent {
   }
 
   deleteAnswer(indexOfAnswer, e) {
-    this.answers = this.answers.filter((el, index) =>
-        index !== indexOfAnswer
-    );
-    this.numberOfAnswer--;
+    swal.fire({ title: 'Czy napewno chesz usunąć odpowiedź', text: 'kliknij na przycisk', type: 'warning',
+      showCancelButton: true, cancelButtonColor: '#d33'}).then((result) => {
+        if (result.value) {
+          this.answers = this.answers.filter((el, index) =>
+            index !== indexOfAnswer
+          );
+          this.numberOfAnswer--;
+          swal.fire('Usunięto!', 'Twoja odpowiedź została usunięta.', 'success');
+        }
+      });
   }
 
   addQuestion() {
