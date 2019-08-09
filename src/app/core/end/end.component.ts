@@ -12,15 +12,15 @@ import {QuizData} from '../../model/quiz-data';
 })
 export class EndComponent implements OnInit {
 
-  constructor(private checkTime: TimeService, private checkCorectAnswer: CheckCorrectAnswerService,
-              private route: ActivatedRoute) { }
-
   private ListWithQuestinAndAnswers: QuizData[] = [];
   private resultFromCheckAnswer: SumOfPoints;
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
   protected ObjWithResoult = {};
   private counterForQuantityOfSumResoult = 0;
+
+  constructor(private checkTime: TimeService, private checkCorectAnswer: CheckCorrectAnswerService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {

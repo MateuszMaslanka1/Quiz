@@ -13,18 +13,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class QuizComponent implements OnInit  {
 
-  constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: TimeService,
-              private route: ActivatedRoute, private router: Router, public checkTimeService: TimeService) { }
-
   @ViewChild('question', {static: false}) question: ElementRef;
-
   private questionsForShow = [];
   public loading = false;
   private items;
   private indexForNextQuestion = 0;
   private answer: string;
   private parametersFromLink: string;
+
+  constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: TimeService,
+              private route: ActivatedRoute, private router: Router, public checkTimeService: TimeService) { }
 
   ngOnInit() {
     this.parametersFromLink = this.route.snapshot.url[1].path;

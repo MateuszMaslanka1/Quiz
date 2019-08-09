@@ -9,8 +9,6 @@ import swal from 'sweetalert2';
 })
 export class AddQuestionComponent {
 
-  constructor(private connectToJsonServerService: JsonServerService) { }
-
   arrayOfQuantityInput = Array;
   numberOfAnswer = 0;
   answers: string[] = [];
@@ -18,6 +16,8 @@ export class AddQuestionComponent {
   correctAnswer = 0;
   ObjWithQuestion = {};
   checkLongOfAnswer = false;
+
+  constructor(private connectToJsonServerService: JsonServerService) { }
 
   checkLongAnswer() {
       (this.numberOfAnswer > 1 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;

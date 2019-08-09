@@ -8,11 +8,11 @@ import {JsonServerService} from '../json-server.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private services: JsonServerService, private jsonServerService: JsonServerService) { }
-
   protected quantityOfQuestions: number;
   protected timeForUser: number;
   public color = 'accent';
+
+  constructor(private services: JsonServerService, private jsonServerService: JsonServerService) { }
 
   ngOnInit() {
     this.color = 'accent';
@@ -24,8 +24,4 @@ export class WelcomeComponent implements OnInit {
       this.timeForUser = response;
     });
   }
-
-   onChange(isChecked) {
-     this.jsonServerService.putModeFromJsonServer(isChecked.checked);
-   }
 }

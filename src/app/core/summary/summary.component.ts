@@ -11,10 +11,10 @@ import {Router} from '@angular/router';
 })
 export class SummaryComponent implements OnInit {
 
+  private getFlagFromJsonSever: string;
+
   constructor(private checkCorectAnswer: CheckCorrectAnswerService,
               private jsonServerService: JsonServerService, private router: Router) { }
-
-  private getFlagFromJsonSever: string;
 
   ngOnInit() {
     this.jsonServerService.getPenaltyPoitsMode().subscribe(response => {

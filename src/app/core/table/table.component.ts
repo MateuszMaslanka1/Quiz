@@ -9,16 +9,15 @@ import {QuizData} from '../../model/quiz-data';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private checkCorectAnswer: CheckCorrectAnswerService) { }
-
   @Input() ObjWithResoult;
-
   protected listWithQuestionAndAnswer: QuizData[] = [];
   protected columnsToDisplay = [];
   protected result: number;
   protected sumOfAllPoints: number;
   protected resultWhenBadAnswer: number;
   protected above = 'above';
+
+  constructor(private checkCorectAnswer: CheckCorrectAnswerService) { }
 
   ngOnInit() {
     if (this.ObjWithResoult) {
