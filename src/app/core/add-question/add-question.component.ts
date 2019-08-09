@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import swal from 'sweetalert2';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-question',
@@ -17,7 +17,7 @@ export class AddQuestionComponent {
   correctAnswer = 0;
   ObjWithQuestion = {};
   checkLongOfAnswer = false;
-  name = new FormControl('', [
+  validForTextArea = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
   ]);
