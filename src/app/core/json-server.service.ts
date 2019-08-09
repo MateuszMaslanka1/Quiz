@@ -13,7 +13,7 @@ export class JsonServerService {
 
   getQuestionsFromJsonServer() {
     return this.http.get<Array<QuizData>>('http://localhost:3000/questions');
-}
+  }
 
   getTimeLimit() {
     return this.http.get('http://localhost:3000/timeLimitMinutes').pipe( map(res => res[0]));
