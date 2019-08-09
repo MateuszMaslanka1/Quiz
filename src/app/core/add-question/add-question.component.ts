@@ -20,7 +20,7 @@ export class AddQuestionComponent {
   checkLongOfAnswer = false;
 
   checkLongAnswer() {
-      (this.numberOfAnswer > 3 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
+      (this.numberOfAnswer > 1 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
   }
 
   deleteAnswer(indexOfAnswer, e) {
