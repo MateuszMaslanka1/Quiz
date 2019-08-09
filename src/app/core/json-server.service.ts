@@ -19,13 +19,6 @@ export class JsonServerService {
     return this.http.get('http://localhost:3000/timeLimitMinutes').pipe( map(res => res[0]));
   }
 
-  putModeFromJsonServer(flagFromWelcome: string) {
-    return this.http.put('http://localhost:3000/NegativeMode/1', {flag: flagFromWelcome}).subscribe(data => {
-    }, error => {
-      console.log(error.message, error.status);
-    });
-  }
-
   getPenaltyPoitsMode() {
      return this.http.get('http://localhost:3000/penaltyPointsMode').pipe(map(res => res[0].flag));
    }
