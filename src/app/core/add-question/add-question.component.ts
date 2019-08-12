@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import swal from 'sweetalert2';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-question',
@@ -12,26 +12,23 @@ export class AddQuestionComponent implements OnInit {
 
   arrayOfQuantityInput = Array;
   numberOfAnswer = 0;
+  maxQuantityOfAnswer = 6;
   answers: string[] = [];
   question = '';
   correctAnswer = 0;
   ObjWithQuestion = {};
   checkLongOfAnswer = false;
+  validationForInput: FormControl[] = [];
   validForTextArea = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
   ]);
-  form = new FormGroup({
-    0: new FormControl('', Validators.minLength(2)),
-    1: new FormControl('', Validators.minLength(2))
-  });
-  control = [];
 
-  constructor(private connectToJsonServerService: JsonServerService, ) {}
+  constructor(private connectToJsonServerService: JsonServerService) {}
 
   ngOnInit() {
-     for (let i = 0; i < 6; i++) {
-     this.control[i] = new FormControl('value', Validators.minLength(2));
+     for (let i = 0; i < this.maxQuantityOfAnswer; i++) {
+     this.validationForInput[i] = new FormControl('value', Validators.minLength(2));
      }
   }
 

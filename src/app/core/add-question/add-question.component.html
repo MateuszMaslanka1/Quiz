@@ -7,21 +7,18 @@
       <mat-error *ngIf="validForTextArea.hasError('minlength')">Minimalna liczba znaków w pytaniu to trzy</mat-error>
       <mat-error *ngIf="validForTextArea.hasError('required')">Podaj pytanie</mat-error>
     </mat-form-field>
-      <div class="form-conteiner" *ngFor="let i of arrayOfQuantityInput(numberOfAnswer) let j = index" [formGroup]="form">
+      <div class="form-conteiner" *ngFor="let i of arrayOfQuantityInput(numberOfAnswer) let j = index">
           <mat-form-field appearance="fill">
             <div class="border-for-radio-button">
               <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
             </div>
-<!--       <div formArrayName="first">-->
-<!--              <p *ngIf="answers[j].length < 2">jest</p>-->
-              <input matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]" [formControl]="control[j]" required>
-<!--           </div>-->
-<!--            <mat-error *ngIf="validForInput.hasError('minlength')">Minimalna liczba znaków w odpowiedzi to dwa</mat-error>-->
-<!--            <mat-error *ngIf="validForInput.hasError('required')">Podaj odpowiedź</mat-error>-->
+              <input matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]" [formControl]="validationForInput[j]" required>
+            <mat-error *ngIf="validationForInput[j].hasError('minlength')">Minimalna liczba znaków w pytaniu to dwa</mat-error>
+            <mat-error *ngIf="validationForInput[j].hasError('required')">Podaj odpowiedź</mat-error>
           </mat-form-field>
           <button class="delete-button" mat-flat-button (click)="deleteAnswer(j, $event)">Usuń Odpowiedź</button>
     </div>
-    <button mat-flat-button [disabled]="numberOfAnswer >= 6" (click)="addAnswer()">Dodaj Odpowiedź</button>
+    <button mat-flat-button [disabled]="numberOfAnswer >= maxQuantityOfAnswer" (click)="addAnswer()">Dodaj Odpowiedź</button>
     <button mat-flat-button [disabled]="checkLongOfAnswer !== true" (click)="addQuestionToJsonServer()">Zatwierdź</button>
   </div>
 </div>
