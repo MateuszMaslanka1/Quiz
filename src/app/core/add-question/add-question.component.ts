@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import swal from 'sweetalert2';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-question',
@@ -15,7 +15,7 @@ export class AddQuestionComponent implements OnInit {
   maxQuantityOfAnswer = 6;
   answers: string[] = [];
   question = '';
-  correctAnswer = 0;
+  correctAnswer = null;
   ObjWithQuestion = {};
   checkLongOfAnswer = false;
   validationForInput: FormControl[] = [];
@@ -56,21 +56,25 @@ export class AddQuestionComponent implements OnInit {
   }
 
   addQuestionToJsonServer() {
-    swal.fire({
-      title: 'Czy napewno chesz zatwierdzić pytania', text: 'kliknij na przycisk', type: 'warning',
-      showCancelButton: true, cancelButtonColor: '#d33'
-    }).then((result) => {
-      if (result.value) {
-        this.ObjWithQuestion = {
-         question: this.question,
-         answers:  this.answers,
-         correctAnswer: this.correctAnswer,
-         userAnswer: null
-        };
-        this.connectToJsonServerService.sendNewQuestionToJsonServer(this.ObjWithQuestion);
-        this.clearAll();
-      }
-    });
+    if (this.correctAnswer === null) {
+      swal.fire({title: 'Zaznacz odpowiedź na przycisku obok pola tekstowego', text: 'kliknij na przycisk', type: 'info'});
+    } else {
+      swal.fire({
+        title: 'Czy napewno chesz zatwierdzić pytania', text: 'kliknij na przycisk', type: 'warning',
+        showCancelButton: true, cancelButtonColor: '#d33'
+      }).then((result) => {
+        if (result.value) {
+          this.ObjWithQuestion = {
+            question: this.question,
+            answers:  this.answers,
+            correctAnswer: this.correctAnswer,
+            userAnswer: null
+          };
+          this.connectToJsonServerService.sendNewQuestionToJsonServer(this.ObjWithQuestion);
+          this.clearAll();
+        }
+      });
+    }
   }
 
   checkAllQuestionAreInscribed() {
@@ -90,6 +94,10 @@ export class AddQuestionComponent implements OnInit {
 
   clearAll() {
     this.answers = [];
+    this.validForTextArea = new FormControl();
+    for (let i = 0; i < this.maxQuantityOfAnswer; i++) {
+      this.validationForInput[i] = new FormControl('value', Validators.minLength(2));
+    }
     this.question = null;
     this.correctAnswer = null;
     this.numberOfAnswer = 0;

@@ -10,7 +10,7 @@
       <div class="form-conteiner" *ngFor="let i of arrayOfQuantityInput(numberOfAnswer) let j = index">
           <mat-form-field appearance="fill">
             <div class="border-for-radio-button">
-              <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()" [checked]="j === 0"></mat-radio-button>
+              <mat-radio-button value={{j}} color="primary" (change)="checkLongAnswer()"></mat-radio-button>
             </div>
               <input matInput placeholder="Wpisz Odpowiedź {{j+1}}" (input)="checkLongAnswer()" [(ngModel)]="answers[j]" [formControl]="validationForInput[j]" required>
             <mat-error *ngIf="validationForInput[j].hasError('minlength')">Minimalna liczba znaków w pytaniu to dwa</mat-error>
