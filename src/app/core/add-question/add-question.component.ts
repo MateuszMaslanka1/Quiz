@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import swal from 'sweetalert2';
 import {FormControl, Validators} from '@angular/forms';
+import {CheckAllAnswersAreInscribedService} from './check-all-answers-are-inscribed.service';
 
 @Component({
   selector: 'app-add-question',
@@ -11,32 +12,34 @@ import {FormControl, Validators} from '@angular/forms';
 export class AddQuestionComponent implements OnInit {
 
   arrayOfQuantityInput = Array;
-  numberOfAnswer = 0;
   maxQuantityOfAnswer = 6;
-  answers: string[] = [];
-  question = '';
-  correctAnswer = null;
-  ObjWithQuestion = {};
-  checkLongOfAnswer = false;
+  numberOfAnswer = 0;
   validationForInput: FormControl[] = [];
   validForTextArea = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
   ]);
 
-  constructor(private connectToJsonServerService: JsonServerService) {}
+  private answers: string[] = [];
+  private question = '';
+  private correctAnswer = null;
+  private ObjWithQuestion = {};
+  private checkLongOfAnswer = false;
+
+  constructor(private connectToJsonServerService: JsonServerService,
+              private checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService) {}
 
   ngOnInit() {
-     for (let i = 0; i < this.maxQuantityOfAnswer; i++) {
-     this.validationForInput[i] = new FormControl('value', Validators.minLength(2));
-     }
+    this.listForValid();
   }
 
   checkLongAnswer() {
-      (this.numberOfAnswer > 1 && this.question.length > 2) ? this.checkAllQuestionAreInscribed() : this.checkLongOfAnswer = false;
+      (this.numberOfAnswer > 1 && this.question.length > 2) ?
+      this.checkLongOfAnswer = this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
+      this.checkLongOfAnswer = false;
   }
 
-  deleteAnswer(indexOfAnswer, e) {
+  deleteAnswer(indexOfAnswer) {
     swal.fire({ title: 'Czy napewno chesz usunąć odpowiedź', text: 'kliknij na przycisk', type: 'warning',
       showCancelButton: true, cancelButtonColor: '#d33'}).then((result) => {
         if (result.value) {
@@ -60,7 +63,8 @@ export class AddQuestionComponent implements OnInit {
       swal.fire({title: 'Zaznacz odpowiedź na przycisku obok pola tekstowego', text: 'kliknij na przycisk', type: 'info'});
     } else {
       swal.fire({
-        title: 'Czy napewno chesz zatwierdzić pytania', text: 'kliknij na przycisk', type: 'warning',
+        title: 'Czy napewno chesz zatwierdzić pytania',
+        text: 'kliknij na przycisk', type: 'warning',
         showCancelButton: true, cancelButtonColor: '#d33'
       }).then((result) => {
         if (result.value) {
@@ -77,21 +81,6 @@ export class AddQuestionComponent implements OnInit {
     }
   }
 
-  checkAllQuestionAreInscribed() {
-    if (this.answers.length === this.numberOfAnswer) {
-      for (const item of this.answers) {
-        if (item.length < 2) {
-          this.checkLongOfAnswer = false;
-          break;
-        } else {
-          this.checkLongOfAnswer = true;
-        }
-      }
-    } else {
-      this.checkLongOfAnswer = false;
-    }
-  }
-
   clearAll() {
     this.answers = [];
     this.validForTextArea = new FormControl();
@@ -102,5 +91,11 @@ export class AddQuestionComponent implements OnInit {
     this.correctAnswer = null;
     this.numberOfAnswer = 0;
     this.checkLongOfAnswer = false;
+  }
+
+  listForValid() {
+    for (let i = 0; i < this.maxQuantityOfAnswer; i++) {
+      this.validationForInput[i] = new FormControl('value', Validators.minLength(2));
+    }
   }
 }

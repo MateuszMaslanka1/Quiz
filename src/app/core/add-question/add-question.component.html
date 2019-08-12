@@ -16,7 +16,7 @@
             <mat-error *ngIf="validationForInput[j].hasError('minlength')">Minimalna liczba znaków w pytaniu to dwa</mat-error>
             <mat-error *ngIf="validationForInput[j].hasError('required')">Podaj odpowiedź</mat-error>
           </mat-form-field>
-          <button class="delete-button" mat-flat-button (click)="deleteAnswer(j, $event)">Usuń Odpowiedź</button>
+          <button class="delete-button" mat-flat-button (click)="deleteAnswer(j)">Usuń Odpowiedź</button>
     </div>
     <button mat-flat-button [disabled]="numberOfAnswer >= maxQuantityOfAnswer" (click)="addAnswer()">Dodaj Odpowiedź</button>
     <button mat-flat-button [disabled]="checkLongOfAnswer !== true" (click)="addQuestionToJsonServer()">Zatwierdź</button>
