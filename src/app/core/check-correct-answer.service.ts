@@ -53,7 +53,6 @@ export class CheckCorrectAnswerService {
       }
     });
      this.tabWithQuestionAndAnswer = questionsForShowFromQuiz;
-     // console.log(this.tabWithQuestionAndAnswer);
      return questionsForShowFromQuiz;
   }
 

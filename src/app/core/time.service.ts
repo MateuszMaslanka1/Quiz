@@ -29,7 +29,7 @@ export class TimeService {
   }
 
   decreaseTimeLeft(timelimit) {
-    let second
+    let second;
     let minute;
     let time;
     let timeLeft = +timelimit * 60;

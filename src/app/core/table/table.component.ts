@@ -11,7 +11,7 @@ export class TableComponent implements OnInit {
 
   @Input() ObjWithResoult;
   protected listWithQuestionAndAnswer: QuizData[] = [];
-  protected columnsToDisplay = [];
+  protected columnsToDisplay: string[] = [];
   protected result: number;
   protected sumOfAllPoints: number;
   protected resultWhenBadAnswer: number;
