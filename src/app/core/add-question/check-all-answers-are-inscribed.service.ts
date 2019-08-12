@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class CheckAllAnswersAreInscribedService {
 
-  constructor() { }
-
   private checkLongOfAnswer: boolean;
 
-  checkLenghtOfAnswers(answers, numberOfAnswer) {
+  constructor() { }
+
+  checkLenghtOfAnswers(answers: string[] = [], numberOfAnswer: number) {
     if (answers.length === numberOfAnswer) {
       for (const item of answers) {
         if (item.length < 2) {
