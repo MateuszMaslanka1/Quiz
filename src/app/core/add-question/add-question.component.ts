@@ -30,7 +30,7 @@ export class AddQuestionComponent implements OnInit {
               private checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService) {}
 
   ngOnInit() {
-    this.listForValid();
+    this.listForInputValid();
   }
 
   checkLongAnswer() {
@@ -93,7 +93,7 @@ export class AddQuestionComponent implements OnInit {
     this.checkLongOfAnswer = false;
   }
 
-  listForValid() {
+  listForInputValid() {
     for (let i = 0; i < this.maxQuantityOfAnswer; i++) {
       this.validationForInput[i] = new FormControl('value', Validators.minLength(2));
     }
