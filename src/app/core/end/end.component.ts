@@ -12,12 +12,11 @@ import {QuizData} from '../../model/quiz-data';
 })
 export class EndComponent implements OnInit {
 
-  private ListWithQuestinAndAnswers: QuizData[] = [];
+  private listWithQuestinAndAnswers: QuizData[] = [];
   private resultFromCheckAnswer: SumOfPoints;
   private sumOfAllPoints: number;
   private getFlagFromJsonSever: string;
   protected ObjWithResoult = {};
-  private counterForQuantityOfSumResoult = 0;
 
   constructor(private checkTime: TimeService, private checkCorectAnswer: CheckCorrectAnswerService,
               private route: ActivatedRoute) { }
@@ -26,10 +25,9 @@ export class EndComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.getFlagFromJsonSever = params.flag;
     });
-    this.ListWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
-    this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.ListWithQuestinAndAnswers, this.getFlagFromJsonSever);
-    this.counterForQuantityOfSumResoult++;
-    this.sumOfAllPoints = this.ListWithQuestinAndAnswers.length;
+    this.listWithQuestinAndAnswers = this.checkCorectAnswer.getQuestionAndAnswer();
+    this.resultFromCheckAnswer = this.checkCorectAnswer.checkAnswer(this.listWithQuestinAndAnswers, this.getFlagFromJsonSever);
+    this.sumOfAllPoints = this.listWithQuestinAndAnswers.length;
     this.checkTime.StopTimer();
     this.ObjWithResoult = {
       resoult: this.resultFromCheckAnswer.result,
