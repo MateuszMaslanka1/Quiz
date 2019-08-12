@@ -9,7 +9,8 @@ import swal from 'sweetalert2';
 })
 export class TimeService {
 
-  public time$ = new Subject();
+  time$ = new Subject();
+
   private isRunning = false;
   private getFlagFromJsonSever: string;
   private interval: number;

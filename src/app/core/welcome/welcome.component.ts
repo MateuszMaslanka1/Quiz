@@ -8,9 +8,10 @@ import {JsonServerService} from '../json-server.service';
 })
 export class WelcomeComponent implements OnInit {
 
+  color = 'accent';
+
   protected quantityOfQuestions: number;
   protected timeForUser: number;
-  public color = 'accent';
 
   constructor(private services: JsonServerService, private jsonServerService: JsonServerService) { }
 

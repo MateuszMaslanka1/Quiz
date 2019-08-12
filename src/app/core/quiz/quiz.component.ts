@@ -14,8 +14,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class QuizComponent implements OnInit  {
 
   @ViewChild('question', {static: false}) question: ElementRef;
+  loading = false;
   private questionsForShow = [];
-  public loading = false;
   private items;
   private indexForNextQuestion = 0;
   private answer: string;

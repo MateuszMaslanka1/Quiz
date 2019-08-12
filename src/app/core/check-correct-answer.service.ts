@@ -8,9 +8,10 @@ import {isNullOrUndefined} from 'util';
 })
 export class CheckCorrectAnswerService {
 
+  tabWithQuestionAndAnswer: QuizData[] = [];
+
   private result = 0;
   private resultWhenBadAnswer = 0;
-  public tabWithQuestionAndAnswer: QuizData[] = [];
   private counterForQuantityOfSumResult = 0;
   private resultOneTime: number;
   private resultWhenBadAnswerOneTime: number;
