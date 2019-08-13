@@ -22,7 +22,7 @@ export class QuizComponent implements OnInit  {
   private parametersFromLink: string;
 
   constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService, private checkTime: TimeService,
+              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService,
               private route: ActivatedRoute, private router: Router, public checkTimeService: TimeService) { }
 
   ngOnInit() {

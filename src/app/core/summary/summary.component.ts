@@ -13,8 +13,7 @@ export class SummaryComponent implements OnInit {
 
   private getFlagFromJsonSever: string;
 
-  constructor(private checkCorectAnswer: CheckCorrectAnswerService,
-              private jsonServerService: JsonServerService, private router: Router) { }
+  constructor(private jsonServerService: JsonServerService, private router: Router) { }
 
   ngOnInit() {
     this.jsonServerService.getPenaltyPoitsMode().subscribe(response => {

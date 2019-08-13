@@ -13,7 +13,7 @@ export class TimeService {
 
   private isRunning = false;
   private getFlagFromJsonSever: string;
-  private interval: number;
+  private interval;
 
   constructor(private jsonServerService: JsonServerService, private router: Router)  { }
 

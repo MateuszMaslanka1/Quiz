@@ -13,7 +13,7 @@ export class WelcomeComponent implements OnInit {
   protected quantityOfQuestions: number;
   protected timeForUser: number;
 
-  constructor(private services: JsonServerService, private jsonServerService: JsonServerService) { }
+  constructor(private services: JsonServerService) { }
 
   ngOnInit() {
     this.color = 'accent';
