@@ -15,16 +15,16 @@ export class AddQuestionComponent implements OnInit {
   maxQuantityOfAnswer = 6;
   numberOfAnswer = 0;
   validationForInput: FormControl[] = [];
+  checkLongOfAnswer = false;
+  question = '';
   validForTextArea = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
   ]);
 
   private answers: string[] = [];
-  private question = '';
   private correctAnswer = null;
   private ObjWithQuestion = {};
-  private checkLongOfAnswer = false;
 
   constructor(private connectToJsonServerService: JsonServerService,
               private checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService) {}
@@ -34,9 +34,9 @@ export class AddQuestionComponent implements OnInit {
   }
 
   checkLongAnswer() {
-      (this.numberOfAnswer > 1 && this.question.length > 2) ?
-      this.checkLongOfAnswer = this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
-      this.checkLongOfAnswer = false;
+    this.checkLongOfAnswer = (this.numberOfAnswer > 1 && this.question.length > 2) ?
+    this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
+    false;
   }
 
   deleteAnswer(indexOfAnswer) {
