@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {QuizComponent} from './quiz.component';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {TimeService} from '../time.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {of} from 'rxjs';
 
 describe('QuizComponent', () => {
@@ -41,24 +41,23 @@ describe('QuizComponent', () => {
   }
 
   const router = {
-    navigate: jasmine.createSpy('navigate')
+    navigate: jasmine.createSpy('navigate'),
+    url: 'testUrl',
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [QuizComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         {provide: JsonServerService, useClass: MockJsonServerService},
         {provide: CheckCorrectAnswerService, useClass: MockCheckCorrectAnswerService},
         {provide: GoToQuestionWithoutAnswerService, useClass: MockGoToQuestionWithoutAnswerService},
-        {provide: ActivatedRoute},
         {provide: Router, useValue: router},
         {provide: TimeService, useValue: { checkTimeService: {time$: of(123) } } }
       ]
     })
       .compileComponents();
-
   }));
 
   beforeEach(() => {

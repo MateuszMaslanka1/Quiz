@@ -23,12 +23,14 @@ export class QuizComponent implements OnInit  {
 
   constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
               private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService,
-              private route: ActivatedRoute, private router: Router, public checkTimeService: TimeService) { }
+              private router: Router, public checkTimeService: TimeService) { }
 
   ngOnInit() {
-    this.parametersFromLink = this.route.snapshot.url[1].path;
-    this.router.navigate([`../quiz/${this.parametersFromLink}`]);
-    this.indexForNextQuestion = +this.parametersFromLink;
+    // this.parametersFromLink = this.route.snapshot.url[1].path;
+    this.router.navigate([this.router.url]);
+    // this.router.navigate([`../quiz/${this.parametersFromLink}`]);
+    // this.indexForNextQuestion = +this.parametersFromLink;
+    this.indexForNextQuestion = +this.router.url.split('/').slice(-1)[0];
     if (this.checkCorectAnswer.getQuestionAndAnswer().length === 0) {
       this.jsonServerService.getQuestionsFromJsonServer().subscribe(response => {
         for (const type of Object.keys(response)) {

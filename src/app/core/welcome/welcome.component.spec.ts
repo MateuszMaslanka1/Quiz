@@ -3,7 +3,6 @@ import {WelcomeComponent} from './welcome.component';
 import {JsonServerService} from '../json-server.service';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {of} from 'rxjs';
-import {QuizData} from '../../model/quiz-data';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
