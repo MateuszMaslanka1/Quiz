@@ -17,17 +17,17 @@ export class AddQuestionComponent implements OnInit {
   validationForInput: FormControl[] = [];
   checkLongOfAnswer = false;
   question = '';
+  answers: string[] = [];
+  correctAnswer = null;
   validForTextArea = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
   ]);
-
-  private answers: string[] = [];
-  private correctAnswer = null;
   private ObjWithQuestion = {};
 
   constructor(private connectToJsonServerService: JsonServerService,
-              private checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService) {}
+              private checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService) {
+  }
 
   ngOnInit() {
     this.listForInputValid();
@@ -35,13 +35,18 @@ export class AddQuestionComponent implements OnInit {
 
   checkLongAnswer() {
     this.checkLongOfAnswer = (this.numberOfAnswer > 1 && this.question.length > 2) ?
-    this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
-    false;
+      this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
+      false;
   }
 
   deleteAnswer(indexOfAnswer) {
-    swal.fire({ title: 'Czy napewno chesz usunąć odpowiedź', text: 'kliknij na przycisk', type: 'warning',
-      showCancelButton: true, cancelButtonColor: '#d33'}).then((result) => {
+    swal.fire({
+      title: 'Czy napewno chesz usunąć odpowiedź',
+      text: 'kliknij na przycisk',
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33'
+    }).then((result) => {
         if (result.value) {
           this.answers = this.answers.filter((el, index) =>
             index !== indexOfAnswer
@@ -70,7 +75,7 @@ export class AddQuestionComponent implements OnInit {
         if (result.value) {
           this.ObjWithQuestion = {
             question: this.question,
-            answers:  this.answers,
+            answers: this.answers,
             correctAnswer: this.correctAnswer,
             userAnswer: null
           };
