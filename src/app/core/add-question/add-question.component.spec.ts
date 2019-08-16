@@ -3,9 +3,6 @@ import {AddQuestionComponent} from './add-question.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import {CheckAllAnswersAreInscribedService} from './check-all-answers-are-inscribed.service';
-import * as sweetAlert from 'sweetalert2';
-import swal from 'sweetalert2';
-import {FormControl, Validators} from '@angular/forms';
 
 class MockJsonServerService {
   sendNewQuestionToJsonServer() {
@@ -21,8 +18,6 @@ describe('AddQuestionComponent', () => {
   let component: AddQuestionComponent;
   let fixture: ComponentFixture<AddQuestionComponent>;
   let checkAllAnswersAreInscribedService: CheckAllAnswersAreInscribedService;
-
-  const question = 'asd';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -12,13 +12,14 @@ import {QuizData} from '../../model/quiz-data';
 })
 export class EndComponent implements OnInit {
 
-  private listWithQuestinAndAnswers: QuizData[] = [];
-  private resultFromCheckAnswer: SumOfPoints;
-  private sumOfAllPoints: number;
-  private getFlagFromJsonSever: string;
-  protected ObjWithResoult = {};
+  getFlagFromJsonSever: string;
+  listWithQuestinAndAnswers: QuizData[] = [];
+  resultFromCheckAnswer: SumOfPoints;
+  sumOfAllPoints: number;
+  ObjWithResoult = {};
 
-  constructor(private checkTime: TimeService, private checkCorectAnswer: CheckCorrectAnswerService,
+  constructor(private checkTime: TimeService,
+              private checkCorectAnswer: CheckCorrectAnswerService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
