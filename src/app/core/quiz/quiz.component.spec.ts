@@ -73,6 +73,6 @@ describe('QuizComponent', () => {
   it('show data', () => {
     component.ngOnInit();
     fixture.detectChanges();
-    expect(router.url).toBe('/quiz/0');
+    expect(router.navigate).toHaveBeenCalledWith([router.url]);
   });
 });

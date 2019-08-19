@@ -17,8 +17,12 @@ class MockTimeService {
 
 class MockCheckCorrectAnswerService {
   getQuestionAndAnswer() {
-    return [{id: 1, value: {id: 1, question: 'Jaka jest stolica Pakistanu',
-      answers: ['a', 'a', 'a', 'a'], correctAnswer: 1, userAnswer: '2'}}];
+    return [{
+      id: 1, value: {
+        id: 1, question: 'Jaka jest stolica Pakistanu',
+        answers: ['a', 'a', 'a', 'a'], correctAnswer: 1, userAnswer: '2'
+      }
+    }];
   }
 
   checkAnswer() {
@@ -78,6 +82,11 @@ describe('EndComponent', () => {
 
   // it('go to welcome', () => {
   //   const bannerDe: DebugElement = fixture.debugElement;
-  //   const paragraphDe = bannerDe.query(By.css('button')).triggerEventHandler('click', {});
-  //  });
+  //   const paragraphDe = bannerDe.query(By.css('button')).nativeElement;
+  //   const ok = jasmine.createSpy('paragraphDe');
+  //   expect(ok).toHaveBeenCalledWith('/welcome');
+  //   // paragraphDe.click();
+  //   // console.log(window.location.href);
+  //   // expect(window.location.href).toContain('welcome');
+  // });
 });
