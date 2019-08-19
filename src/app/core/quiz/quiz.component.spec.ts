@@ -15,13 +15,13 @@ describe('QuizComponent', () => {
 
   class MockJsonServerService {
     getQuestionsFromJsonServer() {
-      const t = [{
+      const listWithQuestion = [{
         id: 11,
         question: '',
         answers: [],
         correctAnswer: 11,
       }];
-      return of(t);
+      return of(listWithQuestion);
     }
   }
 
@@ -75,5 +75,6 @@ describe('QuizComponent', () => {
     fixture.detectChanges();
     expect(router.navigate).toHaveBeenCalledWith([router.url]);
     expect(component.indexForNextQuestion).toBe(0);
+    expect(component.questionsForShow).toContain(component.questionsForShow);
   });
 });

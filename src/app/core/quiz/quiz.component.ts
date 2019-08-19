@@ -17,8 +17,8 @@ export class QuizComponent implements OnInit  {
 
   indexForNextQuestion = 0;
   loading = false;
+  questionsForShow = [];
 
-  private questionsForShow = [];
   private items;
   private answer: string;
   private parametersFromLink: string;
