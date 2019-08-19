@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {SumOfPoints} from '../../model/sum-of-points';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TimeService} from '../time.service';
 import {QuizData} from '../../model/quiz-data';
 

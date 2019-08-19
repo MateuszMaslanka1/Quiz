@@ -3,11 +3,12 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {EndComponent} from './end.component';
 import {TableComponent} from '../table/table.component';
 import {MatTableModule} from '@angular/material';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TimeService} from '../time.service';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {of} from 'rxjs';
+import {By} from '@angular/platform-browser';
 
 class MockTimeService {
   StopTimer() {
@@ -16,13 +17,14 @@ class MockTimeService {
 
 class MockCheckCorrectAnswerService {
   getQuestionAndAnswer() {
-    return [];
+    return [{id: 1, value: {id: 1, question: 'Jaka jest stolica Pakistanu',
+      answers: ['a', 'a', 'a', 'a'], correctAnswer: 1, userAnswer: '2'}}];
   }
 
   checkAnswer() {
     return {
-      result: '',
-      resultWhenBadAnswer: ''
+      result: 1,
+      resultWhenBadAnswer: 2
     };
   }
 }
@@ -31,7 +33,8 @@ describe('EndComponent', () => {
   let component: EndComponent;
   let fixture: ComponentFixture<EndComponent>;
   // let activatedRoute: ActivatedRoute;
-  let CheckCorrectAnswerService: CheckCorrectAnswerService;
+  // const CheckCorrectAnswerService: CheckCorrectAnswerService;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -59,11 +62,22 @@ describe('EndComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('check data', () => {
+  it('check all data to result', () => {
+    component.ObjWithResoult = {
+      resoult: 1,
+      resultWhenBadAnswer: 2,
+      sumOfAllPoints: 2
+    };
+    fixture.detectChanges();
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.getFlagFromJsonSever).toBeFalsy();
-    expect(component.listWithQuestinAndAnswers.length).toBe(0);
-   // spyOn(CheckCorrectAnswerService, '')
+    expect(component.sumOfAllPoints).toBeGreaterThan(0);
+    expect(component.ObjWithResoult).toEqual(component.ObjWithResoult);
   });
+
+  // it('go to welcome', () => {
+  //   const bannerDe: DebugElement = fixture.debugElement;
+  //   const paragraphDe = bannerDe.query(By.css('button')).triggerEventHandler('click', {});
+  //  });
 });

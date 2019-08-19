@@ -42,7 +42,7 @@ describe('QuizComponent', () => {
 
   const router = {
     navigate: jasmine.createSpy('navigate'),
-    url: 'testUrl',
+    url: '/quiz/0',
   };
 
   beforeEach(async(() => {
@@ -68,5 +68,11 @@ describe('QuizComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('show data', () => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(router.url).toBe('/quiz/0');
   });
 });
