@@ -14,10 +14,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class QuizComponent implements OnInit  {
 
   @ViewChild('question', {static: false}) question: ElementRef;
+
+  indexForNextQuestion = 0;
   loading = false;
+
   private questionsForShow = [];
   private items;
-  private indexForNextQuestion = 0;
   private answer: string;
   private parametersFromLink: string;
 
@@ -40,6 +42,7 @@ export class QuizComponent implements OnInit  {
           this.questionsForShow.push(this.items);
         }
         this.loading = false;
+        console.log(this.questionsForShow);
       });
     } else {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();

@@ -39,7 +39,7 @@ export class AddQuestionComponent implements OnInit {
       false;
   }
 
-  deleteAnswer(indexOfAnswer) {
+  deleteAnswer(indexOfAnswer: number) {
     swal.fire({
       title: 'Czy napewno chesz usunąć odpowiedź',
       text: 'kliknij na przycisk',

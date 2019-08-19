@@ -74,5 +74,6 @@ describe('QuizComponent', () => {
     component.ngOnInit();
     fixture.detectChanges();
     expect(router.navigate).toHaveBeenCalledWith([router.url]);
+    expect(component.indexForNextQuestion).toBe(0);
   });
 });
