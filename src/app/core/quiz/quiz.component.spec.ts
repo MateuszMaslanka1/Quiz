@@ -96,6 +96,7 @@ describe('QuizComponent', () => {
       buttonNextEL.disabled = false;
       buttonNextEL.click();
       expect(component.indexForNextQuestion).toBe(1);
+      expect(router.navigate).toHaveBeenCalledWith([`quiz/${component.indexForNextQuestion}`]);
     });
   }));
 });
