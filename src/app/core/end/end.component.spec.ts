@@ -80,13 +80,13 @@ describe('EndComponent', () => {
     expect(component.ObjWithResoult).toEqual(component.ObjWithResoult);
   });
 
-  // it('go to welcome', () => {
-  //   const bannerDe: DebugElement = fixture.debugElement;
-  //   const paragraphDe = bannerDe.query(By.css('button')).nativeElement;
+   // it('go to welcome', () => {
+  // const bannerDe: DebugElement = fixture.debugElement;
+   //  const paragraphDe = bannerDe.query(By.css('button')).nativeElement;
   //   const ok = jasmine.createSpy('paragraphDe');
   //   expect(ok).toHaveBeenCalledWith('/welcome');
-  //   // paragraphDe.click();
+   //  console.log(paragraphDe.click());
   //   // console.log(window.location.href);
   //   // expect(window.location.href).toContain('welcome');
-  // });
+ //  });
 });

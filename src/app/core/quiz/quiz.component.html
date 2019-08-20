@@ -1,38 +1,42 @@
 <div class="time-border">
-<app-time></app-time>
+  <app-time></app-time>
 </div>
 <section>
-  <div *ngIf="loading && (this.checkTimeService.time$ | async) else loading">
-  <div class="main-border">
-    <div class="question-border">
-      <label #question>{{questionsForShow[indexForNextQuestion].value.question}}</label>
-      <div class="question-and-correct-border">
-        <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="answer">
-          <mat-radio-button color="warn" [checked]="isChecked" *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
-         value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
-      </mat-radio-group>
-      <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()"
-              (click)="changeAnmationForwardQustion()">Zatwierdź</button>
-      </div>
+  <div *ngIf="(this.timeService.time$ | async) else loading">
+    <div class="main-border">
+      <div class="question-border">
+        <label #question>{{questionsForShow[indexForNextQuestion].value.question}}</label>
+        <div class="question-and-correct-border">
+          <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="answer">
+            <mat-radio-button color="warn" [checked]="isChecked"
+                              *ngFor="let item of questionsForShow[indexForNextQuestion].value.answers; let i = index"
+                              value={{i}}>{{questionsForShow[indexForNextQuestion].value.answers[i]}}</mat-radio-button>
+          </mat-radio-group>
+          <button class="button-correct" mat-flat-button (click)="takeAnsweres()" (click)="chengeQuestion()"
+                  (click)="changeAnmationForwardQustion()">Zatwierdź
+          </button>
+        </div>
         <div class="button-border">
-          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === 0"(click)="previousQuestion()"
+          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === 0"
+                  (click)="previousQuestion()"
                   (click)="changeAnmationBackwardQuestion()">
-          previous</button>
-          <button mat-flat-button class="button-next-pervious" [disabled]="indexForNextQuestion === this.questionsForShow.length - 1" (click)="nextQuestion()"
-            (click)="changeAnmationForwardQustion()">
-            next</button>
+            previous
+          </button>
+          <button mat-flat-button class="button-next-pervious"
+                  [disabled]="indexForNextQuestion === this.questionsForShow.length - 1" (click)="nextQuestion()" (click)="changeAnmationForwardQustion()">next
+          </button>
           <button mat-flat-button class="button-summary" routerLink="/summary">podumowanie</button>
         </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
 <ng-template #loading>
-    <mat-spinner></mat-spinner>
-    <p>Ładowanie Quizu...</p>
-  </ng-template>
+  <mat-spinner></mat-spinner>
+  <p>Ładowanie Quizu...</p>
+</ng-template>
 
 
 

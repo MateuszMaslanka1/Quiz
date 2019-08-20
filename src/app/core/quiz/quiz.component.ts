@@ -3,7 +3,7 @@ import {JsonServerService} from '../json-server.service';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {TimeService} from '../time.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -11,21 +11,26 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./quiz.component.scss']
 })
 
-export class QuizComponent implements OnInit  {
+export class QuizComponent implements OnInit {
 
   @ViewChild('question', {static: false}) question: ElementRef;
 
   indexForNextQuestion = 0;
-  loading = false;
+  // loading = false;
+  answer: string;
   questionsForShow = [];
 
   private items;
-  private answer: string;
   private parametersFromLink: string;
 
-  constructor(private jsonServerService: JsonServerService, private checkCorectAnswer: CheckCorrectAnswerService,
-              private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService,
-              private router: Router, public checkTimeService: TimeService) { }
+  constructor(
+    private jsonServerService: JsonServerService,
+    private checkCorectAnswer: CheckCorrectAnswerService,
+    private goToQuestionWithoutAnswer: GoToQuestionWithoutAnswerService,
+    private router: Router,
+    public timeService: TimeService,
+  ) {
+  }
 
   ngOnInit() {
     // this.parametersFromLink = this.route.snapshot.url[1].path;
@@ -41,8 +46,7 @@ export class QuizComponent implements OnInit  {
           this.items.value = response[type];
           this.questionsForShow.push(this.items);
         }
-        this.loading = false;
-        console.log(this.questionsForShow);
+        // this.loading = false;
       });
     } else {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
@@ -54,10 +58,10 @@ export class QuizComponent implements OnInit  {
     this.indexForNextQuestion++;
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     if (this.indexForNextQuestion === this.questionsForShow.length) {
-       this.indexForNextQuestion = this.questionsForShow.length - 1;
-     }
+      this.indexForNextQuestion = this.questionsForShow.length - 1;
+    }
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
-   }
+  }
 
   previousQuestion() {
     this.indexForNextQuestion--;
@@ -69,7 +73,7 @@ export class QuizComponent implements OnInit  {
   }
 
   takeAnsweres() {
-   // const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
+    // const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
     this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);
   }
 
@@ -83,11 +87,12 @@ export class QuizComponent implements OnInit  {
   }
 
   changeAnmationForwardQustion() {
-    this.question.nativeElement.className  = '';
-     // tslint:disable-next-line:no-unused-expression
+    this.question.nativeElement.className = '';
+    // tslint:disable-next-line:no-unused-expression
     this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
     this.question.nativeElement.classList.add('animation-class-forward');
   }
+
   changeAnmationBackwardQuestion() {
     this.question.nativeElement.className = '';
     // tslint:disable-next-line:no-unused-expression

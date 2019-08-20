@@ -1,17 +1,19 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {QuizComponent} from './quiz.component';
-import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import {JsonServerService} from '../json-server.service';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {GoToQuestionWithoutAnswerService} from '../go-to-question-without-answer.service';
 import {TimeService} from '../time.service';
 import {Router} from '@angular/router';
-import {of} from 'rxjs';
+import {of, Subject} from 'rxjs';
+import {By} from '@angular/platform-browser';
 
 describe('QuizComponent', () => {
   let component: QuizComponent;
   let fixture: ComponentFixture<QuizComponent>;
+  let timeService: TimeService;
 
   class MockJsonServerService {
     getQuestionsFromJsonServer() {
@@ -40,6 +42,10 @@ describe('QuizComponent', () => {
     }
   }
 
+  class MockTimeService {
+    time$ = of(1);
+  }
+
   const router = {
     navigate: jasmine.createSpy('navigate'),
     url: '/quiz/0',
@@ -54,7 +60,7 @@ describe('QuizComponent', () => {
         {provide: CheckCorrectAnswerService, useClass: MockCheckCorrectAnswerService},
         {provide: GoToQuestionWithoutAnswerService, useClass: MockGoToQuestionWithoutAnswerService},
         {provide: Router, useValue: router},
-        {provide: TimeService, useValue: { checkTimeService: {time$: of(123) } } }
+        {provide: TimeService, useClass: MockTimeService }
       ]
     })
       .compileComponents();
@@ -63,6 +69,7 @@ describe('QuizComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuizComponent);
     component = fixture.componentInstance;
+    timeService = TestBed.get(TimeService);
     fixture.detectChanges();
   });
 
@@ -70,11 +77,25 @@ describe('QuizComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('show data', () => {
+  it('check all data', () => {
+    component.answer = '2';
+    fixture.detectChanges();
     component.ngOnInit();
     fixture.detectChanges();
     expect(router.navigate).toHaveBeenCalledWith([router.url]);
     expect(component.indexForNextQuestion).toBe(0);
-    expect(component.questionsForShow).toContain(component.questionsForShow);
+    expect(component.questionsForShow).toBe(component.questionsForShow);
+    expect(component.answer).toBe('2');
   });
+
+  it('should next question', fakeAsync(() => {
+    timeService.time$.subscribe(data => {
+      const debugElement: DebugElement = fixture.debugElement;
+      const buttonNextEL = debugElement.query(By.css('.button-next-pervious:nth-of-type(2)')).nativeElement;
+      console.log(buttonNextEL);
+      buttonNextEL.click();
+      fixture.detectChanges();
+      expect(component.indexForNextQuestion).toBe(1);
+    });
+  }));
 });
