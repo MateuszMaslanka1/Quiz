@@ -60,13 +60,11 @@ export class QuizComponent implements OnInit {
 
   previousQuestion() {
     this.indexForNextQuestion--;
-    console.log(this.indexForNextQuestion);
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
   }
 
   takeAnsweres() {
-    // const getResoult = this.checkCorectAnswer.checkAnswer(this.questionsForShow[this.indexForNextQuestion], this.answer);
     this.checkCorectAnswer.checkUserChoose(this.questionsForShow, this.answer, this.indexForNextQuestion);
   }
 
