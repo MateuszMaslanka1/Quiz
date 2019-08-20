@@ -15,10 +15,9 @@ export class QuizComponent implements OnInit {
 
   @ViewChild('question', {static: false}) question: ElementRef;
 
-  indexForNextQuestion = 0;
-  // loading = false;
   answer: string;
   questionsForShow = [];
+  indexForNextQuestion = 0;
 
   private items;
   private parametersFromLink: string;
@@ -46,7 +45,6 @@ export class QuizComponent implements OnInit {
           this.items.value = response[type];
           this.questionsForShow.push(this.items);
         }
-        // this.loading = false;
       });
     } else {
       this.questionsForShow = this.checkCorectAnswer.getQuestionAndAnswer();
@@ -55,21 +53,15 @@ export class QuizComponent implements OnInit {
   }
 
   nextQuestion() {
-    console.log('jestem');
     this.indexForNextQuestion++;
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
-    if (this.indexForNextQuestion === this.questionsForShow.length) {
-      this.indexForNextQuestion = this.questionsForShow.length - 1;
-    }
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
   }
 
   previousQuestion() {
     this.indexForNextQuestion--;
+    console.log(this.indexForNextQuestion);
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
-    if (this.indexForNextQuestion === 0) {
-      this.indexForNextQuestion = 0;
-    }
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
   }
 

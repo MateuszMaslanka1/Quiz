@@ -90,12 +90,14 @@ describe('QuizComponent', () => {
 
   it('should next question', fakeAsync(() => {
     timeService.time$.subscribe(data => {
+      component.indexForNextQuestion = 1;
       const debugElement: DebugElement = fixture.debugElement;
       const buttonNextEL = debugElement.query(By.css('.button-next-pervious:nth-of-type(2)')).nativeElement;
       buttonNextEL.disabled = false;
       buttonNextEL.click();
       fixture.detectChanges();
-      expect(component.indexForNextQuestion).toBe(1);
+      tick(15000);
+      expect(component.indexForNextQuestion).toBe(2);
     });
   }));
 });
