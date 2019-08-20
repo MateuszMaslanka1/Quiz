@@ -55,6 +55,7 @@ export class QuizComponent implements OnInit {
   }
 
   nextQuestion() {
+    console.log('jestem');
     this.indexForNextQuestion++;
     this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     if (this.indexForNextQuestion === this.questionsForShow.length) {

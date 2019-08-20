@@ -92,7 +92,7 @@ describe('QuizComponent', () => {
     timeService.time$.subscribe(data => {
       const debugElement: DebugElement = fixture.debugElement;
       const buttonNextEL = debugElement.query(By.css('.button-next-pervious:nth-of-type(2)')).nativeElement;
-      console.log(buttonNextEL);
+      buttonNextEL.disabled = false;
       buttonNextEL.click();
       fixture.detectChanges();
       expect(component.indexForNextQuestion).toBe(1);
