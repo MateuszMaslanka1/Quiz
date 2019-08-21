@@ -18,6 +18,7 @@ export class QuizComponent implements OnInit {
   answer: string;
   questionsForShow = [];
   indexForNextQuestion = 0;
+  goIndex = 0;
 
   private items;
   private parametersFromLink: string;
@@ -54,14 +55,14 @@ export class QuizComponent implements OnInit {
 
   nextQuestion() {
     this.indexForNextQuestion++;
-    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
+    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
   }
 
   previousQuestion() {
     this.indexForNextQuestion--;
-    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     this.answer = this.questionsForShow[this.indexForNextQuestion].value.userAnswer;
+    this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
   }
 
   takeAnsweres() {
@@ -69,10 +70,10 @@ export class QuizComponent implements OnInit {
   }
 
   chengeQuestion() {
-    const goIndex = this.goToQuestionWithoutAnswer.goToQuestion(this.questionsForShow, this.indexForNextQuestion);
-    if (goIndex !== null) {
-      this.answer = this.questionsForShow[goIndex].value.userAnswer;
-      this.indexForNextQuestion = goIndex;
+    this.goIndex = this.goToQuestionWithoutAnswer.goToQuestion(this.questionsForShow, this.indexForNextQuestion);
+    if (this.goIndex !== null) {
+      this.answer = this.questionsForShow[this.goIndex].value.userAnswer;
+      this.indexForNextQuestion = this.goIndex;
       this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);
     }
   }
@@ -90,5 +91,4 @@ export class QuizComponent implements OnInit {
     this.question.nativeElement.offsetWidth; // reflow layout in all page and run animation in slider
     this.question.nativeElement.classList.add('animation-class-backward');
   }
-
 }
