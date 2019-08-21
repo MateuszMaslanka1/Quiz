@@ -39,6 +39,7 @@ describe('QuizComponent', () => {
     getQuestionAndAnswer() {
       return '';
     }
+
     checkUserChoose() {
       return [{
         id: 1, value: {
@@ -67,7 +68,7 @@ describe('QuizComponent', () => {
         {provide: CheckCorrectAnswerService, useClass: MockCheckCorrectAnswerService},
         {provide: GoToQuestionWithoutAnswerService, useClass: MockGoToQuestionWithoutAnswerService},
         {provide: Router, useValue: router},
-        {provide: TimeService, useClass: MockTimeService }
+        {provide: TimeService, useClass: MockTimeService}
       ]
     })
       .compileComponents();
@@ -82,19 +83,19 @@ describe('QuizComponent', () => {
   });
 
   it('should create', () => {
-     expect(component).toBeTruthy();
-   });
+    expect(component).toBeTruthy();
+  });
 
   it('check all data', () => {
-     component.answer = '2';
-     fixture.detectChanges();
-     component.ngOnInit();
-     fixture.detectChanges();
-     expect(router.navigate).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
-     expect(component.indexForNextQuestion).toBe(0);
-     expect(component.questionsForShow).toBe(component.questionsForShow);
-     expect(component.answer).toBe('2');
-   });
+    component.answer = '2';
+    fixture.detectChanges();
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(router.navigate).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
+    expect(component.indexForNextQuestion).toBe(0);
+    expect(component.questionsForShow).toBe(component.questionsForShow);
+    expect(component.answer).toBe('2');
+  });
 
   it('should next question', fakeAsync(() => {
     component.answer = '2';
@@ -105,11 +106,10 @@ describe('QuizComponent', () => {
       buttonNextEL.disabled = false;
       buttonNextEL.click();
       expect(component.indexForNextQuestion).toBe(1);
-      // expect(router.navigate).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
     });
     expect(component.answer).toBe('2');
-   }));
-
+  }));
+  // expect(router.navigate).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
   it('should previous question', fakeAsync(() => {
     timeService.time$.subscribe(() => {
       const debugElement: DebugElement = fixture.debugElement;
@@ -125,10 +125,11 @@ describe('QuizComponent', () => {
   }));
 
   it('should find next question without answere not null', () => {
-      spyOn(goToQuestionWithoutAnswerService, 'goToQuestion').and.returnValue(1);
-      component.answer = '2';
-      component.chengeQuestion();
-      // expect(component.answer).toBe(component.answer);
-      expect(component.indexForNextQuestion).toBe(1);
+    spyOn(goToQuestionWithoutAnswerService, 'goToQuestion').and.returnValue(1);
+    component.questionsForShow = [{value: 2, userAnswer: '4'}, {value: 1, userAnswer: '2'}];
+    fixture.detectChanges();
+    component.chengeQuestion();
+    expect(component.answer).toBe(component.answer);
+    expect(component.indexForNextQuestion).toBe(1);
   });
 });
