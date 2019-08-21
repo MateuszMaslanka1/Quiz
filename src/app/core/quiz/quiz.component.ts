@@ -72,6 +72,7 @@ export class QuizComponent implements OnInit {
   chengeQuestion() {
     this.goIndex = this.goToQuestionWithoutAnswer.goToQuestion(this.questionsForShow, this.indexForNextQuestion);
     if (this.goIndex !== null) {
+      console.log(this.questionsForShow);
       this.answer = this.questionsForShow[this.goIndex].value.userAnswer;
       this.indexForNextQuestion = this.goIndex;
       this.router.navigate([`../quiz/${this.indexForNextQuestion}`]);

@@ -126,10 +126,12 @@ describe('QuizComponent', () => {
 
   it('should find next question without answere not null', () => {
     spyOn(goToQuestionWithoutAnswerService, 'goToQuestion').and.returnValue(1);
-    component.questionsForShow = [{value: 2, userAnswer: '4'}, {value: 1, userAnswer: '2'}];
+    component.questionsForShow = [{value: 2, userAnswer: '2'}, {value: 1, userAnswer: '2'}];
+    component.answer = '2';
     fixture.detectChanges();
     component.chengeQuestion();
-    expect(component.answer).toBe(component.answer);
+    console.log(component.questionsForShow);
+    expect(component.answer).toBe('2');
     expect(component.indexForNextQuestion).toBe(1);
   });
 });
