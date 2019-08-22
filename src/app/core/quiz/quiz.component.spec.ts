@@ -91,7 +91,6 @@ describe('QuizComponent', () => {
 
   it('check all data', () => {
     const navigateSpy = spyOn(router, 'navigate');
-
     component.answer = '2';
     fixture.detectChanges();
     component.ngOnInit();
@@ -102,17 +101,23 @@ describe('QuizComponent', () => {
     expect(component.answer).toBe('2');
   });
 
-  it('should next question', fakeAsync(() => {
+  it('should start nextQuestion method' , fakeAsync(() => {
+    spyOn(component, 'nextQuestion');
     const navigateSpy = spyOn(router, 'navigate');
-    component.questionsForShow = [{value: 2, userAnswer: '2'}, {value: 1, userAnswer: '2'}];
-    // component.nextQuestion();
-
     timeService.time$.subscribe(() => {
       const debugElement: DebugElement = fixture.debugElement;
       const buttonNextEL = debugElement.query(By.css('.button-next-pervious:nth-of-type(2)')).nativeElement;
       buttonNextEL.disabled = false;
       buttonNextEL.click();
     });
+    expect(component.nextQuestion).toHaveBeenCalled();
+  })) ;
+
+  it('should next question', fakeAsync(() => {
+    const navigateSpy = spyOn(router, 'navigate');
+    component.questionsForShow = [{value: 2, userAnswer: '2'}, {value: 1, userAnswer: '2'}];
+    component.nextQuestion();
+    fixture.detectChanges();
     component.answer = '2';
     fixture.detectChanges();
     expect(component.indexForNextQuestion).toBe(1);
@@ -120,23 +125,30 @@ describe('QuizComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
   }));
 
-
-  it('should previous question', fakeAsync(() => {
+  it('should start previousQuestion method' , fakeAsync(() => {
+    spyOn(component, 'previousQuestion');
     const navigateSpy = spyOn(router, 'navigate');
     timeService.time$.subscribe(() => {
       const debugElement: DebugElement = fixture.debugElement;
       const buttonPreviousEL = debugElement.query(By.css('.button-next-pervious')).nativeElement;
-      component.indexForNextQuestion = 1;
       buttonPreviousEL.disabled = false;
       buttonPreviousEL.click();
     });
+    expect(component.previousQuestion).toHaveBeenCalled();
+  })) ;
+
+  it('should previous question', () => {
+    const navigateSpy = spyOn(router, 'navigate');
     component.questionsForShow = [{value: 2, userAnswer: '2'}, {value: 1, userAnswer: '2'}];
+    component.indexForNextQuestion = 1;
+    fixture.detectChanges();
+    component.previousQuestion();
     component.answer = '2';
     fixture.detectChanges();
     expect(component.indexForNextQuestion).toBe(0);
     expect(navigateSpy).toHaveBeenCalledWith([`/quiz/${component.indexForNextQuestion}`]);
     expect(component.answer).toBe('2');
-  }));
+  });
 
   it('should find next question without answere not null', () => {
     spyOn(goToQuestionWithoutAnswerService, 'goToQuestion').and.returnValue(1);
