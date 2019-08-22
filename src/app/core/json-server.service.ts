@@ -24,9 +24,7 @@ export class JsonServerService {
    }
 
    sendNewQuestionToJsonServer(ObjWithQuestion) {
-     console.log(ObjWithQuestion);
-     return this.http.post('http://localhost:3000/questions', ObjWithQuestion).subscribe(data => {
-        console.log(data);
+     return this.http.post('http://localhost:3000/questions', ObjWithQuestion).subscribe(() => {
       }, error => {
        console.log(error.message, error.status);
      });

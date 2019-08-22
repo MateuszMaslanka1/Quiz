@@ -52,6 +52,10 @@ export class AddQuestionComponent implements OnInit {
             index !== indexOfAnswer
           );
           this.numberOfAnswer--;
+          if (indexOfAnswer === +this.correctAnswer) {
+             this.correctAnswer = null;
+         }
+          this.checkLongAnswer();
           swal.fire('Usunięto!', 'Twoja odpowiedź została usunięta.', 'success');
         }
       });
