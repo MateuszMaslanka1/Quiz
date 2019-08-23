@@ -22,7 +22,6 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     if (this.ObjWithResoult) {
         this.result = this.ObjWithResoult.resoult;
-        console.log(this.ObjWithResoult);
         this.sumOfAllPoints = this.ObjWithResoult.sumOfAllPoints;
         this.resultWhenBadAnswer = this.ObjWithResoult.resultWhenBadAnswer;
      }
