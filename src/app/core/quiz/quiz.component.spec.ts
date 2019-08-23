@@ -1,4 +1,4 @@
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import {QuizComponent} from './quiz.component';
 import {CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
@@ -9,8 +9,6 @@ import {TimeService} from '../time.service';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
-import {CheckAllAnswersAreInscribedService} from '../add-question/check-all-answers-are-inscribed.service';
-import {url} from 'inspector';
 
 class MockJsonServerService {
   getQuestionsFromJsonServer() {

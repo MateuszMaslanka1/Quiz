@@ -10,23 +10,23 @@ import {QuizData} from '../../model/quiz-data';
 export class TableComponent implements OnInit {
 
   @Input() ObjWithResoult;
-  protected listWithQuestionAndAnswer: QuizData[] = [];
-  protected columnsToDisplay: string[] = [];
-  protected result: number;
-  protected sumOfAllPoints: number;
-  protected resultWhenBadAnswer: number;
-  protected above = 'above';
+   listWithQuestionAndAnswer: QuizData[] = [];
+   columnsToDisplay: string[] = [];
+   result: number;
+   sumOfAllPoints: number;
+   resultWhenBadAnswer: number;
+   above = 'above';
 
   constructor(private checkCorectAnswer: CheckCorrectAnswerService) { }
 
   ngOnInit() {
     if (this.ObjWithResoult) {
         this.result = this.ObjWithResoult.resoult;
+        console.log(this.ObjWithResoult);
         this.sumOfAllPoints = this.ObjWithResoult.sumOfAllPoints;
         this.resultWhenBadAnswer = this.ObjWithResoult.resultWhenBadAnswer;
      }
     this.listWithQuestionAndAnswer = this.checkCorectAnswer.getQuestionAndAnswer();
     this.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
   }
-
 }

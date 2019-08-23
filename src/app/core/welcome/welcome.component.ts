@@ -10,8 +10,8 @@ export class WelcomeComponent implements OnInit {
 
   color = 'accent';
 
-  protected quantityOfQuestions: number;
-  protected timeForUser: number;
+  quantityOfQuestions: number;
+  timeForUser: number;
 
   constructor(private services: JsonServerService) { }
 

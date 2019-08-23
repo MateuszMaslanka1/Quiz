@@ -26,4 +26,16 @@ describe('TableComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show table on endcomponent', () => {
+      component.result = 5;
+      component.sumOfAllPoints = 5;
+      component.resultWhenBadAnswer = 0;
+      component.columnsToDisplay = ['value.id', 'value.question', 'value.answers', 'value.userAnswer'];
+      fixture.detectChanges();
+      expect(component.result).toBe(5);
+      expect(component.sumOfAllPoints).toBe(5);
+      expect(component.resultWhenBadAnswer).toBe(0);
+      expect(component.columnsToDisplay).toEqual(['value.id', 'value.question', 'value.answers', 'value.userAnswer']);
+  });
 });

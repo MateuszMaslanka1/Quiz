@@ -31,7 +31,7 @@ export class SummaryComponent implements OnInit {
   }
 
   backToQuiz() {
-    this.router.navigate([`../quiz/0`]);
+    this.router.navigate([`/quiz/0`]);
   }
 }
 

@@ -49,4 +49,13 @@ describe('WelcomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should welcome quantity of question and limitTime', () => {
+    component.ngOnInit();
+    component.quantityOfQuestions = 5;
+    component.timeForUser = 120;
+    fixture.detectChanges();
+    expect(component.quantityOfQuestions).toBe(5);
+    expect(component.timeForUser).toBe(120);
+  });
 });

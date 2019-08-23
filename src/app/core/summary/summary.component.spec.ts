@@ -7,15 +7,20 @@ import {MatTableModule} from '@angular/material';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
 
+
+class MockJsonServerService {
+  getPenaltyPoitsMode() {
+    const todos = {flag: true, id: 1};
+    return of( todos );
+  }
+}
+
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
   let fixture: ComponentFixture<SummaryComponent>;
 
-  class MockJsonServerService {
-     getPenaltyPoitsMode() {
-        const todos = {flag: true, id: 1};
-        return of( todos );
-     }
+  let router = {
+    navigate: jasmine.createSpy('navigate')
   }
 
   beforeEach(async(() => {
@@ -24,7 +29,7 @@ describe('SummaryComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {provide: JsonServerService, useClass: MockJsonServerService},
-        {provide: Router}
+        {provide: Router, useValue: router}
       ],
       imports: [ MatTableModule ]
     })
@@ -34,10 +39,16 @@ describe('SummaryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SummaryComponent);
     component = fixture.componentInstance;
+    router = TestBed.get(Router);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should back to quiz', () => {
+    component.backToQuiz();
+    expect(router.navigate).toHaveBeenCalledWith([`/quiz/0`]);
   });
 });
