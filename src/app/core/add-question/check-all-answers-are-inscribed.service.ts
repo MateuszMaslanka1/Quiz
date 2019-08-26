@@ -5,23 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class CheckAllAnswersAreInscribedService {
 
-  private checkLongOfAnswer: boolean;
-
   constructor() { }
 
-  checkLenghtOfAnswers(answers: string[] = [], numberOfAnswer: number) {
-    if (answers.length === numberOfAnswer) {
-      for (const item of answers) {
+  checkLenghtOfAnswers(answers: string[] = []) {
+    let checkLongOfAnswer: boolean;
+    for (const item of answers) {
         if (item.length < 2) {
-          this.checkLongOfAnswer = false;
+          checkLongOfAnswer = false;
           break;
         } else {
-          this.checkLongOfAnswer = true;
+          checkLongOfAnswer = true;
         }
       }
-    } else {
-      this.checkLongOfAnswer = false;
-    }
-    return this.checkLongOfAnswer;
+    return checkLongOfAnswer;
   }
 }

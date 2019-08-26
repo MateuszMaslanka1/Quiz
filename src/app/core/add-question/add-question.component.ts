@@ -35,7 +35,7 @@ export class AddQuestionComponent implements OnInit {
 
   checkLongAnswer() {
     this.checkLongOfAnswer = (this.numberOfAnswer > 1 && this.question.length > 2) ?
-      this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers, this.numberOfAnswer) :
+      this.checkAllAnswersAreInscribedService.checkLenghtOfAnswers(this.answers) :
       false;
   }
 
