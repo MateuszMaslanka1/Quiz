@@ -20,6 +20,7 @@ export class CheckCorrectAnswerService {
 
   checkAnswer(questionsForShowFromQuiz = [], flag: string): SumOfPoints {
     questionsForShowFromQuiz.forEach( el => {
+      console.log(questionsForShowFromQuiz);
       if (isNullOrUndefined(el.value.userAnswer) !== true) {
         (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
       }

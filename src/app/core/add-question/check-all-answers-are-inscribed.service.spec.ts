@@ -12,6 +12,16 @@ describe('CheckAllAnswersAreInscribedService', () => {
 
   it('should be checkLongOfAnswer true', () => {
     const service: CheckAllAnswersAreInscribedService = TestBed.get(CheckAllAnswersAreInscribedService);
-    service.checkLenghtOfAnswers(['teskt', 'tekst']);
+    expect(service.checkLenghtOfAnswers(['teskt', 'tekst'])).toBeTruthy();
+  });
+
+  it('should be checkLongOfAnswer false if validation is shorter ', () => {
+    const service: CheckAllAnswersAreInscribedService = TestBed.get(CheckAllAnswersAreInscribedService);
+    expect(service.checkLenghtOfAnswers(['a', 'a'])).toBeFalsy();
+  });
+
+  it('should be checkLongOfAnswer false if validation is shorter ', () => {
+    const service: CheckAllAnswersAreInscribedService = TestBed.get(CheckAllAnswersAreInscribedService);
+    expect(service.checkLenghtOfAnswers(['', ''])).toBeFalsy();
   });
 });
