@@ -21,14 +21,6 @@ describe('TimeService', () => {
     ],
   }));
 
-  beforeEach(() => {
-    jasmine.clock().install();
-  });
-
-  afterEach(() => {
-    jasmine.clock().uninstall();
-  });
-
   it('should be created', () => {
     const service: TimeService = TestBed.get(TimeService);
     expect(service).toBeTruthy();
