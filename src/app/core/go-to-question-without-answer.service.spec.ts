@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 
 const router = {
   navigate: jasmine.createSpy('navigate')
-}
+};
 
 describe('GoToQuestionWithoutAnswer.Service.SpecService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('GoToQuestionWithoutAnswer.Service.SpecService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should go to next question', () => {
+  it('should go to summary', () => {
     const service: GoToQuestionWithoutAnswerService = TestBed.get(GoToQuestionWithoutAnswerService);
     service.goToQuestion([{key: 0, value: {id: 1, question: 'Jaka jest stolica Omanu', answers: ['Ad-Dauha', 'Dubaj', 'Muskat', 'Bejrut'],
         correctAnswer: 2, userAnswer: '2'}},
