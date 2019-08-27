@@ -20,7 +20,6 @@ export class CheckCorrectAnswerService {
 
   checkAnswer(questionsForShowFromQuiz = [], flag: string): SumOfPoints {
     questionsForShowFromQuiz.forEach( el => {
-      console.log(questionsForShowFromQuiz);
       if (isNullOrUndefined(el.value.userAnswer) !== true) {
         (+el.value.correctAnswer === +el.value.userAnswer) ? this.sumPoints() : this.sumPointsBadAnswer(flag);
       }
@@ -49,13 +48,13 @@ export class CheckCorrectAnswerService {
   }
 
   checkUserChoose(questionsForShowFromQuiz = [], answerFromQuiz: string, index: number): Array<QuizData> {
-     questionsForShowFromQuiz.forEach(el => {
-      if (+el.key === +index) {
+    questionsForShowFromQuiz.forEach(el => {
+       if (+el.key === +index) {
         el.value.userAnswer = answerFromQuiz;
       }
     });
-     this.tabWithQuestionAndAnswer = questionsForShowFromQuiz;
-     return questionsForShowFromQuiz;
+    this.tabWithQuestionAndAnswer = questionsForShowFromQuiz;
+    return questionsForShowFromQuiz;
   }
 
   getQuestionAndAnswer() {

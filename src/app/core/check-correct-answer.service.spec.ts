@@ -27,4 +27,20 @@ describe('CheckCorrectAnswer.Service.SpecService', () => {
       'false');
     expect(spy).toHaveBeenCalled();
   });
+
+  // it('should be user answer', () => {
+  //   const service: CheckCorrectAnswerService = TestBed.get(CheckCorrectAnswerService);
+  //   service.checkUserChoose([{key: 1, value: {id: 1, question: 'Jaka jest stolica Omanu',
+  //       answers: ['Ad-Dauha', 'Dubaj', 'Muskat', 'Bejrut'], correctAnswer: 2, userAnswer: null}}], '2', 1);
+  //
+  //   const exce = {
+  //     id: 1,
+  //     question: 'Jaka jest stolica Omanu',
+  //     answers: [],
+  //     correctAnswer: 2,
+  //     userAnswer: '2'
+  //   };
+  //
+  //   expect(service.tabWithQuestionAndAnswer[0]).toEqual(exce);
+  // });
 });
