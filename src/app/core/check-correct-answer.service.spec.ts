@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CheckCorrectAnswerService } from './check-correct-answer.service';
+import {CheckCorrectAnswerService} from './check-correct-answer.service';
 
 describe('CheckCorrectAnswer.Service.SpecService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
@@ -39,8 +39,8 @@ describe('CheckCorrectAnswer.Service.SpecService', () => {
   //     answers: [],
   //     correctAnswer: 2,
   //     userAnswer: '2'
-  //   };
+  //   } as QuizData;
   //
-  //   expect(service.tabWithQuestionAndAnswer[0]).toEqual(exce);
+  //   expect(service.tabWithQuestionAndAnswer[0]).toContain(exce);
   // });
 });

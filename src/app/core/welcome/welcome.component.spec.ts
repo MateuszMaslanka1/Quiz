@@ -32,12 +32,7 @@ describe('WelcomeComponent', () => {
     }
   }
 
-  class DummyComponent {}
-
-  // class MyDirective {
-  //   public directiveProperty = '/quiz/0';
-  // }
-
+  // class DummyComponent {}
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ WelcomeComponent ],

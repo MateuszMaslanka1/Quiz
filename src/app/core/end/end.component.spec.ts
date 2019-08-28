@@ -3,12 +3,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {EndComponent} from './end.component';
 import {TableComponent} from '../table/table.component';
 import {MatTableModule} from '@angular/material';
-import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TimeService} from '../time.service';
 import {CheckCorrectAnswerService} from '../check-correct-answer.service';
 import {of} from 'rxjs';
-import {By} from '@angular/platform-browser';
 
 class MockTimeService {
   StopTimer() {
@@ -36,9 +35,6 @@ class MockCheckCorrectAnswerService {
 describe('EndComponent', () => {
   let component: EndComponent;
   let fixture: ComponentFixture<EndComponent>;
-  // let activatedRoute: ActivatedRoute;
-  // const CheckCorrectAnswerService: CheckCorrectAnswerService;
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -57,7 +53,6 @@ describe('EndComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EndComponent);
     component = fixture.componentInstance;
-    // activatedRoute = TestBed.get(ActivatedRoute);
     fixture.detectChanges();
 
   });
